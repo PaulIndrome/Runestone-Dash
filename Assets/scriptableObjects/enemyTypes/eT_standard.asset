@@ -8,8 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b130d8fa07863459ad9a6055a1e081, type: 3}
-  m_Name: New Enemy Counter
+  m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
+  m_Name: eT_standard
   m_EditorClassIdentifier: 
-  enemiesSpawned: 0
-  enemiesKilled: 12
+  health: 1
+  scaleOfEnemy: 1
+  leftRightFluct: 10
+  approachTime: 10

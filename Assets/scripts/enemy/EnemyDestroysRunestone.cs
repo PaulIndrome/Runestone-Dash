@@ -22,7 +22,7 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 	}
 
 	IEnumerator GameOverAndRestart(bool winLoose){
-		playerState.currentlyDashing = true;
+		playerState.canDash = true;
 		int secondsToRestart = 5;
 		Time.timeScale = 0f;
 		if(winLoose){
@@ -37,7 +37,7 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 			yield return new WaitForSecondsRealtime(1.0f);
 		}
 		Time.timeScale = 1f;
-		playerState.currentlyDashing = false;
+		playerState.canDash = false;
 		SceneManager.LoadScene("ingame_01");
 	}
 }

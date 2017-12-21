@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411f8c1cc5e2335459f4710e404889b2, type: 3}
+  m_Name: ecp_test
+  m_EditorClassIdentifier: 
+  zigZag:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 0.09867452
+      value: 0.3952656
+      inSlope: -0.23903799
+      outSlope: -0.23903799
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.29749632
+      value: -0.49621704
+      inSlope: -0.310122
+      outSlope: -0.310122
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5847125
+      value: 0.3659768
+      inSlope: -0.036656857
+      outSlope: -0.036656857
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.84977907
+      value: -0.52036554
+      inSlope: 0
+      outSlope: -7.9864993
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0

@@ -11,4 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f6022e37abb041a7bddb460cea1fa, type: 3}
   m_Name: New Player State
   m_EditorClassIdentifier: 
-  currentlyDashing: 0
+  currentDamage: 1
+  canDash: 1
+  hitEnemyShield: 0
