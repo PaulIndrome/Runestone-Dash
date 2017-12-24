@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour {
 
 		health = enemyType.health;
 
+		foreach(EnemyEffect e in enemyType.enemyEffects){
+			e.Apply(this);
+		}
+
 		StartCoroutine(enemyCurvePath.MoveTowardsTarget(this));
 	}
 

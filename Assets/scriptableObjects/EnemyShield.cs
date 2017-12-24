@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName="enemy/effects/EnemyShield")]
 public class EnemyShield : EnemyEffect {
 
-	public GameObject enemyShieldPrefab;
-	public override void Apply(GameObject enemy){
-
+	public override void Apply(Enemy enemy){
+		enemy.gameObject.GetComponentInChildren<EnemyShieldCollision>().Activate();
 	}
 
 }

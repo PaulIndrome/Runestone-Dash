@@ -2,5 +2,5 @@
 using UnityEngine;
 
 public abstract class EnemyEffect : ScriptableObject {
-	public abstract void Apply(GameObject enemy);
+	public abstract void Apply(Enemy enemy);
 }

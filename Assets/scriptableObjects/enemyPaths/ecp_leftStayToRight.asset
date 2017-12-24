@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e25322bcdd1bde48be25ad38213e679, type: 3}
-  m_Name: ecpr_test
+  m_Script: {fileID: 11500000, guid: 411f8c1cc5e2335459f4710e404889b2, type: 3}
+  m_Name: ecp_leftStayToRight
   m_EditorClassIdentifier: 
   zigZag:
     serializedVersion: 2
@@ -17,33 +17,27 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
+      inSlope: 0.68749994
+      outSlope: 0.68749994
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33
+      value: -1
       inSlope: 0
       outSlope: 0
-      tangentMode: 136
-    - serializedVersion: 2
-      time: 0.09867452
-      value: 0.3952656
-      inSlope: -0.23903799
-      outSlope: -0.23903799
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.29749632
-      value: -0.49621704
-      inSlope: -0.310122
-      outSlope: -0.310122
+      time: 0.724296
+      value: -0.8536395
+      inSlope: 2.2107363
+      outSlope: 2.2107363
       tangentMode: 0
-    - serializedVersion: 2
-      time: 0.84977907
-      value: -0.52036554
-      inSlope: 0
-      outSlope: -7.9864993
-      tangentMode: 1
     - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 1
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName="enemy/EnemyCurvePath")]
@@ -19,23 +18,20 @@ public class EnemyCurvePath : ScriptableObject {
 		float timeWalked = 0;
 		float t = 0;
 
-		//
 		Vector3 step = Vector3.zero;
-		Vector3 sideStep = Vector3.zero;
-		sideStep.y = meshAndCollider.localPosition.y;
+
+		carrierEmpty.LookAt(Vector3.zero);
 
 		while(enemyScript.health > 0){
 			t = timeWalked / enemyType.approachTime;
 
 			step.z = Mathf.Lerp(startPosition.z, 0, t);
 			step.x = Mathf.Lerp(startPosition.x, 0, t);
+			step = step + (carrierEmpty.right * zigZag.Evaluate(t) * enemyType.leftRightFluct);
 
+			meshAndCollider.LookAt(new Vector3(step.x, meshAndCollider.transform.position.y, step.z));
 			carrierEmpty.position = step;
 			
-			sideStep.x = zigZag.Evaluate(t) * enemyType.leftRightFluct;
-			meshAndCollider.LookAt(step + sideStep);
-			meshAndCollider.localPosition = sideStep;
-
 			timeWalked += Time.deltaTime;
 			yield return null;
 		}
