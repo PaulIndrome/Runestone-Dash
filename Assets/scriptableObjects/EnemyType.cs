@@ -14,7 +14,7 @@ public class EnemyType : ScriptableObject {
 	[Range(1f, 20f)]
 	public float leftRightFluct;
 
-	[Range(5f, 20f)]
+	[Range(5f, 50f)]
 	public float approachTime;
 
 	public EnemyEffect[] enemyEffects;

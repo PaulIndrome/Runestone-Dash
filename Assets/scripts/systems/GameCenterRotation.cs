@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class GameCenterRotation : MonoBehaviour {
 
-	public float turningSpeed;
-	void Start () {
-		
-	}
+	public delegate void PlayerRadiusChanged(float newRadius);
+	public static event PlayerRadiusChanged pRadChange;
+	public float centerRadius;
+	private GameCenterPatrolCircle gameCenterPatrolCircle;
+	private CarrotStickRadiusControl carrotStickRadiusControl;
 	
-	// Update is called once per frame
-	void Update () {
-		transform.Rotate(Vector3.up, Time.deltaTime*turningSpeed);
+	public void Start(){
+		gameCenterPatrolCircle = GetComponent<GameCenterPatrolCircle>();
+		carrotStickRadiusControl = GetComponentInChildren<CarrotStickRadiusControl>();
 	}
+
+	public void SetCenterRadius(float newRadius){
+		if(pRadChange != null)
+			pRadChange(newRadius);
+	}
+
 }

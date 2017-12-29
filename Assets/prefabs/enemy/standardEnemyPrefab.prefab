@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaffc5b1542dcac49b769303eac6bb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerState: {fileID: 11400000, guid: bd3c816fe2dd15045b18937f96058f6c, type: 2}
 --- !u!114 &114736294384072912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -570,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  hasShield: 0
   killedPS: {fileID: 198162881353732220}
   enemyCurvePath: {fileID: 11400000, guid: dd86cfc0694cb084f8697edc2d7b7625, type: 2}
   enemyType: {fileID: 11400000, guid: 0e037c2d08e753b4aacc02386d28daaa, type: 2}

@@ -28,7 +28,6 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetFreeAgain(){
-		playerFollow.allowedToFollow = true;
 		playerState.canDash = true;
 		playerState.hitEnemyShield = false;
 	}

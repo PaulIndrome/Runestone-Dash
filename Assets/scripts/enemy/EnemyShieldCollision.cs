@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyShieldCollision : MonoBehaviour {
 
+	public PlayerState playerState;
 	public void Activate(){
 		GetComponent<BoxCollider>().enabled = true;
 		foreach(Transform g in transform){
@@ -11,13 +12,17 @@ public class EnemyShieldCollision : MonoBehaviour {
 		}
 	}
 	public void OnTriggerEnter(Collider col){
-		Debug.Log(col.gameObject.name + " collided with shield");
 		Player player = col.GetComponent<Player>();
 		if(player != null){
-			player.GetComponent<PlayerFollow>().allowedToFollow = false;
+			playerState.hitEnemyShield = true;
 			player.transform.position -= player.transform.forward;
 			player.TriggerAnimator("hitEnemyShield");
-			gameObject.SetActive(false);
+			Invoke("DestroyShield", 0.1f);
 		}
+	}
+
+	public void DestroyShield(){
+		GetComponentInParent<Enemy>().hasShield = false;
+		gameObject.SetActive(false);
 	}
 }

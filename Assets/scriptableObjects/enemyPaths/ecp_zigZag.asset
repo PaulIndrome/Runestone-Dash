@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411f8c1cc5e2335459f4710e404889b2, type: 3}
+  m_Name: ecp_zigZag
+  m_EditorClassIdentifier: 
+  zigZag:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 5.4913177
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.09821428
+      value: 0.53932583
+      inSlope: 5.4913177
+      outSlope: -10.410624
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.19642857
+      value: -0.48314607
+      inSlope: -10.410624
+      outSlope: 10.142545
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.29613096
+      value: 0.5280899
+      inSlope: 10.142545
+      outSlope: -9.739131
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.39880952
+      value: -0.47191012
+      inSlope: -9.739131
+      outSlope: 10.525024
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.49702382
+      value: 0.56179774
+      inSlope: 10.525024
+      outSlope: -10.305496
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.60714287
+      value: -0.5730337
+      inSlope: -10.305496
+      outSlope: 12.269663
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.70238096
+      value: 0.5955056
+      inSlope: 12.269663
+      outSlope: -12.474837
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.80505955
+      value: -0.6853933
+      inSlope: -12.474837
+      outSlope: 12.894037
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.90178573
+      value: 0.56179774
+      inSlope: 12.894037
+      outSlope: -32.500256
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 0.9360119
+      value: -0.5505618
+      inSlope: -32.500256
+      outSlope: 8.604129
+      tangentMode: 69
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 8.604129
+      outSlope: 0
+      tangentMode: 69
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
