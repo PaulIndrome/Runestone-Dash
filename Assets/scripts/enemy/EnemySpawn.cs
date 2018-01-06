@@ -54,6 +54,4 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		yield return null;
 	}
-		
-
 }
