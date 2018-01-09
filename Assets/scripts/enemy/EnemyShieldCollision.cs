@@ -22,7 +22,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 	}
 
 	public void DestroyShield(){
-		GetComponentInParent<Enemy>().hasShield = false;
+		GetComponentInParent<EnemyHealth>().hasShield = false;
 		gameObject.SetActive(false);
 	}
 }

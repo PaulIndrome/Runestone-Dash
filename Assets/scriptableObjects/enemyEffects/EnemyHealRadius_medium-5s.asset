@@ -14,3 +14,4 @@ MonoBehaviour:
   healRadius: 5
   pulseInwardTime: 3
   pulseOutwardTime: 2
+  healRadiusMaterial: {fileID: 2100000, guid: b46976e298687ea44b3bb7b3ab0923a0, type: 2}

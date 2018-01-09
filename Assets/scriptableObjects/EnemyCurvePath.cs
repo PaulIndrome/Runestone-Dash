@@ -9,6 +9,7 @@ public class EnemyCurvePath : ScriptableObject {
 	public IEnumerator MoveTowardsTarget(MonoBehaviour runner){
 		//setup scripts and transforms
 		Enemy enemyScript = runner.GetComponent<Enemy>();
+		EnemyHealth enemyHealth = runner.GetComponent<EnemyHealth>();
 		EnemyType enemyType = enemyScript.enemyType;
 		Transform meshAndCollider = enemyScript.meshAndCollider.transform;
 		Transform carrierEmpty = runner.gameObject.transform;
@@ -22,7 +23,7 @@ public class EnemyCurvePath : ScriptableObject {
 
 		carrierEmpty.LookAt(Vector3.zero);
 
-		while(enemyScript.health > 0){
+		while(enemyHealth.currentHealth > 0){
 			t = timeWalked / enemyType.approachTime;
 
 			step.z = Mathf.Lerp(startPosition.z, 0, t);

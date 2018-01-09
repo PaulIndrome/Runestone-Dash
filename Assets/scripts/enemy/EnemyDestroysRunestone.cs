@@ -17,7 +17,7 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 		}
 	}
 
-	public void RuneStoneDestroyed(bool winLoose){
+	public void WinOrLoose(bool winLoose){
 		StartCoroutine(GameOverAndRestart(winLoose));
 	}
 

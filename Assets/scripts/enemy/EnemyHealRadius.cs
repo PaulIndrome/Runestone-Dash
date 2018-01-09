@@ -11,19 +11,20 @@ public class EnemyHealRadius : MonoBehaviour {
 	public float pulseOutTime, pulseInTime;
 	int resolution = 16;
 
-	public void Activate(float r, float pulseOut, float pulseIn){
+	public void Activate(float r, float pulseOut, float pulseIn, Material healRadiusMaterial){
 		this.enabled = true;
 		pulseOutTime = pulseOut;
 		pulseInTime = pulseIn;
 		radius = pulsingRadius = r;
-		SetupLineRenderer();
+		SetupLineRenderer(healRadiusMaterial);
 		StartCoroutine(HealAllEnemiesInRange());
 	}
 
-	public void SetupLineRenderer () {
+	public void SetupLineRenderer(Material healRadiusMaterial) {
 		thisEnemy = GetComponent<Enemy>();
 		line = gameObject.AddComponent<LineRenderer>();
 		line.widthCurve = AnimationCurve.Linear(0,0.1f,1,0.1f);
+		line.material = healRadiusMaterial;
 		line.endColor = Color.red;
 		line.startColor = line.endColor;
 		line.loop = true;
@@ -61,7 +62,7 @@ public class EnemyHealRadius : MonoBehaviour {
 	public void CheckAllEnemiesInRange(){
 		foreach(Enemy e in GetComponentInParent<EnemySpawn>().enemies){
 			if(Vector3.Distance(transform.position, e.transform.position) <= radius){
-				e.HealToFullHealth();
+				e.GetEnemyHealth().HealToFullHealth();
 			}
 		}
 	}

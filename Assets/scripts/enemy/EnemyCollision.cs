@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour {
 
-	public Enemy enemy;
+	public EnemyHealth enemyHealth;
 	public void OnTriggerEnter(Collider collision){
 		Player player = collision.gameObject.GetComponent<Player>();
-		if(player != null && !enemy.hasShield){
-			enemy.TakeDamage(player.GetCurrentDamage());
+		if(player != null && !enemyHealth.hasShield){
+			enemyHealth.TakeDamage(player.GetCurrentDamage());
 		}
-		else if(collision.gameObject.GetComponent<EnemyDestroysRunestone>() != null)
-			collision.gameObject.GetComponent<EnemyDestroysRunestone>().RuneStoneDestroyed(false);
-		else
-			return;
+		else {
+			EnemyDestroysRunestone edr = collision.gameObject.GetComponent<EnemyDestroysRunestone>();
+			if(edr != null)
+				edr.WinOrLoose(false);
+			else 
+				return;
+		}
+		
 	}
 }

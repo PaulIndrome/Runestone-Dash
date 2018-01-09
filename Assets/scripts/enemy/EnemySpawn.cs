@@ -8,6 +8,8 @@ public class EnemySpawn : MonoBehaviour {
 	public float enemySpawnRadius;
 	public int numEnemyMax;
 
+	public RectTransform healthBarCanvas;
+
 	[SerializeField] private GameObject standardEnemyPrefab;
 	[SerializeField] private EnemyType[] enemyTypes;
 	[SerializeField] private EnemyCurvePath[] enemyCurvePaths;
@@ -22,6 +24,7 @@ public class EnemySpawn : MonoBehaviour {
 			else{
 				enemies.Add(enemyChild);
 				enemyChild.SetupEnemy();
+				enemyChild.SetupHealthBar(healthBarCanvas);
 			}
 		}
 
@@ -48,6 +51,7 @@ public class EnemySpawn : MonoBehaviour {
 				Enemy newEnemy = Instantiate(standardEnemyPrefab, position, Quaternion.identity).GetComponent<Enemy>();
 				newEnemy.gameObject.transform.SetParent(transform);
 				newEnemy.SetupEnemy(enemyTypes[Random.Range(0,numEnemyTypes)], enemyCurvePaths[Random.Range(0, numEnemyCurvePaths)]);
+				newEnemy.SetupHealthBar(healthBarCanvas);
 				enemies.Add(newEnemy);
 			}
 			yield return new WaitForSeconds(0.5f);
