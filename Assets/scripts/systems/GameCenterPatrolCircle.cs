@@ -24,7 +24,14 @@ public class GameCenterPatrolCircle : MonoBehaviour {
 	}
 
 	public void SetRadius(float newRadius){
-		StartCoroutine(MoveLineToNewRadius(newRadius));
+		if(newRadius == 0){
+			if(radius < 10){
+				StartCoroutine(MoveLineToNewRadius(10));
+			} else {
+				StartCoroutine(MoveLineToNewRadius(5));
+			}
+		} else 
+			StartCoroutine(MoveLineToNewRadius(newRadius));
 	}
 
 	IEnumerator MoveLineToNewRadius(float newRadius){

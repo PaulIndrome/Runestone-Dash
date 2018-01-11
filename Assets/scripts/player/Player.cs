@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 
 
 	public void Start(){
-		animator = GetComponent<Animator>();
+		animator = GetComponent<PlayerDash>().playerAnimator;
 		playerDash = GetComponent<PlayerDash>();
 		playerFollow = GetComponent<PlayerFollow>();
 	}
@@ -20,11 +20,15 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetCurrentDamage(float damage){
-		playerState.currentDamage += damage;
+		playerState.currentDamage = damage;
 	}
 
-	public void TriggerAnimator(string trigger){
+	public void SetAnimatorTrigger(string trigger){
 		animator.SetTrigger(trigger);
+	}
+
+	public void SetAnimatorBool(string boolName, bool setTo){
+		animator.SetBool(boolName, setTo);
 	}
 
 	public void SetFreeAgain(){

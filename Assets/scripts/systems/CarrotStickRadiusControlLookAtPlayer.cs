@@ -7,7 +7,7 @@ public class CarrotStickRadiusControlLookAtPlayer : MonoBehaviour {
 	public PlayerState playerState;
 	public PlayerFollow playerFollow;
 	public float radiusTolerance;
-	private float currentRadius;
+	[SerializeField] private float currentRadius;
 	private float timeStep;
 	private float circleResolution = 60;
 	public float timeToCircle = 10f;
@@ -23,14 +23,24 @@ public class CarrotStickRadiusControlLookAtPlayer : MonoBehaviour {
 
 		timeStep = (2 * Mathf.PI) / timeToCircle;
 
+		playerState.canDash = false;
+
 		Invoke("StartCircleMovement", 2f);
 	}
 
 	public void SetRadiusTo(float newRadius){
-		StartCoroutine(MoveCarrotStickToNewRadius(newRadius));
+		if(newRadius == 0){
+			if(currentRadius < 10){
+				StartCoroutine(MoveCarrotStickToNewRadius(10));
+			} else {
+				StartCoroutine(MoveCarrotStickToNewRadius(5));
+			}
+		} else 
+			StartCoroutine(MoveCarrotStickToNewRadius(newRadius));
 	}
 
 	public void StartCircleMovement(){
+		playerState.canDash = true;
 		StartCoroutine(MoveCarrotStickAlongCircle());
 	}
 

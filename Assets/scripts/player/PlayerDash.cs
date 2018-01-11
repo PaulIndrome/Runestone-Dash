@@ -69,9 +69,9 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 		}
 		Time.timeScale = 1f;
 		yield return new WaitForSeconds(0.5f);
+		playerState.canDash = true;
 		playerState.hitEnemyShield = false;
 		yield return new WaitForSeconds(0.5f);
-		playerState.canDash = true;
 		playerAnimator.SetBool("isDashing", false);
 		yield return null;
 	}

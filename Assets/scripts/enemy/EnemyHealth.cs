@@ -65,5 +65,4 @@ public class EnemyHealth : MonoBehaviour {
 		yield return null;
 	}
 
-
 }
