@@ -8,9 +8,7 @@ public class CarrotStickRadiusControl : MonoBehaviour {
 	private float timeStep;
 	private float circleResolution = 60;
 	public float timeToCircle = 10f;
-
 	private float angle = 90;
-
 	private bool runningInCircles = false;
 
 
@@ -54,7 +52,10 @@ public class CarrotStickRadiusControl : MonoBehaviour {
 		runningInCircles = true;
 		while(timeToCircle != 0){
 			angle = (angle + timeStep) % 360;
-			transform.position = currentRadius * new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), 0, Mathf.Cos(Mathf.Deg2Rad * angle));
+			Vector3 nextPos = currentRadius * new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), 0, Mathf.Cos(Mathf.Deg2Rad * angle));
+			Quaternion lookRotation = Quaternion.LookRotation((nextPos - transform.position), Vector3.up);
+			transform.rotation = lookRotation;
+			transform.position = nextPos;
 			yield return null;
 		}
 		runningInCircles = false;

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
+  m_Name: eT_humongousSlowShieldBearer
+  m_EditorClassIdentifier: 
+  health: 6
+  scaleOfEnemy: 1.66
+  leftRightFluct: 4
+  approachTime: 40
+  enemyEffects:
+  - {fileID: 11400000, guid: 154bf2e6bfb8c144997d74e618b0eb70, type: 2}

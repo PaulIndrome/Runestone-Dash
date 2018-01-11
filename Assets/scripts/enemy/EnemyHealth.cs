@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour {
 		currentHealth = maxHealth;
 	}
 	public void TakeDamage(float damage){
-		if(currentHealth <= 0 || hasShield) return;
+		if(currentHealth <= 0) return;
 
 		currentHealth -= damage;
 

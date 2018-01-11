@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFollow : MonoBehaviour {
+public class PlayerFollow : MonoBehaviour
+{
 
-	public float followSpeed;
-	public Transform carrotStick;
-	public PlayerState playerState;
-	
-	void Start () {
-		playerState.canDash = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(playerState.canDash){
-			transform.LookAt(carrotStick);
-			transform.position = Vector3.MoveTowards(transform.position, carrotStick.position, Time.deltaTime*followSpeed);
-		}
-	}
+    public float followSpeed, rotationSpeed;
+    public Transform carrotStick;
+    public PlayerState playerState;
+
+    private Vector3 nextPos;
+    private Quaternion lookRotation;
+
+    void Start()
+    {
+        playerState.canDash = true;
+    }
+
+    void Update()
+    {
+        if (playerState.canDash)
+        {
+			nextPos = Vector3.MoveTowards(transform.position, carrotStick.position, Time.deltaTime * followSpeed);
+			lookRotation = Quaternion.LookRotation((nextPos - transform.position), Vector3.up);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+			transform.position = nextPos;
+        }
+    }
 }

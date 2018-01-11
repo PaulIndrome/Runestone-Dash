@@ -14,10 +14,11 @@ public class EnemyShieldCollision : MonoBehaviour {
 	public void OnTriggerEnter(Collider col){
 		Player player = col.GetComponent<Player>();
 		if(player != null){
+			Debug.Log("Shield hit");
 			playerState.hitEnemyShield = true;
 			player.transform.position -= player.transform.forward;
 			player.TriggerAnimator("hitEnemyShield");
-			Invoke("DestroyShield", 0.1f);
+			//Invoke("DestroyShield", 0.1f);
 		}
 	}
 

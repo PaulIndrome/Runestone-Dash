@@ -7,11 +7,11 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	[SerializeField] private float deadZoneRadius;
 	public float classDashTime;
 	public float dashSpeed;
-
 	private bool isPointerCloseToCharacter = false;
 	public Vector3 pointerStart;
 	public Vector3 pointerInWorld;
 	public PlayerState playerState;
+	public Animator playerAnimator;
 	
 	public void OnPointerDown(PointerEventData ped){
 		isPointerCloseToCharacter = true;
@@ -54,26 +54,25 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	}
 
 	IEnumerator DashInDirection(Vector3 target, float dashTime){
-		//GameObject startObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		//startObject.transform.position = transform.position;
+		playerAnimator.SetBool("isDashing", true);
 		playerState.canDash = false;
 		target.y = 0;
 		transform.LookAt(target);
 		Vector3 direction = (target - transform.position).normalized;
 		direction.y = 0;
 		float timer = 0;
+		Time.timeScale = 0.33f;
 		while(timer < dashTime && !playerState.hitEnemyShield){
 			transform.position = transform.position + (direction * Time.deltaTime * dashSpeed);
 			timer += Time.deltaTime;
 			yield return null;
 		}
 		Time.timeScale = 1f;
-		//GameObject endObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		//endObject.transform.position = transform.position;
-		//Debug.Log(Vector3.Distance(startObject.transform.position, endObject.transform.position));
 		yield return new WaitForSeconds(0.5f);
 		playerState.hitEnemyShield = false;
+		yield return new WaitForSeconds(0.5f);
 		playerState.canDash = true;
+		playerAnimator.SetBool("isDashing", false);
 		yield return null;
 	}
 

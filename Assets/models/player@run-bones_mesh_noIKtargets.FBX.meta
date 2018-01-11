@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: 4b102dcccb975904ebe5e6d5d8970b03
+timeCreated: 1515582726
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Base Human002Head
+    100002: Base Human002LCollarbone
+    100004: Base Human002LForearm
+    100006: Base Human002LLeg1
+    100008: Base Human002LLeg2
+    100010: Base Human002LLegAnkle
+    100012: Base Human002LLegDigit11
+    100014: Base Human002LLegUpVectorNode
+    100016: Base Human002LPalm
+    100018: Base Human002LUpperarm
+    100020: Base Human002Neck1
+    100022: Base Human002Neck2
+    100024: Base Human002PalmBone001
+    100026: Base Human002PalmBone001 1
+    100028: Base Human002Pelvis
+    100030: Base Human002RArmCollarbone
+    100032: Base Human002RArmForearm
+    100034: Base Human002RArmPalm
+    100036: Base Human002RArmUpperarm
+    100038: Base Human002Ribcage
+    100040: Base Human002RibcageBone001
+    100042: Base Human002RLeg1
+    100044: Base Human002RLeg2
+    100046: Base Human002RLegAnkle
+    100048: Base Human002RLegDigit11
+    100050: Base Human002RLegUpVectorNode
+    100052: Base Human002Spine1
+    100054: Base Human002Spine2
+    100056: head
+    100058: naginata
+    100060: //RootNode
+    400000: Base Human002Head
+    400002: Base Human002LCollarbone
+    400004: Base Human002LForearm
+    400006: Base Human002LLeg1
+    400008: Base Human002LLeg2
+    400010: Base Human002LLegAnkle
+    400012: Base Human002LLegDigit11
+    400014: Base Human002LLegUpVectorNode
+    400016: Base Human002LPalm
+    400018: Base Human002LUpperarm
+    400020: Base Human002Neck1
+    400022: Base Human002Neck2
+    400024: Base Human002PalmBone001
+    400026: Base Human002PalmBone001 1
+    400028: Base Human002Pelvis
+    400030: Base Human002RArmCollarbone
+    400032: Base Human002RArmForearm
+    400034: Base Human002RArmPalm
+    400036: Base Human002RArmUpperarm
+    400038: Base Human002Ribcage
+    400040: Base Human002RibcageBone001
+    400042: Base Human002RLeg1
+    400044: Base Human002RLeg2
+    400046: Base Human002RLegAnkle
+    400048: Base Human002RLegDigit11
+    400050: Base Human002RLegUpVectorNode
+    400052: Base Human002Spine1
+    400054: Base Human002Spine2
+    400056: head
+    400058: naginata
+    400060: //RootNode
+    2300000: naginata
+    3300000: naginata
+    4300000: head
+    4300002: naginata
+    7400000: run-bones_mesh_noIKtargets
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: head
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 34c0941f525751946b9efae0dca09547, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: Base Human002Pelvis
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run-bones_mesh_noIKtargets
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
