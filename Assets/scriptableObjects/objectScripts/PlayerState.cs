@@ -6,5 +6,7 @@ public class PlayerState : ScriptableObject {
 	public float currentDamage;
 	public bool canDash = true;
 	public bool hitEnemyShield = false;
+
+	public bool isDashing = false;
 	
 }

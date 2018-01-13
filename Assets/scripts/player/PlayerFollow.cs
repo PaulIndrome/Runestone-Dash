@@ -19,7 +19,7 @@ public class PlayerFollow : MonoBehaviour
 
     void Update()
     {
-        if (playerState.canDash)
+        if (!playerState.isDashing)
         {
 			nextPos = Vector3.MoveTowards(transform.position, carrotStick.position, Time.deltaTime * followSpeed);
 			lookRotation = Quaternion.LookRotation((nextPos - transform.position), Vector3.up);

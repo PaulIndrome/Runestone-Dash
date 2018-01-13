@@ -12,6 +12,11 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	public Vector3 pointerInWorld;
 	public PlayerState playerState;
 	public Animator playerAnimator;
+	private Player player;
+
+	public void Start(){
+		player = GetComponent<Player>();
+	}
 	
 	public void OnPointerDown(PointerEventData ped){
 		isPointerCloseToCharacter = true;
@@ -56,6 +61,7 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	IEnumerator DashInDirection(Vector3 target, float dashTime){
 		playerAnimator.SetBool("isDashing", true);
 		playerState.canDash = false;
+		playerState.isDashing = true;
 		target.y = 0;
 		transform.LookAt(target);
 		Vector3 direction = (target - transform.position).normalized;
@@ -68,11 +74,13 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 			yield return null;
 		}
 		Time.timeScale = 1f;
-		yield return new WaitForSeconds(0.5f);
 		playerState.canDash = true;
-		playerState.hitEnemyShield = false;
 		yield return new WaitForSeconds(0.5f);
+		playerState.hitEnemyShield = false;
+		yield return new WaitForSeconds(0.25f);
 		playerAnimator.SetBool("isDashing", false);
+		playerState.isDashing = false;
+		player.ResetColliderWidth();
 		yield return null;
 	}
 
