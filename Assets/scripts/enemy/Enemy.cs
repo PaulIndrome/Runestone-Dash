@@ -9,6 +9,11 @@ public class Enemy : MonoBehaviour {
 	private EnemyHealth enemyHealth;
 	public GameObject meshAndCollider;
 
+	private bool canMove;
+	public bool CanMove{
+		get{ return canMove; }
+	}
+
 	public void Start(){
 		transform.localScale *= enemyType.scaleOfEnemy;
 		transform.LookAt(Vector3.zero, Vector3.up);
@@ -34,6 +39,7 @@ public class Enemy : MonoBehaviour {
 			e.Apply(this);
 		}
 
+		canMove = true;
 		StartCoroutine(enemyCurvePath.MoveTowardsTarget(this));
 	}
 

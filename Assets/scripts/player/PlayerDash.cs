@@ -13,8 +13,10 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	public PlayerState playerState;
 	public Animator playerAnimator;
 	private Player player;
-
+	private AudioSource playerAudioSource;
+	public AudioEvent audioPlayerDash;
 	public void Start(){
+		playerAudioSource = GetComponent<AudioSource>();
 		player = GetComponent<Player>();
 	}
 	
@@ -68,11 +70,12 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 		direction.y = 0;
 		float timer = 0;
 		Time.timeScale = 0.33f;
-		while(timer < dashTime && !playerState.hitEnemyShield){
-			transform.position = transform.position + (direction * Time.deltaTime * dashSpeed);
-			timer += Time.deltaTime;
-			yield return null;
-		}
+		audioPlayerDash.PlayOneShot(playerAudioSource);
+			while(timer < dashTime && !playerState.hitEnemyShield){
+				transform.position = transform.position + (direction * Time.deltaTime * dashSpeed);
+				timer += Time.deltaTime;
+				yield return null;
+			}
 		Time.timeScale = 1f;
 		playerState.canDash = true;
 		yield return new WaitForSeconds(0.5f);

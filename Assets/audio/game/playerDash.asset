@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f4a6871ad1f4644a0c17f224c771a1, type: 3}
+  m_Name: playerDash
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 7d84db6c12b93ab459c783645221d606, type: 3}
+  volume:
+    minValue: 0.8970099
+    maxValue: 1
+  pitch:
+    minValue: 0.7973422
+    maxValue: 1.2956811

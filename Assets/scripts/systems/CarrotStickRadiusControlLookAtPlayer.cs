@@ -9,7 +9,6 @@ public class CarrotStickRadiusControlLookAtPlayer : MonoBehaviour {
 	public float radiusTolerance;
 	[SerializeField] private float currentRadius;
 	private float timeStep;
-	private float circleResolution = 60;
 	public float timeToCircle = 10f;
 	private float angle = 90;
 	private bool runningInCircles = false;

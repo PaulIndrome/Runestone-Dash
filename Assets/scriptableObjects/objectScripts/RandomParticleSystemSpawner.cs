@@ -8,14 +8,14 @@ public class RandomParticleSystemSpawner : ScriptableObject {
 	[Tooltip("particle systems must not be indefinitely looping")]
 	public GameObject[] particleSystems;
 
-	public void SpawnRandomAndPlay(Transform carrier, Vector3 contactLocalPos, Vector3 targetWorldPos){
+	public void SpawnRandomAndPlay(Transform parent, Vector3 spawnAtPosWorld, Vector3 lookAtPosWorld){
 		GameObject tempObject = Instantiate(particleSystems[Random.Range(0, particleSystems.Length)]);
-		tempObject.transform.parent = carrier.parent;
-		contactLocalPos.z = 0f;
-		contactLocalPos.y = Mathf.Lerp(contactLocalPos.y, 0, 0.3f);
-		tempObject.transform.localPosition = contactLocalPos;
-		targetWorldPos.y = tempObject.transform.position.y;
-		tempObject.transform.LookAt(targetWorldPos);
+		//spawnAtPosWorld.z = 0f;
+		spawnAtPosWorld.y = Mathf.Lerp(spawnAtPosWorld.y, 0, 0.3f);
+		tempObject.transform.position = spawnAtPosWorld;
+		tempObject.transform.parent = parent;
+		lookAtPosWorld.y = tempObject.transform.position.y;
+		tempObject.transform.LookAt(lookAtPosWorld);
 	}
 	
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyHealRadius : MonoBehaviour {
 
-	private Enemy thisEnemy;
 	private LineRenderer line;
 	float radius;
 	float pulsingRadius;
@@ -21,7 +20,6 @@ public class EnemyHealRadius : MonoBehaviour {
 	}
 
 	public void SetupLineRenderer(Material healRadiusMaterial) {
-		thisEnemy = GetComponent<Enemy>();
 		line = gameObject.AddComponent<LineRenderer>();
 		line.widthCurve = AnimationCurve.Linear(0,0.1f,1,0.1f);
 		line.material = healRadiusMaterial;
@@ -62,7 +60,7 @@ public class EnemyHealRadius : MonoBehaviour {
 	public void CheckAllEnemiesInRange(){
 		foreach(Enemy e in GetComponentInParent<EnemySpawn>().enemies){
 			if(Vector3.Distance(transform.position, e.transform.position) <= radius){
-				e.GetEnemyHealth().HealToFullHealth();
+				e.GetEnemyHealth().HealByAmount(1f);
 			}
 		}
 	}

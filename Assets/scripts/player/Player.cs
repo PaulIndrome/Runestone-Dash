@@ -5,18 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	Animator animator;
-	PlayerDash playerDash;
-	PlayerFollow playerFollow;
 	BoxCollider playerCollider;
+	SphereCollider playerColliderSphere;
 	public PlayerState playerState;
 	Vector3 playerColliderStartSize;
+	float playerColliderStartRadius;
 
 	public void Start(){
 		animator = GetComponent<PlayerDash>().playerAnimator;
-		playerDash = GetComponent<PlayerDash>();
-		playerFollow = GetComponent<PlayerFollow>();
 		playerCollider = GetComponent<BoxCollider>();
 		playerColliderStartSize = playerCollider.size;
+		playerColliderSphere = GetComponent<SphereCollider>();
+		playerColliderStartRadius = playerColliderSphere.radius;
 	}
 	public float GetCurrentDamage(){
 		return playerState.currentDamage;
@@ -41,11 +41,13 @@ public class Player : MonoBehaviour {
 
 	public void ResetColliderWidth(){
 		playerCollider.size = playerColliderStartSize;
+		playerColliderSphere.radius = playerColliderStartRadius;
 	}
 	public void SetColliderWidth(float width){
 		Vector3 newSize = playerCollider.size;
 		newSize.x = width;
         playerCollider.size = newSize;
+		playerColliderSphere.radius = width;
 	}
 
 }

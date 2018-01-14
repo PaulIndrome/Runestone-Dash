@@ -24,16 +24,20 @@ public class EnemyCurvePath : ScriptableObject {
 		carrierEmpty.LookAt(Vector3.zero);
 
 		while(enemyHealth.currentHealth > 0){
-			t = timeWalked / enemyType.approachTime;
+			if(enemyScript.CanMove){
+				t = timeWalked / enemyType.approachTime;
 
-			step.z = Mathf.Lerp(startPosition.z, 0, t);
-			step.x = Mathf.Lerp(startPosition.x, 0, t);
-			step = step + (carrierEmpty.right * zigZag.Evaluate(t) * enemyType.leftRightFluct);
+				step.z = Mathf.Lerp(startPosition.z, 0, t);
+				step.x = Mathf.Lerp(startPosition.x, 0, t);
+				step = step + (carrierEmpty.right * zigZag.Evaluate(t) * enemyType.leftRightFluct);
 
-			meshAndCollider.LookAt(new Vector3(step.x, meshAndCollider.transform.position.y, step.z));
-			carrierEmpty.position = step;
+				meshAndCollider.LookAt(new Vector3(step.x, meshAndCollider.transform.position.y, step.z));
+				carrierEmpty.position = step;
+				
+				timeWalked += Time.deltaTime;
+			} else {
 			
-			timeWalked += Time.deltaTime;
+			}
 			yield return null;
 		}
 		yield return null;

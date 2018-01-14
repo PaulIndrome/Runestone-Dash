@@ -22,7 +22,6 @@ void Update () {
 
     for (var i = 0; i < line.positionCount; i++){
         var angle = (360/line.positionCount+1) * i;
-
         line.SetPosition(i, transform.position + radius * new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle)));
     }
 }
