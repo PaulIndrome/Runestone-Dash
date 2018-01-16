@@ -10,7 +10,6 @@ public class GameMusic : MonoBehaviour {
 	public AudioEvent musicTracksCollection;
 	bool fadingOut, fadingIn;
 	float currentTrackLength, currentTrackTime;
-	float currentTrackStartTime;
 	public float fadeOutTime, fadeInTime;
 
 	[Range(0,1)]
@@ -35,7 +34,7 @@ public class GameMusic : MonoBehaviour {
 		float timer = 0;
 		fadingOut = true;
 		while(timer <= fadeOutTime){
-			musicAudioSource.volume = Mathf.SmoothStep(maxVolume, 0.1f, timer/fadeOutTime);
+			musicAudioSource.volume = Mathf.SmoothStep(maxVolume, 0.0f, timer/fadeOutTime);
 			timer += Time.deltaTime;
 			yield return null;
 		}
@@ -48,7 +47,6 @@ public class GameMusic : MonoBehaviour {
 		float timer = 0;
 		fadingIn = true;
 		musicTracksCollection.Play(musicAudioSource);
-		currentTrackStartTime = Time.time;
 		currentTrackTime = 0;
 		currentTrackLength = musicAudioSource.clip.length;
 		//Debug.Log("Currently fading in: " + musicAudioSource.clip.name + " at " + Time.time + " with length " + currentTrackLength);
@@ -58,7 +56,7 @@ public class GameMusic : MonoBehaviour {
 		fadingOut = false;
 		while(timer <= fadeInTime){
 			//Debug.Log("currentTrackTime during coroutine: " + currentTrackTime);
-			musicAudioSource.volume = Mathf.SmoothStep(0.1f, maxVolume, timer/fadeInTime);
+			musicAudioSource.volume = Mathf.SmoothStep(0.0f, maxVolume, timer/fadeInTime);
 			timer += Time.deltaTime;
 			yield return null;
 		}

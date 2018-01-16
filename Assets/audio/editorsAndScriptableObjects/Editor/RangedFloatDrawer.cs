@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEditor;
 
 [CustomPropertyDrawer(typeof(RangedFloat), true)]
-public class RangedFloatDrawer : PropertyDrawer {
+public class RangedFloatDrawer : UnityEditor.PropertyDrawer {
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 	{
 		label = EditorGUI.BeginProperty(position, label, property);
