@@ -17,7 +17,6 @@ public class EnemyCollision : MonoBehaviour {
 			enemyHealth.TakeDamage(player.GetCurrentDamage());
 			enemyHealth.takeDamagePS.SpawnRandomAndPlay(enemyHealth.transform, collider.ClosestPoint(transform.position), player.transform.position);
 			StartCoroutine(FlashDamage(0.35f));
-			//Debug.Break();
 		}
 		else {
 			EnemyDestroysRunestone edr = collider.gameObject.GetComponent<EnemyDestroysRunestone>();
@@ -33,7 +32,6 @@ public class EnemyCollision : MonoBehaviour {
 		float multiplier = 0.5f / flashTime;
 		enemyBody.material.SetColor("_EmissionColor", Color.red * Mathf.LinearToGammaSpace(0.5f));
 		while(flashTime >= 0f){
-			Debug.Log(flashTime * multiplier);
 			enemyBody.material.SetColor("_EmissionColor", Color.red * Mathf.LinearToGammaSpace(flashTime * multiplier));
 			flashTime -= Time.deltaTime;
 			yield return null;

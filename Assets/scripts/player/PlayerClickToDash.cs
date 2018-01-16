@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
+public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler {
 	private PlayerDash playerDash;
 	[SerializeField] [Range(0.1f, 1.5f)] private float delayBetweenDashes;
 	private bool recentlyDashed = false;
@@ -15,6 +15,10 @@ public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDo
 	}
 
 	public void OnPointerClick(PointerEventData ped){
+		
+	}
+
+	public void OnPointerUp(PointerEventData ped){
 		if(recentlyDashed) return;
 		playerDash.ClickToDash(ped);
 		StartCoroutine(ResetRecentlyDashed());
