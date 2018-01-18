@@ -5,16 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	Animator animator;
-	BoxCollider playerCollider;
 	SphereCollider playerColliderSphere;
 	public PlayerState playerState;
 	Vector3 playerColliderStartSize;
 	float playerColliderStartRadius;
+	private PlayerDash playerDash;
 
 	public void Start(){
-		animator = GetComponent<PlayerDash>().playerAnimator;
-		playerCollider = GetComponent<BoxCollider>();
-		playerColliderStartSize = playerCollider.size;
+		animator = GetComponent<Animator>();
 		playerColliderSphere = GetComponent<SphereCollider>();
 		playerColliderStartRadius = playerColliderSphere.radius;
 	}
@@ -34,19 +32,10 @@ public class Player : MonoBehaviour {
 		animator.SetBool(boolName, setTo);
 	}
 
-	public void SetFreeAgain(){
-		playerState.canDash = true;
-		playerState.hitEnemyShield = false;
-	}
-
 	public void ResetColliderWidth(){
-		playerCollider.size = playerColliderStartSize;
 		playerColliderSphere.radius = playerColliderStartRadius;
 	}
 	public void SetColliderWidth(float width){
-		Vector3 newSize = playerCollider.size;
-		newSize.x = width;
-        playerCollider.size = newSize;
 		playerColliderSphere.radius = width;
 	}
 

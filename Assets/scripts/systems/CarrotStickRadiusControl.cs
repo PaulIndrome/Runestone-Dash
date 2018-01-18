@@ -12,7 +12,7 @@ public class CarrotStickRadiusControl : MonoBehaviour {
 
 
 	public void Start(){
-		GameCenterRotation.pRadChange += SetRadiusTo;
+		GameCenterPatrolCircle.pRadChange += SetRadiusTo;
 
 		currentRadius = transform.position.magnitude;
 

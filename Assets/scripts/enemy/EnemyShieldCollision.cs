@@ -43,7 +43,6 @@ public class EnemyShieldCollision : MonoBehaviour {
 				return;
 			}
 			//if we've made it this far, the player is dashing ... get it?
-			//playerPosAtColLocal = transform.InverseTransformPoint(player.transform.position);
 			shieldForward = transform.forward.normalized;
 			playerForward = player.transform.forward.normalized;
 			float dot = Vector3.Dot(shieldForward, playerForward);
@@ -73,6 +72,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 		player.SetAnimatorTrigger("hitEnemyShield");
 		audioShieldHit.PlayOneShot(enemyAudioSource);
 		player.SetAnimatorBool("isDashing", false);
+		player.ResetColliderWidth();
 	}
 
 	public void DestroyShieldObject(){

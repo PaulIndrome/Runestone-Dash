@@ -12,8 +12,8 @@ public class PlayerTargetLineControl : MonoBehaviour, IPointerDownHandler, IPoin
 	 }
 
 	 public void OnPointerDown(PointerEventData ped){
-		 playerTargetLine.isPointerDown = true;
-		 playerTargetLine.StartLineDrawing();
+		playerTargetLine.isPointerDown = true;
+		playerTargetLine.StartLineDrawing();
 	 }
 
 	 public void OnPointerUp(PointerEventData ped){

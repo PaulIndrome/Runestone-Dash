@@ -15,7 +15,11 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	private Player player;
 	private AudioSource playerAudioSource;
 	public AudioEvent audioPlayerDash;
+
+	private Vector3 stashTarget;
+
 	public void Start(){
+		stashTarget = Vector3.zero;
 		playerAudioSource = GetComponent<AudioSource>();
 		player = GetComponent<Player>();
 	}
@@ -41,7 +45,11 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 	}
 
 	public void ClickToDash(PointerEventData ped){
-		StartCoroutine(DashInDirection(ped.pointerCurrentRaycast.worldPosition, classDashTime));
+		StartCoroutine(DashInDirection(ped.pointerCurrentRaycast.worldPosition));
+	}
+
+	public void StashTarget(Vector3 targetWorldPos){
+		stashTarget = targetWorldPos;
 	}
 
 	IEnumerator HoldPointer(Vector3 pointerDownWorldPos, float time){
@@ -60,6 +68,7 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 		yield return null;
 	}
 
+	#region oldDash 
 	IEnumerator DashInDirection(Vector3 target, float dashTime){
 		playerAnimator.SetBool("isDashing", true);
 		playerState.canDash = false;
@@ -78,6 +87,10 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 			}
 		Time.timeScale = 1f;
 		playerState.canDash = true;
+		if(stashTarget != Vector3.zero){
+			DashToStashTarget();
+		}
+		stashTarget = Vector3.zero;
 		yield return new WaitForSeconds(0.5f);
 		playerState.hitEnemyShield = false;
 		yield return new WaitForSeconds(0.25f);
@@ -85,6 +98,38 @@ public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 		playerState.isDashing = false;
 		player.ResetColliderWidth();
 		yield return null;
+	}
+	#endregion
+	IEnumerator DashInDirection(Vector3 target){
+		playerAnimator.SetBool("isDashing", true);
+		playerState.canDash = false;
+		playerState.isDashing = true;
+		transform.LookAt(target);
+		Vector3 direction = (target - transform.position).normalized;
+		audioPlayerDash.PlayOneShot(playerAudioSource);
+		Time.timeScale = 0.33f;
+		while(transform.position != target && !playerState.hitEnemyShield){
+			transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * dashSpeed);
+			yield return null;
+		}
+		if(stashTarget != Vector3.zero){
+			DashToStashTarget();
+		}
+		playerState.canDash = true;
+		yield return new WaitForSeconds(0.5f);
+		playerState.hitEnemyShield = false;
+		yield return new WaitForSeconds(0.25f);
+		playerAnimator.SetBool("isDashing", false);
+		playerState.isDashing = false;
+		player.ResetColliderWidth();
+		yield return null;
+	}
+
+	public void DashToStashTarget(){
+		StopCoroutine(DashInDirection(Vector3.zero));
+		Vector3 stashTargetTemp = new Vector3(stashTarget.x, stashTarget.y, stashTarget.z);
+		stashTarget = Vector3.zero;
+		StartCoroutine(DashInDirection(stashTargetTemp));
 	}
 
 }

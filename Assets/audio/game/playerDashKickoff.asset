@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42f4a6871ad1f4644a0c17f224c771a1, type: 3}
-  m_Name: playerDash
+  m_Name: playerDashKickoff
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 7d84db6c12b93ab459c783645221d606, type: 3}
+  - {fileID: 8300000, guid: 31a2a6137d7fbbd41825d5095f94766f, type: 3}
   volume:
-    minValue: 0.7966587
-    maxValue: 1
+    minValue: 0.3049377
+    maxValue: 0.40291017
   pitch:
-    minValue: 0.947869
-    maxValue: 1.2956811
+    minValue: 0.8475178
+    maxValue: 1.1050138

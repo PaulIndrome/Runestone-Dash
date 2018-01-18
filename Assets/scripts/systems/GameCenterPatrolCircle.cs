@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameCenterPatrolCircle : MonoBehaviour {
 
+	public delegate void PlayerRadiusChanged(float newRadius);
+	public static event PlayerRadiusChanged pRadChange;
 	private int resolution = 32;
 	[SerializeField] private float radius;
 	private LineRenderer line;
 
 	void Start () {
-		GameCenterRotation.pRadChange += SetRadius;
-
+		pRadChange += SetRadius;
 		line = GetComponent<LineRenderer>();
-		radius = Vector3.Distance(transform.position, transform.GetChild(0).position);
 	}
 	
 	void Update () {
@@ -23,15 +23,16 @@ public class GameCenterPatrolCircle : MonoBehaviour {
 		}
 	}
 
-	public void SetRadius(float newRadius){
-		if(newRadius == 0){
-			if(radius < 10){
-				StartCoroutine(MoveLineToNewRadius(10));
-			} else {
-				StartCoroutine(MoveLineToNewRadius(5));
-			}
-		} else 
+	public void SetCenterRadius(float newRadius){
+		if(pRadChange != null)
+			pRadChange(newRadius);
+	}
+
+	private void SetRadius(float newRadius){
+		if(newRadius >= 1)
 			StartCoroutine(MoveLineToNewRadius(newRadius));
+		else
+			StartCoroutine(MoveLineToNewRadius(5f));
 	}
 
 	IEnumerator MoveLineToNewRadius(float newRadius){
