@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class EnemyShieldCollision : MonoBehaviour {
 
 	public PlayerState playerState;
@@ -77,6 +78,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 
 	public void DestroyShieldObject(){
 		GetComponentInParent<EnemyHealth>().hasShield = false;
+		GetComponentInParent<EnemyAnimation>().SetBool("hasShield", false);
 		foreach(EnemyShieldPiece esp in shieldPieces){
 			esp.StartFadeOut(5f);
 		}
