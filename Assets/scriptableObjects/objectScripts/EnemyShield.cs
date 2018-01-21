@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyShield : EnemyEffect {
 
 	public override void Apply(Enemy enemy){
-		enemy.GetEnemyAnimation().SetBool("hasShield", true);
+		//enemy.GetEnemyAnimation().SetBool("hasShield", true);
 		enemy.GetEnemyShieldCollision().Activate();
 		enemy.GetEnemyHealth().hasShield = true;
 	}

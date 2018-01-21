@@ -78,7 +78,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 
 	public void DestroyShieldObject(){
 		GetComponentInParent<EnemyHealth>().hasShield = false;
-		GetComponentInParent<EnemyAnimation>().SetBool("hasShield", false);
+		//GetComponentInParent<EnemyAnimation>().SetBool("hasShield", false);
 		foreach(EnemyShieldPiece esp in shieldPieces){
 			esp.StartFadeOut(5f);
 		}

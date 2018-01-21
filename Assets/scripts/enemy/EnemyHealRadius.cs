@@ -18,7 +18,7 @@ public class EnemyHealRadius : MonoBehaviour {
 		radius = pulsingRadius = r;
 		SetupLineRenderer(healRadiusMaterial);
 		enemyAnimation = GetComponent<EnemyAnimation>();
-		enemyAnimation.SetBool("isHealer", true);
+//		enemyAnimation.SetBool("isHealer", true);
 		StartCoroutine(HealAllEnemiesInRange());
 	}
 
@@ -49,7 +49,7 @@ public class EnemyHealRadius : MonoBehaviour {
 				t += Time.deltaTime;
 				yield return null;
 			}
-			enemyAnimation.SetTrigger("castHeal");
+			//enemyAnimation.SetTrigger("castHeal");
 			CheckAllEnemiesInRange();
 			t = 0;
 			while(t <= pulseInTime){
