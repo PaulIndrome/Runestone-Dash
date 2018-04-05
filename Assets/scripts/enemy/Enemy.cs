@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
 	public EnemyCurvePath enemyCurvePath;
 	public EnemyType enemyType;
 	private EnemyHealth enemyHealth;
+	private EnemyAnimation enemyAnimation;
+	private EnemyShieldCollision enemyShieldCollision;
 	public GameObject meshAndCollider;
 
 	private bool canMove;
@@ -34,6 +36,8 @@ public class Enemy : MonoBehaviour {
 
 		enemyHealth = GetComponent<EnemyHealth>();
 		enemyHealth.SetupHealth(enemyType);
+		enemyAnimation = GetComponent<EnemyAnimation>();
+		enemyShieldCollision = GetComponentInChildren<EnemyShieldCollision>();
 
 		foreach(EnemyEffect e in enemyType.enemyEffects){
 			e.Apply(this);
@@ -49,6 +53,14 @@ public class Enemy : MonoBehaviour {
 
 	public EnemyHealth GetEnemyHealth(){
 		return enemyHealth;
+	}
+
+	public EnemyAnimation GetEnemyAnimation(){
+		return enemyAnimation;
+	}
+
+	public EnemyShieldCollision GetEnemyShieldCollision(){
+		return enemyShieldCollision;
 	}
 
 }

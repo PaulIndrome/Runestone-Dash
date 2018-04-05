@@ -52,11 +52,11 @@ public class PlayerTargetLine : MonoBehaviour {
 	IEnumerator FadeOutTargetLine(){
 		float timer = 0;
 		targetLine.startWidth = targetLineEndWidth;
-		targetLine.endWidth = targetLineStartWidth * 2f;
+		targetLine.endWidth = targetLineStartWidth * 4f;
 		while(timer <= 1f && !isPointerDown){
 			targetLine.material.color = Color.Lerp(targetLineColor, Color.clear, timer);
-			targetLine.startWidth = Mathf.Lerp(targetLineEndWidth, 0f, timer);
-			targetLine.endWidth = Mathf.Lerp(targetLineStartWidth*2f, 0f, timer);
+			targetLine.startWidth = Mathf.Lerp(targetLine.startWidth, 0f, timer);
+			targetLine.endWidth = Mathf.Lerp(targetLine.endWidth, 0f, timer);
 			timer += Time.deltaTime;
 			yield return null;
 		}
