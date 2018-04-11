@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: c0f8c75d281c6a34eaffd1af3ae35868
+timeCreated: 1523194865
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: enemy
+    100002: //RootNode
+    100004: enemyHead
+    100006: enemyLArm1
+    100008: enemyLArm2
+    100010: enemyLArm3
+    100012: enemyLArm4
+    100014: enemyLArm5
+    100016: enemyLArmCollarbone
+    100018: enemyLArmDigit11
+    100020: enemyLArmDigit12
+    100022: enemyLArmDigit13
+    100024: enemyLArmDigit21
+    100026: enemyLArmDigit22
+    100028: enemyLArmDigit23
+    100030: enemyLArmDigit31
+    100032: enemyLArmDigit32
+    100034: enemyLArmDigit33
+    100036: enemyLArmPalm
+    100038: enemyLLeg1
+    100040: enemyLLeg2
+    100042: enemyLLegAnkle
+    100044: enemyLLegDigit11
+    100046: enemyLLegDigit12
+    100048: enemyNeck1
+    100050: enemyNeck2
+    100052: enemyPelvis
+    100054: enemyRArm1
+    100056: enemyRArm2
+    100058: enemyRArm3
+    100060: enemyRArm4
+    100062: enemyRArm5
+    100064: enemyRArmCollarbone
+    100066: enemyRArmDigit11
+    100068: enemyRArmDigit12
+    100070: enemyRArmDigit13
+    100072: enemyRArmDigit21
+    100074: enemyRArmDigit22
+    100076: enemyRArmDigit23
+    100078: enemyRArmDigit31
+    100080: enemyRArmDigit32
+    100082: enemyRArmDigit33
+    100084: enemyRArmPalm
+    100086: enemyRibcage
+    100088: enemyRLeg1
+    100090: enemyRLeg2
+    100092: enemyRLegAnkle
+    100094: enemyRLegDigit11
+    100096: enemyRLegDigit12
+    100098: enemySpine1
+    100100: enemySpine2
+    100102: enemySpine3
+    400000: enemy
+    400002: //RootNode
+    400004: enemyHead
+    400006: enemyLArm1
+    400008: enemyLArm2
+    400010: enemyLArm3
+    400012: enemyLArm4
+    400014: enemyLArm5
+    400016: enemyLArmCollarbone
+    400018: enemyLArmDigit11
+    400020: enemyLArmDigit12
+    400022: enemyLArmDigit13
+    400024: enemyLArmDigit21
+    400026: enemyLArmDigit22
+    400028: enemyLArmDigit23
+    400030: enemyLArmDigit31
+    400032: enemyLArmDigit32
+    400034: enemyLArmDigit33
+    400036: enemyLArmPalm
+    400038: enemyLLeg1
+    400040: enemyLLeg2
+    400042: enemyLLegAnkle
+    400044: enemyLLegDigit11
+    400046: enemyLLegDigit12
+    400048: enemyNeck1
+    400050: enemyNeck2
+    400052: enemyPelvis
+    400054: enemyRArm1
+    400056: enemyRArm2
+    400058: enemyRArm3
+    400060: enemyRArm4
+    400062: enemyRArm5
+    400064: enemyRArmCollarbone
+    400066: enemyRArmDigit11
+    400068: enemyRArmDigit12
+    400070: enemyRArmDigit13
+    400072: enemyRArmDigit21
+    400074: enemyRArmDigit22
+    400076: enemyRArmDigit23
+    400078: enemyRArmDigit31
+    400080: enemyRArmDigit32
+    400082: enemyRArmDigit33
+    400084: enemyRArmPalm
+    400086: enemyRibcage
+    400088: enemyRLeg1
+    400090: enemyRLeg2
+    400092: enemyRLegAnkle
+    400094: enemyRLegDigit11
+    400096: enemyRLegDigit12
+    400098: enemySpine1
+    400100: enemySpine2
+    400102: enemySpine3
+    7400000: walkHealer
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walkHealer
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 45bc8252d9f248a46a3450d93e587c29,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

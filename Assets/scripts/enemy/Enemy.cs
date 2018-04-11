@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
 	public EnemyCurvePath enemyCurvePath;
 	public EnemyType enemyType;
 	private EnemyHealth enemyHealth;
-	private EnemyAnimation enemyAnimation;
+	[SerializeField] Animator enemyAnimator	;
 	private EnemyShieldCollision enemyShieldCollision;
 	public GameObject meshAndCollider;
 
@@ -26,8 +26,9 @@ public class Enemy : MonoBehaviour {
 		StopCoroutine(enemyCurvePath.MoveTowardsTarget(this));
 	}
 
-	public void SetupEnemy(){
+	public void SetupEnemy(RectTransform healthBarCanvas){
 		SetupEnemy(enemyType, enemyCurvePath);
+		SetupBars(healthBarCanvas);
 	}
 
 	public void SetupEnemy(EnemyType et, EnemyCurvePath ecp){
@@ -36,7 +37,6 @@ public class Enemy : MonoBehaviour {
 
 		enemyHealth = GetComponent<EnemyHealth>();
 		enemyHealth.SetupHealth(enemyType);
-		enemyAnimation = GetComponent<EnemyAnimation>();
 		enemyShieldCollision = GetComponentInChildren<EnemyShieldCollision>();
 
 		foreach(EnemyEffect e in enemyType.enemyEffects){
@@ -47,20 +47,33 @@ public class Enemy : MonoBehaviour {
 		StartCoroutine(enemyCurvePath.MoveTowardsTarget(this));
 	}
 
-	public void SetupHealthBar(RectTransform healthBarCanvas){
-		enemyHealth.SetupHealthBar(healthBarCanvas);
+	public HealthBar SetupBars(RectTransform healthBarCanvas){
+		HealthBar newHealthBar = enemyHealth.SetupHealthBar(healthBarCanvas);
+		if(enemyHealth.hasShield) enemyShieldCollision.SetupDurabilityBar(healthBarCanvas);
+		return newHealthBar;
 	}
 
 	public EnemyHealth GetEnemyHealth(){
 		return enemyHealth;
 	}
 
-	public EnemyAnimation GetEnemyAnimation(){
-		return enemyAnimation;
+	public Animator GetEnemyAnimator(){
+		return enemyAnimator;
 	}
 
 	public EnemyShieldCollision GetEnemyShieldCollision(){
 		return enemyShieldCollision;
 	}
+
+	void OnDestroy(){
+		PoolableParticle[] poolables = GetComponentsInChildren<PoolableParticle>();
+		if(poolables.Length > 0){ 
+			foreach(PoolableParticle p in poolables){
+				p.ReturnParticle();
+			}
+		}
+	}
+
+
 
 }

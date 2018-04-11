@@ -8,11 +8,13 @@ public class PlayerDashChaining : MonoBehaviour {
 	public Animator playerAnimator;
 	private Player player;
 	private AudioSource playerAudioSource;
+	private NaginataControl naginataControl;
 	
 	public float dashRadius, dashSpeed;
 	private Queue<Vector3> targetStash;
 	[Header("Particle spawners")]
-	public RandomParticleSystemSpawner playerDashKickoff;
+	public ParticlePooler playerDashKickoffPooled;
+	
 	[Header("Audio Events")]
 	public AudioEvent audioPlayerDash;
 	public AudioEvent audioPlayerKickoff;
@@ -21,6 +23,7 @@ public class PlayerDashChaining : MonoBehaviour {
 		targetStash = new Queue<Vector3>();
 		playerAudioSource = GetComponent<AudioSource>();
 		player = GetComponent<Player>();
+		naginataControl = GetComponentInChildren<NaginataControl>();
 	}
 
 	public void Update(){
@@ -35,8 +38,16 @@ public class PlayerDashChaining : MonoBehaviour {
 			targetStash.Enqueue(targetWorldPos);
 	}
 
+	public void StartNaginataParticles(bool startStop){
+		if(startStop)
+			naginataControl.StartBladeTrail();
+		else
+			naginataControl.StopBladeTrail();
+	}
+
 	IEnumerator DashInDirection(Vector3 target){
 		playerAnimator.SetBool("isDashing", true);
+		StartNaginataParticles(true);
 		playerState.canDash = false;
 		playerState.isDashing = true;
 		transform.LookAt(target);
@@ -45,13 +56,15 @@ public class PlayerDashChaining : MonoBehaviour {
 		direction = transform.position + direction.normalized * dashRadius;
 		audioPlayerKickoff.PlayOneShot(playerAudioSource);
 		audioPlayerDash.PlayOneShot(playerAudioSource);
-		playerDashKickoff.SpawnRandomAndPlay(null, transform.position, direction);
+		//playerDashKickoff.SpawnAndPlay(null, transform.position, direction);
+		playerDashKickoffPooled.SpawnFromQueueAndPlay(null, transform.position, direction);
 		//Time.timeScale = 0.75f;
 		while(Vector3.Distance(transform.position, direction) > 0.1f && !playerState.hitEnemyShield){
 			transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime * dashSpeed);
 			yield return null;
 		}
 		//Time.timeScale = 1f;
+		StartNaginataParticles(false);
 		yield return new WaitForSeconds(0.15f);
 		playerState.canDash = true;
 		playerState.hitEnemyShield = false;

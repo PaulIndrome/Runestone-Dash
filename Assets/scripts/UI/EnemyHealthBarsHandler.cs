@@ -12,7 +12,7 @@ public class EnemyHealthBarsHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		foreach(HealthBar h in GetComponentsInChildren<HealthBar>()){
-			h.RepositionToTarget(mainCam.WorldToScreenPoint(h.targetEnemy.position));
+			h.RepositionToTarget(mainCam.WorldToScreenPoint(h.healthBarPosition.position));
 		}
 	}
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43236222866a3a54ab3e706546284545, type: 3}
+  m_Name: playerDestroyShieldPooler
+  m_EditorClassIdentifier: 
+  originalParentName: playerDestroyShieldKeeper
+  poolSize: 10
+  particleSystems:
+  - {fileID: 114433664893190444, guid: 24812e7e642ac304e9963e1d69fcb9f6, type: 2}
+  - {fileID: 114791409640938642, guid: 0a5f5b46be3430646a09d8ea97abdf9c, type: 2}

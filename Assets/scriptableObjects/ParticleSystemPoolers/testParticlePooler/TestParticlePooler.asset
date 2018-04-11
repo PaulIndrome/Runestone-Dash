@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43236222866a3a54ab3e706546284545, type: 3}
+  m_Name: TestParticlePooler
+  m_EditorClassIdentifier: 
+  OriginalParentName: test
+  poolSize: 10
+  particleSystems:
+  - {fileID: 114383150342726978, guid: a9522cecc7be1164d90ca49696823c9e, type: 2}
+  - {fileID: 114621140672871530, guid: 0863b91f7af62b2448444fdf337038ad, type: 2}
+  - {fileID: 114610570479254030, guid: 8579b9dc3e449e54b97eb74d1d34561e, type: 2}
+  - {fileID: 114375553390986062, guid: ec361e70fe56348489a5f7e45ec395cd, type: 2}

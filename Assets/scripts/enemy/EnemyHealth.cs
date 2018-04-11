@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	private HealthBar healthBar;
 	private AudioSource enemyAudioSource;
+	private EnemyShieldCollision enemyShieldCollision;
 
 	[Header("enemyHealth Audio")]
 	public AudioEvent audioEnemyDeath;
@@ -21,11 +22,14 @@ public class EnemyHealth : MonoBehaviour {
 
 	[Header("enemyHealth ParticleSystems")]	
 	public ParticleSystem killedPS;
-	public RandomParticleSystemSpawner takeDamagePS;
+	public ParticlePooler takeDamagePooler;
+
+	Coroutine iFrameTimer;
 
 	public void Start(){
 		enemyAudioSource = GetComponent<AudioSource>();
 		enemy = GetComponent<Enemy>();
+		enemyShieldCollision = GetComponentInChildren<EnemyShieldCollision>();
 	}
 
 	public void SetupHealth(EnemyType enemyType){
@@ -36,38 +40,51 @@ public class EnemyHealth : MonoBehaviour {
 		if(iFramesActive || currentHealth <= 0) return;
 
 		currentHealth -= damage;
+		audioTakeDamage.PlayOneShot(enemyAudioSource);
+		healthBar.SetBarTo(currentHealth / maxHealth);
 
 		if(currentHealth <= 0){
 			enemy.StopMoving();
 			StartCoroutine(HasBeenKilled());
-			healthBar.SetRedBarTo(0f);
+			healthBar.SetBarTo(0f);
 			return;
 		}
-
-		audioTakeDamage.PlayOneShot(enemyAudioSource);
-		healthBar.SetRedBarTo(currentHealth / maxHealth);
 	}
 
 	public void HealByAmount(float amount){
 		if(currentHealth == maxHealth) return;
 		currentHealth += amount;
-		healthBar.SetRedBarTo(currentHealth / maxHealth);
+		currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+		healthBar.SetBarTo(currentHealth / maxHealth);
+	}
+
+	public void HealToFull(){
+		if(currentHealth == maxHealth) return;
+		currentHealth = maxHealth;
+		healthBar.SetBarTo(currentHealth / maxHealth);
 	}
 
 	public void TriggerIFrames(float iFrameTime){
-		StartCoroutine(TriggerInvulnerabilityFrames(iFrameTime));
+		if(iFrameTimer != null) {
+			StopCoroutine(iFrameTimer);
+		}
+		iFrameTimer = StartCoroutine(TriggerInvulnerabilityFrames(iFrameTime));
 	}
 
-	public void SetupHealthBar(RectTransform healthBarCanvas){
+	public HealthBar SetupHealthBar(RectTransform healthBarCanvas){
 		GameObject healthBarObject = Instantiate(healthBarPrefab);
 		healthBar = healthBarObject.GetComponent<HealthBar>();
 		healthBar.SetTarget(healthBarPosition);
 		healthBarObject.transform.SetParent(healthBarCanvas);
+		return healthBar;
 	}
 
 	public IEnumerator HasBeenKilled(){
 		killedPS.Play();
 		GetComponentInParent<EnemySpawn>().RemoveEnemy(enemy);
+		
+		if(hasShield) enemyShieldCollision.DestroyShieldObject();
+		
 		foreach(Collider bc in GetComponentsInChildren<Collider>()){
 			bc.enabled = false;
 		}
@@ -85,7 +102,9 @@ public class EnemyHealth : MonoBehaviour {
 		iFramesActive = true;
 		yield return new WaitForSeconds(iFrameTime);
 		iFramesActive = false;
-		yield return null;
+		iFrameTimer = null;
 	}
+
+	
 
 }
