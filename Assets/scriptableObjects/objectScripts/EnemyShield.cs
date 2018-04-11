@@ -5,10 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName="enemy/effects/EnemyShield")]
 public class EnemyShield : EnemyEffect {
 
+	public bool indestructibleShield = false;
+	[Range(1f, 10f)] public int shieldDurability = 1;
+
 	public override void Apply(Enemy enemy){
-		//enemy.GetEnemyAnimation().SetBool("hasShield", true);
-		enemy.GetEnemyShieldCollision().Activate();
+		enemy.GetEnemyShieldCollision().Activate(indestructibleShield, shieldDurability);
 		enemy.GetEnemyHealth().hasShield = true;
+		enemy.GetEnemyAnimator().SetBool("isShielded", true);
+	}
+
+	public override string GetShortHand(){
+		return (indestructibleShield ? "i" : "") + "shield";
 	}
 
 }

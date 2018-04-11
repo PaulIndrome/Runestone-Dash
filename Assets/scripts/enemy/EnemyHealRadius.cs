@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class EnemyHealRadius : MonoBehaviour {
 
-	private EnemyAnimation enemyAnimation;
+	private EnemySpawn enemySpawn;
+	private Animator enemyAnimation;
 	private LineRenderer line;
-	float radius;
-	float pulsingRadius;
+	float maxRadius;
+	float currentRadius;
 	public float pulseOutTime, pulseInTime;
 	int resolution = 16;
+	bool healsToMax = false;
+	int amountToHeal;
 
-	public void Activate(float r, float pulseOut, float pulseIn, Material healRadiusMaterial){
+	public void Activate(int healAmount, bool fullHeal, float r, float pulseOut, float pulseIn, Material healRadiusMaterial){
 		this.enabled = true;
+		amountToHeal = healAmount;
+		healsToMax = fullHeal;
 		pulseOutTime = pulseOut;
 		pulseInTime = pulseIn;
-		radius = pulsingRadius = r;
+		maxRadius = currentRadius = r;
 		SetupLineRenderer(healRadiusMaterial);
-		enemyAnimation = GetComponent<EnemyAnimation>();
-//		enemyAnimation.SetBool("isHealer", true);
+		enemyAnimation = GetComponent<Enemy>().GetEnemyAnimator();;
+		enemySpawn = GetComponentInParent<EnemySpawn>();		
 		StartCoroutine(HealAllEnemiesInRange());
 	}
 
@@ -35,36 +40,48 @@ public class EnemyHealRadius : MonoBehaviour {
 		line.positionCount = resolution + 1;
 		for (var i = 0; i < line.positionCount; i++){
 			var angle = (360/line.positionCount+1) * i;
-			line.SetPosition(i, transform.position + pulsingRadius * new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle)));
+			line.SetPosition(i, transform.position + currentRadius * new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle)));
 		}
 	}
 
 	IEnumerator HealAllEnemiesInRange(){
-		float t;
+		float t, lerp;
+		bool animationTriggered = false;
 		while(gameObject.activeSelf){
 			t = 0;
-			pulsingRadius = 0;
+			currentRadius = 0;
+			lerp = 0;
 			while(t <= pulseOutTime){
-				pulsingRadius = Mathf.Lerp(0, radius, t / pulseOutTime);
+				lerp = t / pulseOutTime;
+				currentRadius = Mathf.Lerp(0, maxRadius, lerp);
+				if(lerp > 0.75f && !animationTriggered) {
+					enemyAnimation.SetTrigger("fireHealBurst");
+					animationTriggered = true;
+				}
 				t += Time.deltaTime;
 				yield return null;
 			}
-			//enemyAnimation.SetTrigger("castHeal");
 			CheckAllEnemiesInRange();
 			t = 0;
 			while(t <= pulseInTime){
-				pulsingRadius = Mathf.Lerp(radius, 0, t / pulseInTime);
+				currentRadius = Mathf.Lerp(maxRadius, 0, t / pulseInTime);
 				t += Time.deltaTime;
 				yield return null;
 			}
+			animationTriggered = false;
 			yield return null;
 		}
 	}
 
 	public void CheckAllEnemiesInRange(){
-		foreach(Enemy e in GetComponentInParent<EnemySpawn>().enemies){
-			if(Vector3.Distance(transform.position, e.transform.position) <= radius){
-				e.GetEnemyHealth().HealByAmount(1f);
+		foreach(Enemy e in enemySpawn.enemies){
+			if(Vector3.Distance(transform.position, e.transform.position) <= maxRadius){
+				e.GetEnemyHealth().HealByAmount(healsToMax ? 1000f : amountToHeal);
+			}
+		}
+		foreach(Enemy bE in enemySpawn.bosses){
+			if(Vector3.Distance(transform.position, bE.transform.position) <= maxRadius){
+				bE.GetEnemyHealth().HealByAmount(healsToMax ? 1000f : amountToHeal);
 			}
 		}
 	}

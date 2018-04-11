@@ -5,12 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName="enemy/effects/EnemyHealRadius")]
 public class EnemyHealRadiusEffect : EnemyEffect {
 
-	[Range(2f,10f)] public float healRadius;
-	[Range(1f,5f)] public float pulseInwardTime;
-	[Range(1f,2f)] public float pulseOutwardTime;
+	public bool healsToMax = false;
+	[Range(1f, 10f)] public int amountToHeal = 1;
+	[Range(1f,10f)] public float healRadius;
+	[Range(0.5f,10f)] public float pulseInwardTime;
+	[Range(0.5f,10f)] public float pulseOutwardTime;
 	public Material healRadiusMaterial;
 	public override void Apply(Enemy enemy){
-		enemy.gameObject.AddComponent<EnemyHealRadius>().Activate(healRadius, pulseOutwardTime, pulseInwardTime, healRadiusMaterial);
+		enemy.gameObject.AddComponent<EnemyHealRadius>().Activate(amountToHeal, healsToMax, healRadius, pulseOutwardTime, pulseInwardTime, healRadiusMaterial);
+		enemy.GetEnemyAnimator().SetBool("isHealer", true);
+	}
+
+	public override string GetShortHand(){
+		return "heal";
 	}
 
 }

@@ -32,6 +32,8 @@ public class Player : MonoBehaviour {
 		animator.SetBool(boolName, setTo);
 	}
 
+	
+
 	public void ResetColliderWidth(){
 		playerColliderSphere.radius = playerColliderStartRadius;
 	}

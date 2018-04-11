@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43236222866a3a54ab3e706546284545, type: 3}
+  m_Name: enemyTakeDamagePooler
+  m_EditorClassIdentifier: 
+  originalParentName: enemyTakeDamageKeeper
+  poolSize: 12
+  particleSystems:
+  - {fileID: 114136046818266772, guid: c3b8d9ec260ddd540906c232cc652546, type: 2}
+  - {fileID: 114212058729227500, guid: 2be2a4515cc29dc488854b3d9e970316, type: 2}
+  - {fileID: 114107214280880482, guid: f054579293ecbb645bf1e332221fa846, type: 2}
+  - {fileID: 114657636185040014, guid: cffb9b7c170eec14b9fa61da15077a39, type: 2}

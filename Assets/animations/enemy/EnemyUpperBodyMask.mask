@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: EnemyUpperBodyMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: enemy
+    m_Weight: 0
+  - m_Path: enemyPelvis
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyLLeg1
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyLLeg1/enemyLLeg2
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyLLeg1/enemyLLeg2/enemyLLegAnkle
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyLLeg1/enemyLLeg2/enemyLLegAnkle/enemyLLegDigit11
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyLLeg1/enemyLLeg2/enemyLLegAnkle/enemyLLegDigit11/enemyLLegDigit12
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyRLeg1
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyRLeg1/enemyRLeg2
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyRLeg1/enemyRLeg2/enemyRLegAnkle
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyRLeg1/enemyRLeg2/enemyRLegAnkle/enemyRLegDigit11
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemyRLeg1/enemyRLeg2/enemyRLegAnkle/enemyRLegDigit11/enemyRLegDigit12
+    m_Weight: 0
+  - m_Path: enemyPelvis/enemySpine1
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit11
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit11/enemyLArmDigit12
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit11/enemyLArmDigit12/enemyLArmDigit13
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit21
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit21/enemyLArmDigit22
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit21/enemyLArmDigit22/enemyLArmDigit23
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit31
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit31/enemyLArmDigit32
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit31/enemyLArmDigit32/enemyLArmDigit33
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyNeck1
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyNeck1/enemyNeck2
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyNeck1/enemyNeck2/enemyHead
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit11
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit11/enemyRArmDigit12
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit11/enemyRArmDigit12/enemyRArmDigit13
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit21
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit21/enemyRArmDigit22
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit21/enemyRArmDigit22/enemyRArmDigit23
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit31
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit31/enemyRArmDigit32
+    m_Weight: 1
+  - m_Path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit31/enemyRArmDigit32/enemyRArmDigit33
+    m_Weight: 1
+  - m_Path: Model
+    m_Weight: 0
