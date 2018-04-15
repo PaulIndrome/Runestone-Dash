@@ -18,8 +18,9 @@ public class EnemyCollision : MonoBehaviour {
 		}
 		else {
 			EnemyDestroysRunestone edr = collider.gameObject.GetComponent<EnemyDestroysRunestone>();
-			if(edr != null)
+			if(edr != null){
 				edr.WinOrLoose(false);
+			}
 			else 
 				return;
 		}
@@ -43,8 +44,9 @@ public class EnemyCollision : MonoBehaviour {
 		yield return new WaitForSeconds(0.1f);
 		if(enemyHealth.iFramesActive) yield return null;
 		else {
-			enemyHealth.TakeDamage(player.GetCurrentDamage());
 			enemyHealth.takeDamagePooler.SpawnFromQueueAndPlay(transform, closestPoint, player.transform.position);
+			enemyHealth.TakeDamage(player.GetCurrentDamage());
+			player.playerState.CurrentCombo += 1;
 			StartCoroutine(FlashDamage(0.33f));
 		}
 	}

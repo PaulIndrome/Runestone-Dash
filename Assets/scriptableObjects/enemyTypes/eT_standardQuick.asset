@@ -8,9 +8,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6f6022e37abb041a7bddb460cea1fa, type: 3}
-  m_Name: New Player State
+  m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
+  m_Name: eT_standardQuick
   m_EditorClassIdentifier: 
-  currentDamage: 1
-  canDash: 1
-  hitEnemyShield: 0
+  isBossType: 0
+  health: 1
+  scaleOfEnemy: 0.75
+  leftRightFluct: 15
+  approachTime: 15
+  enemyEffects: []

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: cad866ce2847100429ebf447bdf4a23a
-timeCreated: 1523194865
+guid: ec701e369abedb04283819f6bebff5b5
+timeCreated: 1523611759
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -24,41 +24,40 @@ ModelImporter:
     100032: enemyLArmDigit32
     100034: enemyLArmDigit33
     100036: enemyLArmPalm
-    100038: enemyLLeg1
-    100040: enemyLLeg2
-    100042: enemyLLegAnkle
-    100044: enemyLLegDigit11
-    100046: enemyLLegDigit12
-    100048: enemyNeck1
-    100050: enemyNeck2
-    100052: enemyPelvis
-    100054: enemyRArm1
-    100056: enemyRArm2
-    100058: enemyRArm3
-    100060: enemyRArm4
-    100062: enemyRArm5
-    100064: enemyRArmCollarbone
-    100066: enemyRArmDigit11
-    100068: enemyRArmDigit12
-    100070: enemyRArmDigit13
-    100072: enemyRArmDigit21
-    100074: enemyRArmDigit22
-    100076: enemyRArmDigit23
-    100078: enemyRArmDigit31
-    100080: enemyRArmDigit32
-    100082: enemyRArmDigit33
-    100084: enemyRArmPalm
-    100086: enemyRibcage
-    100088: enemyRLeg1
-    100090: enemyRLeg2
-    100092: enemyRLegAnkle
-    100094: enemyRLegDigit11
-    100096: enemyRLegDigit12
-    100098: enemySpine1
-    100100: enemySpine2
-    100102: enemySpine3
-    100104: enemyLArmUpVectorNode
-    100106: enemyShield
+    100038: enemyLArmUpVectorNode
+    100040: enemyLLeg1
+    100042: enemyLLeg2
+    100044: enemyLLegAnkle
+    100046: enemyLLegDigit11
+    100048: enemyLLegDigit12
+    100050: enemyNeck1
+    100052: enemyNeck2
+    100054: enemyPelvis
+    100056: enemyRArm1
+    100058: enemyRArm2
+    100060: enemyRArm3
+    100062: enemyRArm4
+    100064: enemyRArm5
+    100066: enemyRArmCollarbone
+    100068: enemyRArmDigit11
+    100070: enemyRArmDigit12
+    100072: enemyRArmDigit13
+    100074: enemyRArmDigit21
+    100076: enemyRArmDigit22
+    100078: enemyRArmDigit23
+    100080: enemyRArmDigit31
+    100082: enemyRArmDigit32
+    100084: enemyRArmDigit33
+    100086: enemyRArmPalm
+    100088: enemyRibcage
+    100090: enemyRLeg1
+    100092: enemyRLeg2
+    100094: enemyRLegAnkle
+    100096: enemyRLegDigit11
+    100098: enemyRLegDigit12
+    100100: enemySpine1
+    100102: enemySpine2
+    100104: enemySpine3
     400000: enemy
     400002: //RootNode
     400004: enemyHead
@@ -78,41 +77,42 @@ ModelImporter:
     400032: enemyLArmDigit32
     400034: enemyLArmDigit33
     400036: enemyLArmPalm
-    400038: enemyLLeg1
-    400040: enemyLLeg2
-    400042: enemyLLegAnkle
-    400044: enemyLLegDigit11
-    400046: enemyLLegDigit12
-    400048: enemyNeck1
-    400050: enemyNeck2
-    400052: enemyPelvis
-    400054: enemyRArm1
-    400056: enemyRArm2
-    400058: enemyRArm3
-    400060: enemyRArm4
-    400062: enemyRArm5
-    400064: enemyRArmCollarbone
-    400066: enemyRArmDigit11
-    400068: enemyRArmDigit12
-    400070: enemyRArmDigit13
-    400072: enemyRArmDigit21
-    400074: enemyRArmDigit22
-    400076: enemyRArmDigit23
-    400078: enemyRArmDigit31
-    400080: enemyRArmDigit32
-    400082: enemyRArmDigit33
-    400084: enemyRArmPalm
-    400086: enemyRibcage
-    400088: enemyRLeg1
-    400090: enemyRLeg2
-    400092: enemyRLegAnkle
-    400094: enemyRLegDigit11
-    400096: enemyRLegDigit12
-    400098: enemySpine1
-    400100: enemySpine2
-    400102: enemySpine3
-    400104: enemyLArmUpVectorNode
-    400106: enemyShield
+    400038: enemyLArmUpVectorNode
+    400040: enemyLLeg1
+    400042: enemyLLeg2
+    400044: enemyLLegAnkle
+    400046: enemyLLegDigit11
+    400048: enemyLLegDigit12
+    400050: enemyNeck1
+    400052: enemyNeck2
+    400054: enemyPelvis
+    400056: enemyRArm1
+    400058: enemyRArm2
+    400060: enemyRArm3
+    400062: enemyRArm4
+    400064: enemyRArm5
+    400066: enemyRArmCollarbone
+    400068: enemyRArmDigit11
+    400070: enemyRArmDigit12
+    400072: enemyRArmDigit13
+    400074: enemyRArmDigit21
+    400076: enemyRArmDigit22
+    400078: enemyRArmDigit23
+    400080: enemyRArmDigit31
+    400082: enemyRArmDigit32
+    400084: enemyRArmDigit33
+    400086: enemyRArmPalm
+    400088: enemyRibcage
+    400090: enemyRLeg1
+    400092: enemyRLeg2
+    400094: enemyRLegAnkle
+    400096: enemyRLegDigit11
+    400098: enemyRLegDigit12
+    400100: enemySpine1
+    400102: enemySpine2
+    400104: enemySpine3
+    2100000: No Name
+    2100002: 02 - Default
     2300000: enemyHead
     2300002: enemyLArm1
     2300004: enemyLArm2
@@ -160,10 +160,9 @@ ModelImporter:
     2300088: enemyRLegAnkle
     2300090: enemyRLegDigit11
     2300092: enemyRLegDigit12
-    2300094: enemyShield
-    2300096: enemySpine1
-    2300098: enemySpine2
-    2300100: enemySpine3
+    2300094: enemySpine1
+    2300096: enemySpine2
+    2300098: enemySpine3
     3300000: enemyHead
     3300002: enemyLArm1
     3300004: enemyLArm2
@@ -211,10 +210,9 @@ ModelImporter:
     3300088: enemyRLegAnkle
     3300090: enemyRLegDigit11
     3300092: enemyRLegDigit12
-    3300094: enemyShield
-    3300096: enemySpine1
-    3300098: enemySpine2
-    3300100: enemySpine3
+    3300094: enemySpine1
+    3300096: enemySpine2
+    3300098: enemySpine3
     4300000: enemyPelvis
     4300002: enemySpine1
     4300004: enemySpine2
@@ -265,12 +263,11 @@ ModelImporter:
     4300094: enemyRLegAnkle
     4300096: enemyRLegDigit11
     4300098: enemyRLegDigit12
-    4300100: enemyShield
-    7400000: walkShield
+    7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -294,45 +291,17 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: walkShield
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 100
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -352,7 +321,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 2
     human: []
@@ -367,10 +336,9 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 45bc8252d9f248a46a3450d93e587c29,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0

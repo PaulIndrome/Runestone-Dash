@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerDashChaining : MonoBehaviour {
-	public PlayerState playerState;
 	public Animator playerAnimator;
 	private Player player;
 	private AudioSource playerAudioSource;
@@ -27,8 +26,8 @@ public class PlayerDashChaining : MonoBehaviour {
 	}
 
 	public void Update(){
-		if(targetStash.Count > 0 && playerState.canDash){
-			playerState.isDashing = true;
+		if(targetStash.Count > 0 && player.playerState.canDash){
+			player.playerState.isDashing = true;
 			StartCoroutine(DashInDirection(targetStash.Dequeue()));
 		}
 	}
@@ -48,8 +47,8 @@ public class PlayerDashChaining : MonoBehaviour {
 	IEnumerator DashInDirection(Vector3 target){
 		playerAnimator.SetBool("isDashing", true);
 		StartNaginataParticles(true);
-		playerState.canDash = false;
-		playerState.isDashing = true;
+		player.playerState.canDash = false;
+		player.playerState.isDashing = true;
 		transform.LookAt(target);
 		Vector3 direction = (target - transform.position).normalized;
 		direction.y = 0;
@@ -59,18 +58,18 @@ public class PlayerDashChaining : MonoBehaviour {
 		//playerDashKickoff.SpawnAndPlay(null, transform.position, direction);
 		playerDashKickoffPooled.SpawnFromQueueAndPlay(null, transform.position, direction);
 		//Time.timeScale = 0.75f;
-		while(Vector3.Distance(transform.position, direction) > 0.1f && !playerState.hitEnemyShield){
+		while(Vector3.Distance(transform.position, direction) > 0.1f && !player.playerState.hitEnemyShield){
 			transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime * dashSpeed);
 			yield return null;
 		}
 		//Time.timeScale = 1f;
 		StartNaginataParticles(false);
 		yield return new WaitForSeconds(0.15f);
-		playerState.canDash = true;
-		playerState.hitEnemyShield = false;
+		player.playerState.canDash = true;
+		player.playerState.hitEnemyShield = false;
 		yield return new WaitForSeconds(0.45f);
 		playerAnimator.SetBool("isDashing", false);
-		playerState.isDashing = false;
+		player.playerState.isDashing = false;
 		player.ResetColliderWidth();
 		yield return null;
 	}

@@ -11,10 +11,18 @@ public class Player : MonoBehaviour {
 	float playerColliderStartRadius;
 	private PlayerDash playerDash;
 
+	void Awake(){
+		if(playerState == null) 
+			playerState = PlayerState.CreateInstance(typeof(PlayerState)) as PlayerState;
+	}
+
 	public void Start(){
 		animator = GetComponent<Animator>();
 		playerColliderSphere = GetComponent<SphereCollider>();
 		playerColliderStartRadius = playerColliderSphere.radius;
+
+		playerState.StartComboResetter(this);
+
 	}
 	public float GetCurrentDamage(){
 		return playerState.currentDamage;
@@ -31,8 +39,6 @@ public class Player : MonoBehaviour {
 	public void SetAnimatorBool(string boolName, bool setTo){
 		animator.SetBool(boolName, setTo);
 	}
-
-	
 
 	public void ResetColliderWidth(){
 		playerColliderSphere.radius = playerColliderStartRadius;

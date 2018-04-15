@@ -92,7 +92,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1110054305082664}
   serializedVersion: 5
   lengthInSec: 0.25
-  simulationSpeed: 0.3
+  simulationSpeed: 1
   stopAction: 3
   looping: 0
   prewarm: 0
@@ -144,14 +144,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1985201631
+  randomSeed: -382232795
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.33
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -192,7 +192,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -804,8 +804,8 @@ ParticleSystem:
           m_PreInfinity: 0
           m_PostInfinity: 0
           m_RotationOrder: 0
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 2
+      repeatInterval: 0.12
     - serializedVersion: 2
       time: 0.06
       countCurve:
@@ -3516,7 +3516,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1483162038714056}
   serializedVersion: 5
   lengthInSec: 0.25
-  simulationSpeed: 0.3
+  simulationSpeed: 1
   stopAction: 0
   looping: 0
   prewarm: 0
@@ -3568,14 +3568,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -1385549429
+  randomSeed: -1885447153
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.33
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3616,7 +3616,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4228,8 +4228,8 @@ ParticleSystem:
           m_PreInfinity: 0
           m_PostInfinity: 0
           m_RotationOrder: 0
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 2
+      repeatInterval: 0.12
     - serializedVersion: 2
       time: 0.06
       countCurve:

@@ -5,18 +5,17 @@ using UnityEngine;
 [SelectionBase]
 public class EnemyShieldCollision : MonoBehaviour {
 
-	public PlayerState playerState;
 	EnemyHealth enemyHealth;
 	Enemy enemy;
 	Animator enemyAnimator;
-	[SerializeField] Animator shieldAnimator;
 	private RaycastHit raycastHit;
 	private BoxCollider boxCollider;
+	private MeshRenderer meshRenderer;
 
 	
 	private Vector3 firstContactPointWorld;
 	private Vector3 playerPosAtColLocal;
-	private Vector3 shieldForward, playerForward;
+	private Vector3 enemyForward, playerForward;
 	[Header("Shield status variables")]
 	int maxShieldDurability;
 	[SerializeField] bool indestructibleShield;
@@ -44,6 +43,9 @@ public class EnemyShieldCollision : MonoBehaviour {
 		boxCollider = GetComponent<BoxCollider>();
 		boxCollider.enabled = true;
 
+		meshRenderer = GetComponent<MeshRenderer>();
+		meshRenderer.enabled = true;
+
 		gameObject.SetActive(true);
 
 		foreach(EnemyShieldPiece esp in shieldPieces){
@@ -58,16 +60,16 @@ public class EnemyShieldCollision : MonoBehaviour {
 		Player player = col.gameObject.GetComponent<Player>();
 
 		if(player != null){
-			if(!playerState.isDashing){
+			if(!player.playerState.isDashing){
 				enemyHealth.TriggerIFrames(0.2f);
 				//playerHitShieldPooler.SpawnFromQueueAndPlay(null, col.contacts[0].point, player.transform.position);
 				ShovePlayerBack(player);
 				return;
 			}
 			//if we've made it this far, the player is dashing ... get it?
-			shieldForward = transform.forward.normalized;
+			enemyForward = transform.parent.forward.normalized;
 			playerForward = player.transform.forward.normalized;
-			float dot = Vector3.Dot(shieldForward, playerForward);
+			float dot = Vector3.Dot(enemyForward, playerForward);
 			if(dot > 0.05f){
 				PlayerDestroysShield();
 			} else {
@@ -87,9 +89,8 @@ public class EnemyShieldCollision : MonoBehaviour {
 	}
 
 	public void ShovePlayerBack(Player player){
-		shieldAnimator.SetTrigger("playerHitShield");
 		enemyAnimator.SetTrigger("shieldBash");
-		playerState.hitEnemyShield = true;
+		player.playerState.hitEnemyShield = true;
 		player.transform.position -= player.transform.forward * 3;
 		player.SetAnimatorTrigger("hitEnemyShield");
 		audioShieldHit.PlayOneShot(enemyAudioSource);
@@ -106,6 +107,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 			esp.StartFadeOut(5f);
 		}
 		boxCollider.enabled = false;
+		meshRenderer.enabled = false;
 	}
 
 	public void SetupDurabilityBar(RectTransform healthBarCanvas){

@@ -24,7 +24,7 @@ public class EnemyShieldPiece : MonoBehaviour {
 			yield return null;
 		}
 		material.color = Color.clear;
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 		yield return null;
 	}
 }

@@ -58,6 +58,7 @@ ModelImporter:
     100100: enemySpine1
     100102: enemySpine2
     100104: enemySpine3
+    100106: enemyShield
     400000: enemy
     400002: //RootNode
     400004: enemyHead
@@ -111,6 +112,7 @@ ModelImporter:
     400100: enemySpine1
     400102: enemySpine2
     400104: enemySpine3
+    400106: enemyShield
     2100000: No Name
     2100002: 02 - Default
     2300000: enemyHead
@@ -163,6 +165,7 @@ ModelImporter:
     2300094: enemySpine1
     2300096: enemySpine2
     2300098: enemySpine3
+    2300100: enemyShield
     3300000: enemyHead
     3300002: enemyLArm1
     3300004: enemyLArm2
@@ -213,6 +216,7 @@ ModelImporter:
     3300094: enemySpine1
     3300096: enemySpine2
     3300098: enemySpine3
+    3300100: enemyShield
     4300000: enemyPelvis
     4300002: enemySpine1
     4300004: enemySpine2
@@ -263,6 +267,7 @@ ModelImporter:
     4300094: enemyRLegAnkle
     4300096: enemyRLegDigit11
     4300098: enemyRLegDigit12
+    4300100: enemyShield
     7400000: shieldBash
     9500000: //RootNode
   externalObjects: {}

@@ -2082,7 +2082,7 @@ Animator:
   m_GameObject: {fileID: 1021194554970146}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 45bc8252d9f248a46a3450d93e587c29, type: 3}
-  m_Controller: {fileID: 9100000, guid: b5dd02d7879758a42ae507eeb812cf42, type: 2}
+  m_Controller: {fileID: 9100000, guid: 85b520ff46a8f1a42bfc50358677b694, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2129,7 +2129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaffc5b1542dcac49b769303eac6bb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState: {fileID: 11400000, guid: bd3c816fe2dd15045b18937f96058f6c, type: 2}
   shieldAnimator: {fileID: 95042661289033946}
   indestructibleShield: 0
   shieldDurability: 0

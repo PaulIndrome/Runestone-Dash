@@ -10,9 +10,11 @@ public class HealthBar : MonoBehaviour {
 	public RectTransform Bar;
 
 	Image barImage;
+	Image barEndImage;
 
 	public void Start(){
 		barImage = Bar.GetComponent<Image>();
+		barEndImage = Bar.GetChild(0).GetComponent<Image>();
 	}
 
 	public void SetTarget(Transform position){
@@ -25,11 +27,18 @@ public class HealthBar : MonoBehaviour {
 	}
 
 	public void SetBarTo(float healthPercent){
-		Bar.localScale = new Vector3(healthPercent, 1, 1);
+		if(healthPercent <= 0) barEndImage.color = Color.clear;
+		float newWidth = healthPercent * 100;
+		Bar.sizeDelta = new Vector2(newWidth, Bar.sizeDelta.y);
 	}
 	
 	public void ChangeBarColorTo(Color color){
-		barImage.color = color;
+		if(barEndImage == null) barEndImage = Bar.GetChild(0).GetComponent<Image>();
+		Color colorToSet = color;
+		colorToSet.a = 100f / 255f;
+		barImage.color = colorToSet;
+		colorToSet.a = 200f / 255f;
+		barEndImage.color = colorToSet;
 	}
 
 }
