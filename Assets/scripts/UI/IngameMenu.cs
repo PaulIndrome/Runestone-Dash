@@ -10,12 +10,10 @@ public class IngameMenu : MonoBehaviour {
 	}
 	
 	public void ResumeGame(){
-		Time.timeScale = 1f;
 		gameObject.SetActive(false);
 	}
 	
 	public void RestartGame(){
-		Time.timeScale = 1f;
 		SceneManager.LoadScene("ingame_01");
 	}
 	

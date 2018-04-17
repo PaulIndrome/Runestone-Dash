@@ -32,6 +32,11 @@ public class NaginataControl : MonoBehaviour {
 		bladeTrailPS.Stop();
 	}
 
+	public void ClearBladeTrail(){
+		StopBladeTrail();
+		bladeTrailPS.Clear(true);
+	}
+
 	void LerpTrailColor(int comboCount){
 		Color nextColor = Color.Lerp(lowComboColor, highComboColor, (float)comboCount / (float)comboForMaxDamage);
 		bladeTrailMaterial.SetColor("_EmisColor", nextColor);

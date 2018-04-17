@@ -33,12 +33,12 @@ public class HealthBar : MonoBehaviour {
 	}
 	
 	public void ChangeBarColorTo(Color color){
+		barImage.color = color;
+	}
+
+	public void ChangeBarEndColorTo(Color color){
 		if(barEndImage == null) barEndImage = Bar.GetChild(0).GetComponent<Image>();
-		Color colorToSet = color;
-		colorToSet.a = 100f / 255f;
-		barImage.color = colorToSet;
-		colorToSet.a = 200f / 255f;
-		barEndImage.color = colorToSet;
+		barEndImage.color = color;
 	}
 
 }

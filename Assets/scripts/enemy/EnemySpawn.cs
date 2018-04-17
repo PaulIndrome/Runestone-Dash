@@ -46,8 +46,13 @@ public class EnemySpawn : MonoBehaviour {
 			Enemy enemyChild = child.GetComponent<Enemy>();
 			if(enemyChild == null) continue;
 			else{
-				enemies.Add(enemyChild);
-				enemyChild.SetupEnemy(healthBarCanvas);
+				if(!enemyChild.enemyType.isBossType){
+					enemies.Add(enemyChild);
+					enemyChild.SetupEnemy(healthBarCanvas);
+				} else {
+					bosses.Add(enemyChild);
+					enemyChild.SetupEnemy(healthBarCanvas);
+				}
 			}
 		}
 
@@ -153,7 +158,12 @@ public class EnemySpawn : MonoBehaviour {
 
 			newBoss.SetupEnemy(randomBossType, randomPath);
 			HealthBar bossBar = newBoss.SetupBars(healthBarCanvas);
-			bossBar.ChangeBarColorTo(Color.magenta);
+
+			Color bossBarColor = Color.magenta;
+			bossBarColor.a = 0.8f;
+			bossBar.ChangeBarColorTo(bossBarColor);
+			bossBarColor.a = 0.95f;
+			bossBar.ChangeBarEndColorTo(bossBarColor);
 
 			newBoss.gameObject.name = "B" + numEnemyToSpawn + " - " + randomBossType.GetShortHand();
 

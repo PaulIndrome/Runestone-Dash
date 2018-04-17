@@ -26,7 +26,7 @@ public class PlayerMoveIndependent : MonoBehaviour
 
     void Update()
     {
-        timeStep = (2 * Mathf.PI) / timeToCircle;
+        
 
         bool onCircle = IsPlayerOnCircle();
 
@@ -36,13 +36,14 @@ public class PlayerMoveIndependent : MonoBehaviour
             currentAngle = Vector3.SignedAngle(Vector3.forward, transform.position, Vector3.up);
         }
 
-        if(!player.playerState.isDashing){
+        if(!player.playerState.isDashing && player.playerState.canMove){
             MoveAndRotatePlayer(onCircle);  
         }
     }
 
     public void SetNewRadius(float newRadius){
         currentRadius = newRadius;
+        timeStep = (2 * Mathf.PI) / timeToCircle;
     }
 
     public void MoveAndRotatePlayer(bool onCircle){

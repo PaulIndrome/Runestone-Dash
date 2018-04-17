@@ -9,6 +9,7 @@ public class PlayerState : ScriptableObject {
 	public float currentDamage = 1;
 	public int maxDamage = 4;
 	public int damageIncreaseRatio = 20;
+	public bool canMove = true;
 	public bool canDash = true;
 	public bool hitEnemyShield = false;
 	public bool isDashing = false;

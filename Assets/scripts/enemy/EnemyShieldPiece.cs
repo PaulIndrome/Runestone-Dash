@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyShieldPiece : MonoBehaviour {
 
 	Material material;
+	MeshRenderer meshRenderer;
 	public AnimationCurve fadeOutCurve;
 	void Start () {
-		material = GetComponent<MeshRenderer>().material;
+		meshRenderer = GetComponent<MeshRenderer>();
+		material = meshRenderer.material;
 	}
 	
 	public void StartFadeOut(float time){
@@ -24,7 +26,8 @@ public class EnemyShieldPiece : MonoBehaviour {
 			yield return null;
 		}
 		material.color = Color.clear;
-		//gameObject.SetActive(false);
+		meshRenderer.enabled = false;
+		gameObject.SetActive(false);
 		yield return null;
 	}
 }

@@ -11,15 +11,19 @@ public class Enemy : MonoBehaviour {
 	private EnemyShieldCollision enemyShieldCollision;
 	public GameObject meshAndCollider;
 
-	private bool canMove;
+	public bool canMove = true;
 	public bool CanMove{
 		get{ return canMove; }
+	}
+
+
+	void Awake(){
+		enemyHealth = GetComponent<EnemyHealth>();
 	}
 
 	public void Start(){
 		transform.localScale *= enemyType.scaleOfEnemy;
 		transform.LookAt(Vector3.zero, Vector3.up);
-		enemyHealth = GetComponent<EnemyHealth>();
 	}
 
 	public void StopMoving(){

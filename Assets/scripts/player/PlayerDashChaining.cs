@@ -18,6 +18,8 @@ public class PlayerDashChaining : MonoBehaviour {
 	public AudioEvent audioPlayerDash;
 	public AudioEvent audioPlayerKickoff;
 
+	Coroutine playerDash, shovedBack;
+
 	public void Start(){
 		targetStash = new Queue<Vector3>();
 		playerAudioSource = GetComponent<AudioSource>();
@@ -26,52 +28,100 @@ public class PlayerDashChaining : MonoBehaviour {
 	}
 
 	public void Update(){
-		if(targetStash.Count > 0 && player.playerState.canDash){
+		if(targetStash.Count > 0 && player.playerState.canDash && player.playerState.canMove){
+			if(!player.playerState.isDashing) playerAnimator.SetTrigger("startDashChain");
+			else playerAnimator.SetTrigger("additionalDash");
 			player.playerState.isDashing = true;
-			StartCoroutine(DashInDirection(targetStash.Dequeue()));
-		}
+			if(playerDash != null) StopCoroutine(playerDash);
+			playerDash = StartCoroutine(DashInDirection(targetStash.Dequeue()));
+		} 
 	}
 	
 	public void StashTarget(Vector3 targetWorldPos){
-		if(targetStash.Count < 4)
+		if(player.playerState.canMove)
 			targetStash.Enqueue(targetWorldPos);
 	}
 
-	public void StartNaginataParticles(bool startStop){
-		if(startStop)
-			naginataControl.StartBladeTrail();
-		else
-			naginataControl.StopBladeTrail();
+	public void ClearTargetStash(){
+		targetStash.Clear();
+	}
+
+	public void EndDashChain(){
+		if(playerDash != null) {
+			StopCoroutine(playerDash);
+			playerDash = null;
+		}
+		ClearTargetStash();
+		playerAnimator.SetBool("isDashing", false);
+		player.playerState.isDashing = false;
+		player.playerState.canDash = true;
+		player.ResetColliderWidth();
+		naginataControl.StopBladeTrail();
+	}
+
+	public void PlayerShovedBack(){
+		player.playerState.hitEnemyShield = true;
+		if(playerDash != null) {
+			StopCoroutine(playerDash);
+			playerDash = null;
+		}
+		shovedBack = StartCoroutine(ShovedBack());
+	}
+
+	public void StoodBackUp(){
+		ClearTargetStash();
+		playerAnimator.SetBool("grounded", false);
+		player.playerState.hitEnemyShield = false;
+		player.playerState.canMove = true;
+		player.playerState.canDash = true;
 	}
 
 	IEnumerator DashInDirection(Vector3 target){
 		playerAnimator.SetBool("isDashing", true);
-		StartNaginataParticles(true);
 		player.playerState.canDash = false;
 		player.playerState.isDashing = true;
+		
 		transform.LookAt(target);
-		Vector3 direction = (target - transform.position).normalized;
+		Vector3 direction = (transform.position + (target - transform.position).normalized * dashRadius) * 1.05f;
 		direction.y = 0;
-		direction = transform.position + direction.normalized * dashRadius;
+		
 		audioPlayerKickoff.PlayOneShot(playerAudioSource);
 		audioPlayerDash.PlayOneShot(playerAudioSource);
-		//playerDashKickoff.SpawnAndPlay(null, transform.position, direction);
+		
 		playerDashKickoffPooled.SpawnFromQueueAndPlay(null, transform.position, direction);
-		//Time.timeScale = 0.75f;
-		while(Vector3.Distance(transform.position, direction) > 0.1f && !player.playerState.hitEnemyShield){
+		naginataControl.StartBladeTrail();
+
+		while(Vector3.Distance(transform.position, direction) > 0.05f && !player.playerState.hitEnemyShield){
 			transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime * dashSpeed);
 			yield return null;
 		}
-		//Time.timeScale = 1f;
-		StartNaginataParticles(false);
+		if(player.playerState.hitEnemyShield){
+			//PlayerShovedBack();
+			yield break;
+		}
 		yield return new WaitForSeconds(0.15f);
 		player.playerState.canDash = true;
-		player.playerState.hitEnemyShield = false;
-		yield return new WaitForSeconds(0.45f);
-		playerAnimator.SetBool("isDashing", false);
-		player.playerState.isDashing = false;
-		player.ResetColliderWidth();
-		yield return null;
+		if(targetStash.Count > 0){
+			yield break;
+		}
+		yield return new WaitForSeconds(0.6f);
+		EndDashChain();
 	}
+
+	IEnumerator ShovedBack(){
+		naginataControl.ClearBladeTrail();
+		player.playerState.canMove = false;
+		playerAnimator.SetTrigger("hitEnemyShield");
+		playerAnimator.SetBool("grounded", true);
+		for(float t = 0; t < 1f; t = t + Time.deltaTime * 2){
+			transform.position -= (transform.forward * (1-t)) * 0.5f;
+			yield return null;
+		}
+		EndDashChain();
+		shovedBack = null;
+	}
+
+
+	
 
 }

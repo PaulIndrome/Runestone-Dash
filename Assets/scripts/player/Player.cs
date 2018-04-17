@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 	public PlayerState playerState;
 	Vector3 playerColliderStartSize;
 	float playerColliderStartRadius;
-	private PlayerDash playerDash;
+	[HideInInspector] public PlayerDashChaining playerDashChaining;
 
 	void Awake(){
 		if(playerState == null) 
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 
 	public void Start(){
 		animator = GetComponent<Animator>();
+		playerDashChaining = GetComponent<PlayerDashChaining>();
 		playerColliderSphere = GetComponent<SphereCollider>();
 		playerColliderStartRadius = playerColliderSphere.radius;
 
