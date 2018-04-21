@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler {
-	private PlayerDashChaining playerDashChaining;
+	PlayerDashChaining playerDashChaining;
+	Player player;
 	[SerializeField] [Range(0.1f, 1.5f)] private float delayBetweenDashes;
 	[HideInInspector] public bool recentlyDashed = false;
 
 	public void Start(){
 		playerDashChaining = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDashChaining>();
+		player = playerDashChaining.gameObject.GetComponent<Player>();
 	}
 
 	public void OnPointerDown(PointerEventData ped){
@@ -20,9 +22,10 @@ public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDo
 	}
 
 	public void OnPointerUp(PointerEventData ped){
-		//if(recentlyDashed) return;
-		playerDashChaining.StashTarget(ped.pointerCurrentRaycast.worldPosition);
-		StartCoroutine(ResetRecentlyDashed());
+		if(!player.playerState.isLegendary){
+			playerDashChaining.StashTarget(ped.pointerCurrentRaycast.worldPosition);
+			StartCoroutine(ResetRecentlyDashed());
+		}
 	}
 
 	IEnumerator ResetRecentlyDashed(){

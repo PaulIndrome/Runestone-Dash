@@ -9,12 +9,21 @@ public class Player : MonoBehaviour {
 	public PlayerState playerState;
 	Vector3 playerColliderStartSize;
 	float playerColliderStartRadius;
-	private PlayerDash playerDash;
+	[HideInInspector] public PlayerDashChaining playerDashChaining;
+
+	void Awake(){
+		if(playerState == null) 
+			playerState = PlayerState.CreateInstance(typeof(PlayerState)) as PlayerState;
+	}
 
 	public void Start(){
 		animator = GetComponent<Animator>();
+		playerDashChaining = GetComponent<PlayerDashChaining>();
 		playerColliderSphere = GetComponent<SphereCollider>();
 		playerColliderStartRadius = playerColliderSphere.radius;
+
+		playerState.StartComboResetter(this);
+
 	}
 	public float GetCurrentDamage(){
 		return playerState.currentDamage;
@@ -37,6 +46,14 @@ public class Player : MonoBehaviour {
 	}
 	public void SetColliderWidth(float width){
 		playerColliderSphere.radius = width;
+	}
+
+	public void StartChainKillFromMenu(){
+		playerState.CurrentCombo = playerState.maxCombo;
+	}
+
+	void OnDestroy(){
+		ScriptableObject.DestroyObject(playerState);
 	}
 
 }

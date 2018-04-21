@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemyCollision : MonoBehaviour {
 
 	public EnemyHealth enemyHealth;
-	public MeshRenderer enemyBody;
+	public SkinnedMeshRenderer enemyBody;
+
+	[SerializeField] ParticlePooler chainKillParticlePooler;
 
 	void Start(){
 		GetComponent<ParticleSystem>().Play();
@@ -13,15 +15,20 @@ public class EnemyCollision : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider collider){
 		Player player = collider.gameObject.GetComponent<Player>();
-		if(player != null && !enemyHealth.iFramesActive){
-			enemyHealth.TakeDamage(player.GetCurrentDamage());
-			enemyHealth.takeDamagePS.SpawnRandomAndPlay(enemyHealth.transform, collider.ClosestPoint(transform.position), player.transform.position);
-			StartCoroutine(FlashDamage(0.35f));
+		if(player != null){
+			if(player.playerState.isLegendary){
+				enemyHealth.TakeDamage(player.GetCurrentDamage());
+				StartCoroutine(FlashDamage(0.33f));
+				chainKillParticlePooler.SpawnFromQueueAndPlay(null, transform.position, Vector3.zero);
+			}
+			else
+				StartCoroutine(DelayedDamage(collider, player));
 		}
 		else {
 			EnemyDestroysRunestone edr = collider.gameObject.GetComponent<EnemyDestroysRunestone>();
-			if(edr != null)
+			if(edr != null){
 				edr.WinOrLoose(false);
+			}
 			else 
 				return;
 		}
@@ -38,5 +45,17 @@ public class EnemyCollision : MonoBehaviour {
 		}
 		enemyBody.material.SetColor("_EmissionColor", Color.black);
 		yield return null;
+	}
+
+	IEnumerator DelayedDamage(Collider collider, Player player){
+		Vector3 closestPoint = collider.ClosestPoint(transform.position);
+		yield return new WaitForSeconds(0.1f);
+		if(enemyHealth.iFramesActive) yield return null;
+		else {
+			enemyHealth.takeDamagePooler.SpawnFromQueueAndPlay(transform, closestPoint, player.transform.position);
+			enemyHealth.TakeDamage(player.GetCurrentDamage());
+			player.playerState.CurrentCombo += 1;
+			StartCoroutine(FlashDamage(0.33f));
+		}
 	}
 }

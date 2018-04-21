@@ -6,17 +6,15 @@ public class PlayerMoveIndependent : MonoBehaviour
 {
 
     public float followSpeed, rotationSpeed;
-    public PlayerState playerState;
-
-    private Vector3 nextPos;
-    private Quaternion lookRotation;
-    private float currentAngle, timeStep, currentRadius;
+    Player player;
+    Vector3 nextPos;
+    Quaternion lookRotation;
+    float currentAngle, timeStep, currentRadius;
     [SerializeField] private float timeToCircle, radiusTolerance;
 
     void Start()
     {
-        playerState.canDash = true;
-        playerState.isDashing = false;
+        player = GetComponent<Player>();
         timeStep = (2 * Mathf.PI) / ((timeToCircle == 0) ? 1 : timeToCircle);
         // set all serialized fields if 0
         timeToCircle = (timeToCircle == 0) ? 6f : timeToCircle;
@@ -28,7 +26,7 @@ public class PlayerMoveIndependent : MonoBehaviour
 
     void Update()
     {
-        timeStep = (2 * Mathf.PI) / timeToCircle;
+        
 
         bool onCircle = IsPlayerOnCircle();
 
@@ -38,13 +36,14 @@ public class PlayerMoveIndependent : MonoBehaviour
             currentAngle = Vector3.SignedAngle(Vector3.forward, transform.position, Vector3.up);
         }
 
-        if(!playerState.isDashing){
+        if(!player.playerState.isDashing && player.playerState.canMove){
             MoveAndRotatePlayer(onCircle);  
         }
     }
 
     public void SetNewRadius(float newRadius){
         currentRadius = newRadius;
+        timeStep = (2 * Mathf.PI) / timeToCircle;
     }
 
     public void MoveAndRotatePlayer(bool onCircle){

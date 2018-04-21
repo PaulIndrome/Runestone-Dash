@@ -6,15 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class EnemyDestroysRunestone : MonoBehaviour {
 
-	public Canvas gameOverCanvas;
+	public static bool gameOver = false;
+
+	public Cinemachine.CinemachineVirtualCamera menuCam;
+	public RectTransform gameOverTextsParent;
 	public Text restartInText;
 	public Text winLooseText;
 
-	public PlayerState playerState;
+	PlayerClickToDash playerClickToDash;
+	PlayerTargetLineControl playerTargetLineControl;
+
+	void Start(){
+		playerClickToDash = GetComponentInChildren<PlayerClickToDash>();
+		playerTargetLineControl = GetComponentInChildren<PlayerTargetLineControl>();
+	}
+
 	public void OnCollisionEnter(Collision collision){
 		if(!collision.gameObject.CompareTag("Player")){
+			Debug.Log(transform.root.name + " has collided with " + collision.collider.transform.name);
+			Debug.Break();
 			StartCoroutine(GameOverAndRestart(false));
-		}
+		} 
 	}
 
 	public void WinOrLoose(bool winLoose){
@@ -22,22 +34,27 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 	}
 
 	IEnumerator GameOverAndRestart(bool winLoose){
-		playerState.canDash = true;
+		menuCam.Priority = 100;
 		int secondsToRestart = 5;
 		Time.timeScale = 0f;
+
+		playerClickToDash.enabled = playerTargetLineControl.enabled = false;
+
+		gameOver = true;
+
 		if(winLoose){
-			winLooseText.text = "The Runestone has been defended!";
+			winLooseText.text = "The Runestone has been defended!\nYou have become legend!";
 		}
-		gameOverCanvas.gameObject.SetActive(true);
-		yield return new WaitForSecondsRealtime(1.0f);
-		while(secondsToRestart >= 0){
-			restartInText.enabled = true;
-			restartInText.text = "Restarting in: " + secondsToRestart;
-			secondsToRestart--;
+		gameOverTextsParent.gameObject.SetActive(true);
+		yield return new WaitForSecondsRealtime(2.0f);
+		restartInText.enabled = true;
+		for(int i = secondsToRestart; i>0;i--){
+			restartInText.text = "Restarting in: " + i;
 			yield return new WaitForSecondsRealtime(1.0f);
 		}
 		Time.timeScale = 1f;
-		playerState.canDash = false;
+		menuCam.Priority = 9;
+		gameOver = false;
 		SceneManager.LoadScene("ingame_01");
 	}
 }

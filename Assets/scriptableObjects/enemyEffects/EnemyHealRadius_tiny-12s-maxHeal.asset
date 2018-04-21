@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897f628915324314a8d691090af86d1d, type: 3}
+  m_Name: EnemyHealRadius_tiny-12s-maxHeal
+  m_EditorClassIdentifier: 
+  healsToMax: 1
+  amountToHeal: 1
+  healRadius: 2
+  pulseInwardTime: 10
+  pulseOutwardTime: 2
+  healRadiusMaterial: {fileID: 2100000, guid: 1743351eead727041b7657ab064e44d5, type: 2}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43236222866a3a54ab3e706546284545, type: 3}
+  m_Name: playerDashKickoffPooler
+  m_EditorClassIdentifier: 
+  originalParentName: playerDashKickKeeper
+  poolSize: 6
+  particleSystems:
+  - {fileID: 114491783905786458, guid: 8e070cbc5e14eb54d8e883fe394f465f, type: 2}
+  - {fileID: 114207773787776626, guid: 16874b20df991ce4b8da6ce30c29b58e, type: 2}
+  - {fileID: 114270430124197640, guid: 4febd894f96fb904e8cc7c51e1efb91f, type: 2}

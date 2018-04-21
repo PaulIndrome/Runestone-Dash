@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
   m_Name: eT_humongousSlowShieldBearer
   m_EditorClassIdentifier: 
-  health: 6
+  isBossType: 0
+  health: 5
   scaleOfEnemy: 1.66
   leftRightFluct: 4
   approachTime: 40
