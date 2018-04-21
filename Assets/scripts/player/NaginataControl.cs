@@ -9,17 +9,11 @@ public class NaginataControl : MonoBehaviour {
 	ParticleSystem bladeTrailPS;
 	Player player;
 
-	int maxPlayerDamage, damageIncreaseRatio, comboForMaxDamage;
-
 	void Start(){
 		bladeTrailPS = GetComponent<ParticleSystem>();
 		player = GetComponentInParent<Player>();
 
 		bladeTrailMaterial.SetColor("_EmisColor", lowComboColor);
-
-		maxPlayerDamage = player.playerState.maxDamage;
-		damageIncreaseRatio = player.playerState.damageIncreaseRatio;
-		comboForMaxDamage = maxPlayerDamage * damageIncreaseRatio;
 
 		PlayerState.comboCountChangeEvent += LerpTrailColor;
 	}
@@ -37,9 +31,12 @@ public class NaginataControl : MonoBehaviour {
 		bladeTrailPS.Clear(true);
 	}
 
-	void LerpTrailColor(int comboCount){
-		Color nextColor = Color.Lerp(lowComboColor, highComboColor, (float)comboCount / (float)comboForMaxDamage);
+	void LerpTrailColor(int comboCount, int maxCombo){
+		Color nextColor = Color.Lerp(lowComboColor, highComboColor, (float)comboCount / (float)maxCombo);
 		bladeTrailMaterial.SetColor("_EmisColor", nextColor);
 	}
 
+	void OnDestroy(){
+		PlayerState.comboCountChangeEvent -= LerpTrailColor;
+	}
 }

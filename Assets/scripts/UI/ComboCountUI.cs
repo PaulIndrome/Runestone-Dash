@@ -13,11 +13,12 @@ public class ComboCountUI : MonoBehaviour {
 		PlayerState.comboCountChangeEvent += UpdateComboText;
 	}
 	
-	void UpdateComboText(int newValue){
-		comboText.text = "" + newValue;
+	void UpdateComboText(int newValue, int maxCombo){
+		if(comboText != null)
+			comboText.text = "" + newValue + "/" + maxCombo;
 	}
 
 	void OnDestroy(){
-		PlayerState.comboCountChangeEvent += UpdateComboText;
+		PlayerState.comboCountChangeEvent -= UpdateComboText;
 	}
 }

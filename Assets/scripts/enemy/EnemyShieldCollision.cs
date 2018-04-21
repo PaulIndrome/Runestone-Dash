@@ -14,7 +14,9 @@ public class EnemyShieldCollision : MonoBehaviour {
 	
 	Vector3 enemyForward, playerForward;
 	HealthBar durabilityBar;
+	bool isDestructible = false;
 	int maxShieldDurability;
+
 	[Header("Shield status variables")]
 	[SerializeField] bool indestructibleShield;
 	[SerializeField] int shieldDurability;
@@ -57,14 +59,20 @@ public class EnemyShieldCollision : MonoBehaviour {
 		indestructibleShield = indestructible;
 	}
 
+	public void SetDestructible(bool destructible){
+		isDestructible = destructible;
+	}
+
 	public void OnCollisionEnter(Collision col){
 		Player player = col.gameObject.GetComponent<Player>();
 
 		if(player != null){
-			enemyForward = durabilityBarPosition.forward.normalized;
-			playerForward = player.transform.forward.normalized;
-			playerForward.y = enemyForward.y;
-			float dot = Vector3.Dot(enemyForward, playerForward);
+			
+
+			if(isDestructible){
+				PlayerDestroysShield();
+				return;
+			}
 
 			if(!player.playerState.isDashing){
 				//Debug.Log("ooooo shield hit " + dot);
@@ -73,6 +81,10 @@ public class EnemyShieldCollision : MonoBehaviour {
 				ShieldBash(player);
 				return;
 			}
+			enemyForward = durabilityBarPosition.forward.normalized;
+			playerForward = player.transform.forward.normalized;
+			playerForward.y = enemyForward.y;
+			float dot = Vector3.Dot(enemyForward, playerForward);
 			//if we've made it this far, the player is dashing ... get it?
 			if(dot > 0.4f){
 				//Debug.Log("shield destroy " + dot);

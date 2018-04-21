@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class IngameMenu : MonoBehaviour {
 
+	[SerializeField] Cinemachine.CinemachineVirtualCamera menuCam;
+
 	void OnEnable(){
-		Time.timeScale = 0f;
+		menuCam.Priority = 1000;
+		Time.timeScale = 0.01f;
 	}
 	
 	public void ResumeGame(){
@@ -22,6 +25,8 @@ public class IngameMenu : MonoBehaviour {
 	}
 
 	void OnDisable(){
+		menuCam.Priority = 0;
 		Time.timeScale = 1f;
 	}
+
 }

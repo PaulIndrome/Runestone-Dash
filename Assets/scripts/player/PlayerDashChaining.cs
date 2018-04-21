@@ -5,14 +5,17 @@ using UnityEngine.EventSystems;
 
 public class PlayerDashChaining : MonoBehaviour {
 	public Animator playerAnimator;
-	private Player player;
-	private AudioSource playerAudioSource;
-	private NaginataControl naginataControl;
+	Player player;
+	AudioSource playerAudioSource;
+	NaginataControl naginataControl;
 	
 	public float dashRadius, dashSpeed;
-	private Queue<Vector3> targetStash;
-	[Header("Particle spawners")]
+	Queue<Vector3> targetStash;
+	bool targetStashEmpty = true;
+
+	[Header("Particle spawners / systems")]
 	public ParticlePooler playerDashKickoffPooled;
+	[SerializeField] ParticleSystem[] chainKillParticles;
 	
 	[Header("Audio Events")]
 	public AudioEvent audioPlayerDash;
@@ -25,6 +28,9 @@ public class PlayerDashChaining : MonoBehaviour {
 		playerAudioSource = GetComponent<AudioSource>();
 		player = GetComponent<Player>();
 		naginataControl = GetComponentInChildren<NaginataControl>();
+
+		foreach(ParticleSystem p in chainKillParticles)
+			p.Pause();
 	}
 
 	public void Update(){
@@ -38,12 +44,25 @@ public class PlayerDashChaining : MonoBehaviour {
 	}
 	
 	public void StashTarget(Vector3 targetWorldPos){
+		targetStashEmpty = false;
 		if(player.playerState.canMove)
 			targetStash.Enqueue(targetWorldPos);
 	}
 
 	public void ClearTargetStash(){
 		targetStash.Clear();
+		targetStashEmpty = true;
+	}
+
+	public bool isTargetStashEmpty(){
+		return targetStashEmpty;
+	}
+
+	public void SetChainKillParticlesEnabled(bool enabled){
+		foreach(ParticleSystem p in chainKillParticles){
+			if(enabled) p.Play();
+			else p.Pause();
+		}
 	}
 
 	public void EndDashChain(){
@@ -76,13 +95,18 @@ public class PlayerDashChaining : MonoBehaviour {
 		player.playerState.canDash = true;
 	}
 
-	IEnumerator DashInDirection(Vector3 target){
+	public IEnumerator DashInDirection(Vector3 target){
 		playerAnimator.SetBool("isDashing", true);
 		player.playerState.canDash = false;
 		player.playerState.isDashing = true;
 		
 		transform.LookAt(target);
-		Vector3 direction = (transform.position + (target - transform.position).normalized * dashRadius) * 1.05f;
+		Vector3 direction;
+		if(!player.playerState.isLegendary){
+			direction = (transform.position + (target - transform.position).normalized * dashRadius) * 1.01f;
+		} else {
+			direction = transform.position + (target - transform.position);
+		}
 		direction.y = 0;
 		
 		audioPlayerKickoff.PlayOneShot(playerAudioSource);
@@ -96,13 +120,15 @@ public class PlayerDashChaining : MonoBehaviour {
 			yield return null;
 		}
 		if(player.playerState.hitEnemyShield){
-			//PlayerShovedBack();
 			yield break;
 		}
 		yield return new WaitForSeconds(0.15f);
 		player.playerState.canDash = true;
 		if(targetStash.Count > 0){
+			targetStashEmpty = false;
 			yield break;
+		} else {
+			targetStashEmpty = true;
 		}
 		yield return new WaitForSeconds(0.6f);
 		EndDashChain();

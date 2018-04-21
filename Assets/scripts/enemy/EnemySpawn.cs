@@ -10,22 +10,23 @@ public class EnemySpawn : MonoBehaviour {
 	[SerializeField] float minEnemySpawnRadius;
 	[SerializeField] float maxEnemySpawnRadius = 20;
 
-	[Tooltip("maximum amount of enemies ")]
+	[Tooltip("maximum amount of enemies and bosses simultaneously active")]
 	public int numEnemyMax;
-	int i_numEnemyMax;
 	[Tooltip("hold bosses until at least X enemies have been killed")]
 	public int minBossWave; 
 	[Tooltip("spawn a boss after X enemies")]
 	public int countDownToBoss;
 	[Tooltip("increase maximum amount of enemies after every Xth boss")]
 	public int maxEnemyIncreaseRate = 4;
-	int i_countDownToBoss;
 	int numEnemyToSpawn = 1;
 	int bossWave = 0;
 	int numEnemyTypes, numBossTypes, numEnemyCurvePaths;
 	int numEnemiesKilled;
+	int nextBossSpawnAt;
 	bool bossesSpawning = false;
 	bool bossesAlive = false;
+	EnemyChainKill enemyChainKill;
+
 
 	[Header("Direct references")]
 	[SerializeField] RectTransform healthBarCanvas;
@@ -40,6 +41,8 @@ public class EnemySpawn : MonoBehaviour {
 	public void Start(){
 		enemies = new List<Enemy>();
 		bosses = new List<Enemy>();
+
+		enemyChainKill = GetComponent<EnemyChainKill>();
 
 		//in case the spawn already has some enemies
 		foreach(Transform child in transform){
@@ -60,12 +63,13 @@ public class EnemySpawn : MonoBehaviour {
 
 		numEnemyToSpawn = 1;
 		numEnemiesKilled = 0;
-		i_countDownToBoss = countDownToBoss;
-		i_numEnemyMax = numEnemyMax;
 
 		numEnemyTypes = enemyTypes.Count;
 		numBossTypes = bossTypes.Count;
 		numEnemyCurvePaths = enemyCurvePaths.Count;
+		nextBossSpawnAt = minBossWave;
+
+		PlayerState.comboCountChangeEvent += ListenForCombo;
 
 		Invoke("StartEnemySpawn", 2f);
 	}
@@ -89,21 +93,37 @@ public class EnemySpawn : MonoBehaviour {
 		if(!enemyToRemove.enemyType.isBossType){
 			enemies.Remove(enemyToRemove);
 			numEnemiesKilled++;
-			//only count down to next boss when the last are dead
-			i_countDownToBoss -= bossesAlive ? 0 : 1;
-		}
-		else {
+			return;
+		} else {
 			bosses.Remove(enemyToRemove);
-			if(bosses.Count <= 0)
+			numEnemiesKilled++;
+			if(bosses.Count <= 0){
 				bossesAlive = false;
+				nextBossSpawnAt = numEnemiesKilled + countDownToBoss;
+				return;
+			}
+			return;
 		}
 	}
 
+	void ListenForCombo(int comboCount, int maxCombo){
+		if(comboCount >= maxCombo){
+			enemySpawnActive = false;
+			List<Enemy> allEnemies = new List<Enemy>();
+			allEnemies.AddRange(enemies);
+			allEnemies.AddRange(bosses);
+			enemyChainKill.ChainKillAllEnemies(allEnemies);
+		}
+	}
+
+	void OnDestroy(){
+		PlayerState.comboCountChangeEvent -= ListenForCombo;
+	}
 	IEnumerator EnemySpawnCycle(){
 		while(enemySpawnActive){
-			if(enemies.Count + bosses.Count < i_numEnemyMax && !bossesSpawning){
-				if(numEnemyToSpawn >= minBossWave && !bossesAlive && i_countDownToBoss <= 0){
-					StartCoroutine(GenerateBoss());
+			if(enemies.Count + bosses.Count < numEnemyMax && !bossesSpawning){
+				if(!bossesAlive && nextBossSpawnAt == numEnemiesKilled){
+					StartCoroutine(GenerateBossWave());
 				} else {
 					GenerateRandomEnemy();
 				}
@@ -141,7 +161,7 @@ public class EnemySpawn : MonoBehaviour {
 		numEnemyToSpawn++;
 	}
 
-	IEnumerator GenerateBoss(){
+	IEnumerator GenerateBossWave(){
 		bossWave++;
 		bossesSpawning = true;
 		bossesAlive = true;
@@ -172,8 +192,7 @@ public class EnemySpawn : MonoBehaviour {
 			numEnemyToSpawn++;
 			yield return new WaitForSeconds(1.0f);
 		}
-		i_countDownToBoss = countDownToBoss;
-		i_numEnemyMax += (bossWave % maxEnemyIncreaseRate == 0) ? 1 : 0;
+		numEnemyMax += (bossWave % maxEnemyIncreaseRate == 0) ? 1 : 0;
 		bossesSpawning = false;
 	}
 }

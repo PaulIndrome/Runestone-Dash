@@ -8,8 +8,8 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 
 	public static bool gameOver = false;
 
-	public Cinemachine.CinemachineVirtualCamera virtualCamera;
-	public Canvas gameOverCanvas;
+	public Cinemachine.CinemachineVirtualCamera menuCam;
+	public RectTransform gameOverTextsParent;
 	public Text restartInText;
 	public Text winLooseText;
 
@@ -34,7 +34,7 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 	}
 
 	IEnumerator GameOverAndRestart(bool winLoose){
-		virtualCamera.enabled = false;
+		menuCam.Priority = 100;
 		int secondsToRestart = 5;
 		Time.timeScale = 0f;
 
@@ -43,17 +43,17 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 		gameOver = true;
 
 		if(winLoose){
-			winLooseText.text = "The Runestone has been defended!";
+			winLooseText.text = "The Runestone has been defended!\nYou have become legend!";
 		}
-		gameOverCanvas.gameObject.SetActive(true);
-		yield return new WaitForSecondsRealtime(1.0f);
+		gameOverTextsParent.gameObject.SetActive(true);
+		yield return new WaitForSecondsRealtime(2.0f);
 		restartInText.enabled = true;
 		for(int i = secondsToRestart; i>0;i--){
 			restartInText.text = "Restarting in: " + i;
 			yield return new WaitForSecondsRealtime(1.0f);
 		}
 		Time.timeScale = 1f;
-		virtualCamera.enabled = true;
+		menuCam.Priority = 9;
 		gameOver = false;
 		SceneManager.LoadScene("ingame_01");
 	}

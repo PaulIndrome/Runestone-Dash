@@ -9,6 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5db344281c3b5c946be8815b36bbbfd2, type: 3}
-  m_Name: EnemyShield_easy_2dur
+  m_Name: EnemyShield_easy_1dur
   m_EditorClassIdentifier: 
+  indestructibleShield: 0
   shieldDurability: 2

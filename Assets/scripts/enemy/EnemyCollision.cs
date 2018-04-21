@@ -7,6 +7,8 @@ public class EnemyCollision : MonoBehaviour {
 	public EnemyHealth enemyHealth;
 	public SkinnedMeshRenderer enemyBody;
 
+	[SerializeField] ParticlePooler chainKillParticlePooler;
+
 	void Start(){
 		GetComponent<ParticleSystem>().Play();
 	}
@@ -14,7 +16,13 @@ public class EnemyCollision : MonoBehaviour {
 	public void OnTriggerEnter(Collider collider){
 		Player player = collider.gameObject.GetComponent<Player>();
 		if(player != null){
-			StartCoroutine(DelayedDamage(collider, player));
+			if(player.playerState.isLegendary){
+				enemyHealth.TakeDamage(player.GetCurrentDamage());
+				StartCoroutine(FlashDamage(0.33f));
+				chainKillParticlePooler.SpawnFromQueueAndPlay(null, transform.position, Vector3.zero);
+			}
+			else
+				StartCoroutine(DelayedDamage(collider, player));
 		}
 		else {
 			EnemyDestroysRunestone edr = collider.gameObject.GetComponent<EnemyDestroysRunestone>();

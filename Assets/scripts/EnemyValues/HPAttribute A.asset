@@ -8,7 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5db344281c3b5c946be8815b36bbbfd2, type: 3}
-  m_Name: EnemyShield_normal_3dur
+  m_Script: {fileID: 11500000, guid: fd49a15b60294b542b0c918e16fce2e6, type: 3}
+  m_Name: HPAttribute A
   m_EditorClassIdentifier: 
-  shieldDurability: 3
+  testIntVal: 12
+  testFloatVal: 6.41
+  swapWith: {fileID: 11400000, guid: 7e08fa12e0562c34a80b87d78b0c73d5, type: 2}

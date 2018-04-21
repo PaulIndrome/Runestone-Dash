@@ -48,4 +48,12 @@ public class Player : MonoBehaviour {
 		playerColliderSphere.radius = width;
 	}
 
+	public void StartChainKillFromMenu(){
+		playerState.CurrentCombo = playerState.maxCombo;
+	}
+
+	void OnDestroy(){
+		ScriptableObject.DestroyObject(playerState);
+	}
+
 }
