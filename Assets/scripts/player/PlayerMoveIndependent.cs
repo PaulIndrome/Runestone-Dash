@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerMoveIndependent : MonoBehaviour
 {
 
+
     public float followSpeed, rotationSpeed;
     Player player;
     Vector3 nextPos;
     Quaternion lookRotation;
     float currentAngle, timeStep, currentRadius;
-    [SerializeField] private float timeToCircle, radiusTolerance;
+    [SerializeField] float timeToCircle, radiusTolerance;
 
     void Start()
     {
@@ -26,8 +27,6 @@ public class PlayerMoveIndependent : MonoBehaviour
 
     void Update()
     {
-        
-
         bool onCircle = IsPlayerOnCircle();
 
         if(onCircle){
@@ -47,7 +46,7 @@ public class PlayerMoveIndependent : MonoBehaviour
     }
 
     public void MoveAndRotatePlayer(bool onCircle){
-        nextPos = currentRadius * new Vector3(Mathf.Sin(Mathf.Deg2Rad * currentAngle), 0, Mathf.Cos(Mathf.Deg2Rad * currentAngle));
+        nextPos = currentRadius * new Vector3(Mathf.Sin(Mathf.Deg2Rad * currentAngle), 0, Mathf.Cos(Mathf.Deg2Rad * currentAngle)) ;
         lookRotation = Quaternion.LookRotation((nextPos - transform.position), Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
         transform.position = Vector3.MoveTowards(transform.position, nextPos, Time.deltaTime * followSpeed);
@@ -59,7 +58,7 @@ public class PlayerMoveIndependent : MonoBehaviour
 	}
 
     public float IncrementAngle(){
-        currentAngle = (currentAngle + timeStep) % 360;
+        currentAngle = (currentAngle + timeStep*(1-Time.deltaTime)) % 360;
         return currentAngle;
     }
 }

@@ -9,7 +9,7 @@ public class IngameMenu : MonoBehaviour {
 
 	void OnEnable(){
 		menuCam.Priority = 1000;
-		Time.timeScale = 0.01f;
+		Time.timeScale = 0.005f;
 	}
 	
 	public void ResumeGame(){

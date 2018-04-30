@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43236222866a3a54ab3e706546284545, type: 3}
   m_Name: playerHitShieldPooler
   m_EditorClassIdentifier: 
-  originalParentName: playerHitShieldPooler
+  originalParentName: playerHitShieldKeeper
   poolSize: 6
   particleSystems:
   - {fileID: 114375263821337046, guid: 82396c29a4701bf4883cb6135e7b83a9, type: 2}

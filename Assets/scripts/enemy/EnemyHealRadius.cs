@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyHealRadius : MonoBehaviour {
 
-	private EnemySpawn enemySpawn;
-	private Animator enemyAnimation;
-	private LineRenderer line;
+	EnemySpawn enemySpawn;
+	Animator enemyAnimation;
+	LineRenderer line;
 	float maxRadius;
 	float currentRadius;
 	public float pulseOutTime, pulseInTime;
 	int resolution = 16;
 	bool healsToMax = false;
 	int amountToHeal;
+	Vector3 lineRendererBaseHeight = new Vector3(0, 0.2f, 0);
 
 	public void Activate(int healAmount, bool fullHeal, float r, float pulseOut, float pulseIn, Material healRadiusMaterial){
 		this.enabled = true;
@@ -31,7 +32,9 @@ public class EnemyHealRadius : MonoBehaviour {
 		line = gameObject.AddComponent<LineRenderer>();
 		line.widthCurve = AnimationCurve.Linear(0,0.1f,1,0.1f);
 		line.material = healRadiusMaterial;
-		line.endColor = Color.red;
+		Color lineColor = healsToMax ? Color.yellow : Color.red;
+		lineColor.a = 0.5f;
+		line.endColor = lineColor;
 		line.startColor = line.endColor;
 		line.loop = true;
 	}
@@ -40,7 +43,7 @@ public class EnemyHealRadius : MonoBehaviour {
 		line.positionCount = resolution + 1;
 		for (var i = 0; i < line.positionCount; i++){
 			var angle = (360/line.positionCount+1) * i;
-			line.SetPosition(i, transform.position + currentRadius * new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle)));
+			line.SetPosition(i, transform.position + currentRadius * new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle)) + lineRendererBaseHeight);
 		}
 	}
 

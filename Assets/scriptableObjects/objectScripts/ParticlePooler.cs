@@ -15,7 +15,7 @@ public class ParticlePooler : ScriptableObject {
     Transform keeper;
 
     public void CreatePool(Transform parent){
-        if(originalParentName.Length == 0){
+        if(originalParentName.Length <= 0){
             keeper = parent;
         } else { 
             keeper = parent.Find(originalParentName);
@@ -51,16 +51,12 @@ public class ParticlePooler : ScriptableObject {
 
         PoolableParticle poolParticleToSpawn = poolQueue.Dequeue();
 
-        //Debug.Log(poolParticleToSpawn.gameObject.name);
-
         poolParticleToSpawn.gameObject.SetActive(true);
         poolParticleToSpawn.transform.position = spawnAtPosWorld;
         poolParticleToSpawn.transform.SetParent(tempParent);
         lookAtPosWorld.y = spawnAtPosWorld.y;
         poolParticleToSpawn.transform.LookAt(lookAtPosWorld);
 
-        //poolQueue.Enqueue(poolParticleToSpawn);
-        
         poolParticleToSpawn.PlayFromQueue();
 
         return poolParticleToSpawn;

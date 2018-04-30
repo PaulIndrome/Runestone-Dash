@@ -36,11 +36,11 @@ public class PlayerTargetLine : MonoBehaviour {
 		Vector3 endPos;
 		Time.timeScale = 0.33f;
 		while(isPointerDown){
-			targetLine.SetPosition(0, playerDashChaining.transform.position);
+			targetLine.SetPosition(0, transform.position);
 			Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out raycastHit, 100f, layerMask.value);
-			endPos = (raycastHit.point - targetLine.GetPosition(0));
-			endPos.y = 0;
-			endPos = targetLine.GetPosition(0) + endPos.normalized * dashRadius;
+			endPos = (raycastHit.point - transform.position);
+			endPos = transform.position + endPos.normalized * dashRadius;
+			endPos.y = 0.2f;
 			targetLine.SetPosition(1, endPos);
 			yield return null;
 		}

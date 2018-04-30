@@ -11,7 +11,6 @@ public class MainMenuFunctions : MonoBehaviour {
 	public delegate void ExampleDelegate();
 
 	public void StartGame(float delay){
-		GetComponent<AudioSource>().Play();
 		if(delay > 0.01f)
 			StartCoroutine(WaitThenCallBack(delay, StartGame));
 		else
@@ -25,5 +24,9 @@ public class MainMenuFunctions : MonoBehaviour {
 	private IEnumerator WaitThenCallBack(float delay, ExampleDelegate exDel){
 		yield return new WaitForSeconds(delay);
 		exDel();
+	}
+
+	public void PlayAudio(){
+		GetComponent<AudioSource>().Play();
 	}
 }

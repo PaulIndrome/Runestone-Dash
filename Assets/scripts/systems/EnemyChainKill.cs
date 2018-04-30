@@ -58,7 +58,7 @@ public class EnemyChainKill : MonoBehaviour {
 		yield return new WaitForSecondsRealtime(1f);
 		//player.playerState = PlayerState.CreateInstance(typeof(PlayerState)) as PlayerState;
 		//enemySpawn.enemySpawnActive = true;
-		
+		chainKillCam.Priority = 8;
 		enemyDestroysRunestone.WinOrLoose(true);
 		
 		yield break;

@@ -23,8 +23,6 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision collision){
 		if(!collision.gameObject.CompareTag("Player")){
-			Debug.Log(transform.root.name + " has collided with " + collision.collider.transform.name);
-			Debug.Break();
 			StartCoroutine(GameOverAndRestart(false));
 		} 
 	}
@@ -36,7 +34,7 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 	IEnumerator GameOverAndRestart(bool winLoose){
 		menuCam.Priority = 100;
 		int secondsToRestart = 5;
-		Time.timeScale = 0f;
+		Time.timeScale = 0.005f;
 
 		playerClickToDash.enabled = playerTargetLineControl.enabled = false;
 
