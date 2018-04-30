@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//currently "unused" script to  make an old iteration of the enemy shields fall apart into pieces
 public class EnemyShieldPiece : MonoBehaviour {
 
 	Material material;

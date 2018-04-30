@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//script to make the children of any given GameObject float randomly according to set parameters
+//used for the floating stones above the Runestone
 public class RandomFloatingChildren : MonoBehaviour {
 
 	Transform[] childObjects;

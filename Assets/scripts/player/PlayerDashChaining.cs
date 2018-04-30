@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//this script governs all dashing
 public class PlayerDashChaining : MonoBehaviour {
 	public Animator playerAnimator;
 	Player player;
@@ -34,7 +35,9 @@ public class PlayerDashChaining : MonoBehaviour {
 	}
 
 	public void Update(){
+		//while there is a reason and ability to dash, keep doing so
 		if(targetStash.Count > 0 && player.playerState.canDash && player.playerState.canMove){
+			//the entire animation system is rather convoluted... I am happy it works
 			if(!player.playerState.isDashing) playerAnimator.SetTrigger("startDashChain");
 			else playerAnimator.SetTrigger("additionalDash");
 			player.playerState.isDashing = true;
@@ -87,6 +90,8 @@ public class PlayerDashChaining : MonoBehaviour {
 		shovedBack = StartCoroutine(ShovedBack());
 	}
 
+	//this is an AnimationEvent callback function triggered by the standing-back-up
+	//animation reaching a certain point at which control is given back to the player
 	public void StoodBackUp(){
 		ClearTargetStash();
 		playerAnimator.SetBool("grounded", false);
@@ -102,11 +107,15 @@ public class PlayerDashChaining : MonoBehaviour {
 		
 		transform.LookAt(target);
 		Vector3 direction;
+
+		//if the chainkill script events are in effect, the dash is no longer clamped to a maximum range
 		if(!player.playerState.isLegendary){
 			direction = (transform.position + (target - transform.position).normalized * dashRadius) * 1.01f;
 		} else {
 			direction = transform.position + (target - transform.position);
 		}
+
+		//this is a precaution against certain rare flukes in which the player character learned to fly...
 		direction.y = 0;
 		
 		audioPlayerKickoff.PlayOneShot(playerAudioSource);
@@ -115,11 +124,15 @@ public class PlayerDashChaining : MonoBehaviour {
 		playerDashKickoffPooled.SpawnFromQueueAndPlay(null, transform.position, direction);
 		naginataControl.StartBladeTrail();
 
+		//move towards the current dash target as long as it has not been reached
+		//and no enemy shield has been hit
 		while(Vector3.Distance(transform.position, direction) > 0.05f && !player.playerState.hitEnemyShield){
 			transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime * dashSpeed);
 			yield return null;
 		}
 		if(player.playerState.hitEnemyShield){
+			//if an enemy shield has been hit, everything related to dashing is stopped
+			//because the PlayerShovedBack method and ShovedBack coroutine take over
 			yield break;
 		}
 		yield return new WaitForSeconds(0.15f);
@@ -136,6 +149,7 @@ public class PlayerDashChaining : MonoBehaviour {
 
 	IEnumerator ShovedBack(){
 		naginataControl.ClearBladeTrail();
+		//wreathe control from the player, canDash is currently still false if a shield has been hit
 		player.playerState.canMove = false;
 		playerAnimator.SetTrigger("hitEnemyShield");
 		playerAnimator.SetBool("grounded", true);

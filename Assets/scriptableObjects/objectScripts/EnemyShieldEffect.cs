@@ -9,6 +9,7 @@ public class EnemyShieldEffect : EnemyEffect {
 	[Range(1f, 10f)] public int shieldDurability = 1;
 
 	public override void Apply(Enemy enemy){
+		//for animation reasons, every Enemy owns a dormant shield which is activated and setup when needed
 		enemy.GetEnemyShieldCollision().Activate(indestructibleShield, shieldDurability);
 		enemy.GetEnemyHealth().hasShield = true;
 		enemy.GetEnemyAnimator().SetBool("isShielded", true);

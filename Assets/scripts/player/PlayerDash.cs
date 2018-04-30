@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//unused script, older iteration of the player dash
 public class PlayerDash : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler {
 	[SerializeField] private float deadZoneRadius;
 	public float classDashTime;

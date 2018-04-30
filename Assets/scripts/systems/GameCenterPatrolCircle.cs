@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this script governs the visuals and logic for the patrol radius around the Runestone
 public class GameCenterPatrolCircle : MonoBehaviour {
 
 	public delegate void PlayerRadiusChanged(float newRadius);

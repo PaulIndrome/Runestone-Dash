@@ -26,6 +26,8 @@ public class MainMenuFunctions : MonoBehaviour {
 		exDel();
 	}
 
+	//callback for an animationevent so the audio plays when appropriate during the
+	//"slash" animation
 	public void PlayAudio(){
 		GetComponent<AudioSource>().Play();
 	}

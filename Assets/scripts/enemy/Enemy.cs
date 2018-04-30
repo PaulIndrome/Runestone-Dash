@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour {
 		SetupBars(healthBarCanvas);
 	}
 
+	//set up all necessary attributes and apply the effects to yourself
 	public void SetupEnemy(EnemyType et, EnemyCurvePath ecp){
 		enemyType = et;
 		enemyCurvePath = ecp;
@@ -48,6 +49,8 @@ public class Enemy : MonoBehaviour {
 		}
 
 		canMove = true;
+		//interestingly, ScriptableObjects can contain the definition for coroutines and
+		//run them on an external MonoBehaviour, which is what happens here
 		StartCoroutine(enemyCurvePath.MoveTowardsTarget(this));
 	}
 
@@ -69,6 +72,8 @@ public class Enemy : MonoBehaviour {
 		return enemyShieldCollision;
 	}
 
+	//make sure to not take any PoolableParticle within your hierarchy to your grave
+	//things get hairy when scripts try to access destroyed gameobjects
 	void OnDestroy(){
 		PoolableParticle[] poolables = GetComponentsInChildren<PoolableParticle>();
 		if(poolables.Length > 0){ 

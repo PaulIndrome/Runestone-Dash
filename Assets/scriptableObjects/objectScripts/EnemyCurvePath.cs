@@ -6,6 +6,7 @@ public class EnemyCurvePath : ScriptableObject {
 
 	public AnimationCurve zigZag;
 
+	//this coroutine will  actually run on the Enemy script that gets instantiated
 	public IEnumerator MoveTowardsTarget(MonoBehaviour runner){
 		//setup scripts and transforms
 		Enemy enemy = runner.GetComponent<Enemy>();

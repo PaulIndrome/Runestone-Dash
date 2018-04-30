@@ -18,7 +18,7 @@ public class EnemyCollision : MonoBehaviour {
 		if(player != null){
 			if(player.playerState.isLegendary){
 				enemyHealth.TakeDamage(player.GetCurrentDamage());
-				StartCoroutine(FlashDamage(0.33f));
+				//StartCoroutine(FlashDamage(0.33f));
 				chainKillParticlePooler.SpawnFromQueueAndPlay(null, transform.position, Vector3.zero);
 			}
 			else
@@ -35,6 +35,7 @@ public class EnemyCollision : MonoBehaviour {
 		
 	}
 
+	//currently unused and unfunctional method to flash the enemy a certain color when taking damage
 	IEnumerator FlashDamage(float flashTime){
 		float multiplier = 0.5f / flashTime;
 		enemyBody.material.SetColor("_EmissionColor", Color.red * Mathf.LinearToGammaSpace(0.5f));
@@ -47,6 +48,9 @@ public class EnemyCollision : MonoBehaviour {
 		yield return null;
 	}
 
+	//because of unity's collision detection enemies were sometimes hit through their shields
+	//delaying the damage calculation for a few milliseconds gives the invulnerability frames
+	//time to kick in which solves the problem
 	IEnumerator DelayedDamage(Collider collider, Player player){
 		Vector3 closestPoint = collider.ClosestPoint(transform.position);
 		yield return new WaitForSeconds(0.1f);
@@ -55,7 +59,7 @@ public class EnemyCollision : MonoBehaviour {
 			enemyHealth.takeDamagePooler.SpawnFromQueueAndPlay(transform, closestPoint, player.transform.position);
 			enemyHealth.TakeDamage(player.GetCurrentDamage());
 			player.playerState.CurrentCombo += 1;
-			StartCoroutine(FlashDamage(0.33f));
+			//StartCoroutine(FlashDamage(0.33f));
 		}
 	}
 }

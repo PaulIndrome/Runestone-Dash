@@ -12,7 +12,7 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 	public RectTransform gameOverTextsParent;
 	public Text restartInText;
 	public Text winLooseText;
-
+	
 	PlayerClickToDash playerClickToDash;
 	PlayerTargetLineControl playerTargetLineControl;
 
@@ -31,7 +31,8 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 		StartCoroutine(GameOverAndRestart(winLoose));
 	}
 
-	IEnumerator GameOverAndRestart(bool winLoose){
+	//coroutine to restart game regardless of win or loose scenario, true means win
+	IEnumerator GameOverAndRestart(bool winLoose){ 
 		menuCam.Priority = 100;
 		int secondsToRestart = 5;
 		Time.timeScale = 0.005f;
@@ -43,8 +44,10 @@ public class EnemyDestroysRunestone : MonoBehaviour {
 		if(winLoose){
 			winLooseText.text = "The Runestone has been defended!\nYou have become legend!";
 		}
-		gameOverTextsParent.gameObject.SetActive(true);
+
+		//wait a few seconds before starting the countdown
 		yield return new WaitForSecondsRealtime(2.0f);
+		gameOverTextsParent.gameObject.SetActive(true);
 		restartInText.enabled = true;
 		for(int i = secondsToRestart; i>0;i--){
 			restartInText.text = "Restarting in: " + i;

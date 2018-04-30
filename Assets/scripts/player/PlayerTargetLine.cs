@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//this script draws the targetting line whenever the pointer is held down
 public class PlayerTargetLine : MonoBehaviour { 
 	[HideInInspector] public bool isPointerDown;
 	[SerializeField] private float targetLineStartWidth, targetLineEndWidth;
@@ -34,9 +35,17 @@ public class PlayerTargetLine : MonoBehaviour {
 		targetLine.startWidth = targetLineStartWidth;
 		targetLine.endWidth = targetLineEndWidth;
 		Vector3 endPos;
+
+		//the diminished timescale can be used to strategical effect... though currently the game
+		//fails in making that apparent enough
 		Time.timeScale = 0.33f;
+
+		//this coroutine keeps running while the player presses down any type of pointer (touch or mouse)
 		while(isPointerDown){
 			targetLine.SetPosition(0, transform.position);
+			//because a pointer can be both a mouse and a touch, mouse and touch are the same on mobile devices
+			//which means we can just raycast through the current mouseposition to find out where to aim our 
+			//target line at next
 			Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out raycastHit, 100f, layerMask.value);
 			endPos = (raycastHit.point - transform.position);
 			endPos = transform.position + endPos.normalized * dashRadius;
@@ -49,6 +58,7 @@ public class PlayerTargetLine : MonoBehaviour {
 		yield return null;
 	}
 
+	//because visuals...
 	IEnumerator FadeOutTargetLine(){
 		float timer = 0;
 		targetLine.startWidth = targetLineEndWidth;

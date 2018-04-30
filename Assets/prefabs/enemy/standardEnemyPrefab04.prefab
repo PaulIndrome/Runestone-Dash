@@ -4245,7 +4245,7 @@ MonoBehaviour:
   currentHealth: 0
   hasShield: 0
   iFramesActive: 0
-  healthBarPrefab: {fileID: 1118999541308144, guid: 12396985c51d392458e787638f7a2262,
+  healthBarPrefab: {fileID: 114213665045319464, guid: 12396985c51d392458e787638f7a2262,
     type: 2}
   healthBarPosition: {fileID: 4258481624611910}
   audioEnemyDeath: {fileID: 11400000, guid: b9d7f9b345b13c440930f46160a99cd8, type: 2}

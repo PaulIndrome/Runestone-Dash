@@ -9,6 +9,8 @@ public class IngameMenu : MonoBehaviour {
 
 	void OnEnable(){
 		menuCam.Priority = 1000;
+		//the use of CineMachine discourages using a timescale of 0 because a couple of 
+		//divide-by-zero exceptions aren't properly caught in its current version
 		Time.timeScale = 0.005f;
 	}
 	
