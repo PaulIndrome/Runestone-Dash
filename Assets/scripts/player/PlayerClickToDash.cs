@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//this script sits on the object that intercepts the player input
+//hence, the big collision box under the ground
 public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler {
 	PlayerDashChaining playerDashChaining;
 	Player player;

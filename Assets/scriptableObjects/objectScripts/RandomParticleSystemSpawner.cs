@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//earlier iteration of a particle spawning system
+//no longer in use
 [CreateAssetMenu(menuName="serializableObjects/ParticleSystem"), System.Serializable]
 public class RandomParticleSystemSpawner : ScriptableObject {
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//unused script, earlier iteration of EnemyCurvePaths
 [CreateAssetMenu(menuName="enemy/EnemyCurvePathRotation")]
 public class EnemyCurvePathRotation : ScriptableObject {
 

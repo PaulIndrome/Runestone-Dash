@@ -37,6 +37,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 		enemyHealth = GetComponentInParent<EnemyHealth>();
 	}
 
+	//setup for the EnemyShield via the variables of the EnemyShieldEffect ScriptableObject
 	public void Activate(bool indestructible, int durability){
 		enemy = GetComponentInParent<Enemy>();
 		enemyHealth = enemy.GetEnemyHealth();
@@ -51,6 +52,8 @@ public class EnemyShieldCollision : MonoBehaviour {
 
 		gameObject.SetActive(true);
 
+		//this is a remnant from an earlier iteration of the shields and will be used again
+		//at a later time to make the shield actually break to pieces on destruction
 		foreach(EnemyShieldPiece esp in shieldPieces){
 			esp.gameObject.SetActive(true);
 		}
@@ -59,6 +62,8 @@ public class EnemyShieldCollision : MonoBehaviour {
 		indestructibleShield = indestructible;
 	}
 
+	//utility method used during the ChainKill scripted events to make sure the player
+	//isn't knocked back by shields anymore after he's won the game
 	public void SetDestructible(bool destructible){
 		isDestructible = destructible;
 	}
@@ -68,30 +73,29 @@ public class EnemyShieldCollision : MonoBehaviour {
 
 		if(player != null){
 			
-
 			if(isDestructible){
 				PlayerDestroysShield();
 				return;
 			}
 
 			if(!player.playerState.isDashing){
-				//Debug.Log("ooooo shield hit " + dot);
 				enemyHealth.TriggerIFrames(0.2f);
-				//playerHitShieldPooler.SpawnFromQueueAndPlay(null, col.contacts[0].point, player.transform.position);
 				ShieldBash(player);
 				return;
 			}
 			enemyForward = durabilityBarPosition.forward.normalized;
 			playerForward = player.transform.forward.normalized;
 			playerForward.y = enemyForward.y;
+			//determine the direction the player has hit the shield from via dot product
 			float dot = Vector3.Dot(enemyForward, playerForward);
 			//if we've made it this far, the player is dashing ... get it?
 			if(dot > 0.4f){
-				//Debug.Log("shield destroy " + dot);
+				//shield hit from behind
 				PlayerDestroysShield();
 			} else {
-				//Debug.Log("xxxxx shield hit " + dot);
+				//shield hit from the front
 				if(!DurabilityHit()){
+					//at this point the shield has been hit from the front and is still intact enough to bash the player
 					enemyHealth.TriggerIFrames(0.2f);
 					playerHitShieldPooler.SpawnFromQueueAndPlay(transform, col.contacts[0].point, player.transform.position);
 					ShieldBash(player);
@@ -119,12 +123,16 @@ public class EnemyShieldCollision : MonoBehaviour {
 
 		GetComponentInParent<EnemyHealth>().hasShield = false;
 		GetComponentInParent<Enemy>().GetEnemyAnimator().SetBool("isShielded", false);
+
+		//this is a remnant from an earlier iteration of the shields and will be used again
+		//at a later time to make the shield actually break to pieces on destruction
 		foreach(EnemyShieldPiece esp in shieldPieces){
 			esp.StartFadeOut(5f);
 		}
 		boxCollider.enabled = false;
 	}
 
+	//similar to EnemyHealth.SetupHealthBar()
 	public void SetupDurabilityBar(RectTransform healthBarCanvas){
 		durabilityBar = Instantiate(durabilityBarPrefab);
 		durabilityBar.SetTarget(durabilityBarPosition);
@@ -139,6 +147,8 @@ public class EnemyShieldCollision : MonoBehaviour {
 		}
 	}
 
+	//this method returns true if the shield has been destroyed so a lasthit on a shield
+	//from the front doesn't knock back the player
 	bool DurabilityHit(){
 		if(indestructibleShield) return false;
 		shieldDurability -= 1;

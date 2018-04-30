@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//unused script, earlier iteration of the circular motion control
 public class PlayerFollow : MonoBehaviour
 {
 

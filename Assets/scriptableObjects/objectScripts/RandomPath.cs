@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomPath : ScriptableObject {
 
-	[SerializeField] Transform m_target, m_transform;
+	[SerializeField] Transform m_target;//, m_transform;
 	[SerializeField] Vector3 targetCoordinates;
 	[SerializeField] int m_stepsToTarget;
 	[SerializeField] List<Vector3> path;
@@ -21,7 +21,7 @@ public class RandomPath : ScriptableObject {
 		//member allocation
 		m_stepsToTarget = steps;
 		m_target = target;
-		m_transform = transform;
+		//m_transform = transform;
 		targetCoordinates = target.position;
 		targetCoordinates.y = 0;
 		
@@ -123,7 +123,7 @@ public class RandomPath : ScriptableObject {
 		//member allocation
 		m_stepsToTarget = steps;
 		m_target = target;
-		m_transform = transform;
+		//m_transform = transform;
 		targetCoordinates = target.position;
 		targetCoordinates.y = 0;
 		

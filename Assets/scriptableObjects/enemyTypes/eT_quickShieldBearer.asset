@@ -17,4 +17,4 @@ MonoBehaviour:
   leftRightFluct: 10
   approachTime: 20
   enemyEffects:
-  - {fileID: 11400000, guid: ad7e23e87b660ea418733fc15dc0356a, type: 2}
+  - {fileID: 11400000, guid: c000607723cd14c47824788c5d9f9e64, type: 2}

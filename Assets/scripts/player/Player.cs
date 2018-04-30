@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this script is mostly used to house all the different player components 
+//under one roof somewhere for easy access
 public class Player : MonoBehaviour {
 
 	Animator animator;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//this script controls when to draw a target line and when to stop
 public class PlayerTargetLineControl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
 	 PlayerTargetLine playerTargetLine;

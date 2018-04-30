@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this script controls the LineRenderer drawing the player dash radius circle
 public class PlayerDashRadius : MonoBehaviour {
 
 private PlayerDashChaining playerDashChaining;

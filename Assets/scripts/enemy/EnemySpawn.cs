@@ -44,7 +44,8 @@ public class EnemySpawn : MonoBehaviour {
 
 		enemyChainKill = GetComponent<EnemyChainKill>();
 
-		//in case the spawn already has some enemies
+		//in case the spawn already has some enemies, run them through setup
+		//this is necessary when the developer manually adds enemies in the editor
 		foreach(Transform child in transform){
 			Enemy enemyChild = child.GetComponent<Enemy>();
 			if(enemyChild == null) continue;
@@ -74,6 +75,7 @@ public class EnemySpawn : MonoBehaviour {
 		Invoke("StartEnemySpawn", 2f);
 	}
 
+	//quality of life method to prevent cross-spawning of normal and boss enemies
 	void ClearEnemyTypeLists(){
 		//remove non-BossTypes from the bossType list
 		for(int i = bossTypes.Count-1; i>=0; i--){
@@ -89,6 +91,7 @@ public class EnemySpawn : MonoBehaviour {
 		StartCoroutine(EnemySpawnCycle());
 	}
 
+	//remove a killed enemy from the list of active enemies
 	public void RemoveEnemy(Enemy enemyToRemove){
 		if(!enemyToRemove.enemyType.isBossType){
 			enemies.Remove(enemyToRemove);
@@ -99,6 +102,7 @@ public class EnemySpawn : MonoBehaviour {
 			numEnemiesKilled++;
 			if(bosses.Count <= 0){
 				bossesAlive = false;
+				//determine the time of the next boss wave
 				nextBossSpawnAt = numEnemiesKilled + countDownToBoss;
 				return;
 			}
@@ -106,6 +110,9 @@ public class EnemySpawn : MonoBehaviour {
 		}
 	}
 
+	//if the ComboCount reaches 80, the triggered event calls this method
+	//to provide a full list of all active enemies to the EnemyChainKill script
+	//so that it can do its magic
 	void ListenForCombo(int comboCount, int maxCombo){
 		if(comboCount >= maxCombo){
 			enemySpawnActive = false;
@@ -117,15 +124,22 @@ public class EnemySpawn : MonoBehaviour {
 	}
 
 	void OnDestroy(){
+		//always remember to unsubscribe from any events!!!!!!!!!!!!!!!1111111oneonene
 		PlayerState.comboCountChangeEvent -= ListenForCombo;
 	}
+
+	//the main cycle to spawn enemies
 	IEnumerator EnemySpawnCycle(){
-		while(enemySpawnActive){
-			if(enemies.Count + bosses.Count < numEnemyMax && !bossesSpawning){
-				if(!bossesAlive && nextBossSpawnAt == numEnemiesKilled){
-					StartCoroutine(GenerateBossWave());
-				} else {
-					GenerateRandomEnemy();
+		while(gameObject.activeSelf){
+			if(enemySpawnActive){
+				if(enemies.Count + bosses.Count < numEnemyMax && !bossesSpawning){
+					//bosses can only spawn if no bosses are currently alive and the amount of enemies killed
+					//is larger than or equal to the number determined at which to spawn the next boss wave
+					if(!bossesAlive && numEnemiesKilled >= nextBossSpawnAt){
+						StartCoroutine(GenerateBossWave());
+					} else {
+						GenerateRandomEnemy();
+					}
 				}
 			}
 			yield return new WaitForSeconds(0.5f);
@@ -161,6 +175,8 @@ public class EnemySpawn : MonoBehaviour {
 		numEnemyToSpawn++;
 	}
 
+	//works very similarly to spawning a normal enemy with the exception that it 
+	//can spawn multiple bosses with a single method call
 	IEnumerator GenerateBossWave(){
 		bossWave++;
 		bossesSpawning = true;

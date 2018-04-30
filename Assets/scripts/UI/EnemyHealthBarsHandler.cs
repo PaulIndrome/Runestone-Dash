@@ -9,9 +9,11 @@ public class EnemyHealthBarsHandler : MonoBehaviour {
 		mainCam = Camera.main;
 	}
 	
-	// Update is called once per frame
+	
 	void Update () {
 		foreach(HealthBar h in GetComponentsInChildren<HealthBar>()){
+			//the repositioning of any health oder durability bar is handled centrally for performance purposes
+			//also I apparently wrote this while sleeping because it worked so well right out of the box...
 			h.RepositionToTarget(mainCam.WorldToScreenPoint(h.healthBarPosition.position));
 		}
 	}
