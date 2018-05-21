@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class RandomPath : ScriptableObject {
 
-	[SerializeField] Transform m_target;//, m_transform;
+	[SerializeField] Transform m_target;
 	[SerializeField] Vector3 targetCoordinates;
 	[SerializeField] int m_stepsToTarget;
 	[SerializeField] List<Vector3> path;
 
+	public List<Vector3> Path {
+		get{
+			return path;
+		}
+		set{
+			return;
+		}
+	}
 	bool lerping = false;
 
 	int PosNeg {
@@ -69,16 +77,17 @@ public class RandomPath : ScriptableObject {
 			while(Physics.Raycast(currentPosition + sideStep, forwardStep, out hit, forwardStep.magnitude + 1, environmentCheck, QueryTriggerInteraction.Collide)){
 				//Debug.DrawRay(currentPosition + sideStep, forwardStep, Color.white, 10f, false);
 				if(a > 50) {
-					Debug.Log("First loop break");
+					//Debug.Log("First loop break");
 					break;
 				}
 				a++;
-				Debug.Log("Spherecast hit something " + a + " " + hit.collider.transform.root.name);
+				//Debug.Log("Spherecast hit something " + a + " " + hit.collider.transform.root.name);
 				sideStep *= 1.33f;
 				//forwardStep = Vector3.Cross(transform.up * -randomSign, sideStep).normalized * forwardStepLength;
 			}
 			
 			sidePosition = currentPosition + sideStep;
+			path.Add(sidePosition);
 			Debug.DrawLine(currentPosition, sidePosition, colors[0], debugRayDuration, false);
 			forwardPosition = sidePosition + forwardStep;
 
@@ -88,11 +97,11 @@ public class RandomPath : ScriptableObject {
 			a = 0;
 			while(targetVector.magnitude < i * targetDistanceReductionRate || targetVector.magnitude > i * targetDistanceReductionRate * 2){
 				if(a > 50) {
-					Debug.Log("Second loop break");
+					//Debug.Log("Second loop break");
 					break;
 				}
 				a++;
-				Debug.Log("Second loop step " + a);
+				//Debug.Log("Second loop step " + a);
 				if(targetVector.magnitude < i * targetDistanceReductionRate){
 					forwardPosition -= targetVector.normalized * ((i * targetDistanceReductionRate) - targetVector.magnitude);
 					targetVector = targetCoordinates - forwardPosition;
@@ -113,6 +122,10 @@ public class RandomPath : ScriptableObject {
 		}
 
 		Debug.DrawLine(currentPosition, targetCoordinates, colors[2], debugRayDuration, false);
+
+		path.Add(targetCoordinates);
+
+		DrawFinishedPath(debugRayDuration);
 
 	}
 
@@ -153,7 +166,7 @@ public class RandomPath : ScriptableObject {
 		path.Add(currentPosition);
 
 		for(int i = m_stepsToTarget; i > 0; i--){
-			Debug.Log("_________" + i + "___________ ");
+			//Debug.Log("_________" + i + "___________ ");
 			runner.StartCoroutine(LerpComputePos(computePos, currentPosition, 0.25f));
 			yield return new WaitUntil(() => lerping == false);
 			//computePos.transform.position = currentPosition;
@@ -174,7 +187,6 @@ public class RandomPath : ScriptableObject {
 			
 			sidePosition = currentPosition + sideStep;
 
-
 			//computePos.transform.position = sidePosition;
 			mat.color = colors[0];
 			//Debug.Log("First sidePosition try " + i);
@@ -190,19 +202,21 @@ public class RandomPath : ScriptableObject {
 			while(Physics.Raycast(sidePosition, forwardStep, out hit, forwardStep.magnitude + 10, environmentCheck, QueryTriggerInteraction.Collide)){
 				//Debug.DrawRay(currentPosition + sideStep, forwardStep, Color.white, 10f, false);
 				if(a > 50) {
-					Debug.Log("First loop break");
+					//Debug.Log("First loop break");
 					break;
 				}
 				a++;
-				Debug.Log("Spherecast hit something " + a + " " + hit.collider.transform.root.name);
+				//Debug.Log("Spherecast hit something " + a + " " + hit.collider.transform.root.name);
 				sidePosition += sideStep * 0.33f;
 				computePos.transform.position = sidePosition;
-				Debug.Log("Sideposition changed " + a);
+				//Debug.Log("Sideposition changed " + a);
 				yield return new WaitForSecondsRealtime(0.5f);
 				//forwardStep = Vector3.Cross(transform.up * -randomSign, sideStep).normalized * forwardStepLength;
 			}
 
 			Debug.DrawLine(currentPosition, sidePosition, colors[0], debugRayDuration, false);
+			
+			path.Add(sidePosition);
 
 			//yield return new WaitForSecondsRealtime(0.5f);
 			
@@ -220,29 +234,29 @@ public class RandomPath : ScriptableObject {
 
 			a = 0;
 			while(targetVector.magnitude < i * targetDistanceReductionRate || targetVector.magnitude > i * targetDistanceReductionRate + ((m_stepsToTarget - i) + 1)){
-				Debug.Log("");
+				//Debug.Log("");
 				if(a > 50) {
-					Debug.Log("Second loop break");
+					//Debug.Log("Second loop break");
 					break;
 				}
 
 				a++;
 
-				Debug.Log("Upper tolerance : " + (i * targetDistanceReductionRate + ((m_stepsToTarget - i) + 1)));
-				Debug.Log("Distance from target: " + targetVector.magnitude);
-				Debug.Log("Lower tolerance: " + (i * targetDistanceReductionRate));
+				//Debug.Log("Upper tolerance : " + (i * targetDistanceReductionRate + ((m_stepsToTarget - i) + 1)));
+				//Debug.Log("Distance from target: " + targetVector.magnitude);
+				//Debug.Log("Lower tolerance: " + (i * targetDistanceReductionRate));
 				
 				if(targetVector.magnitude < i * targetDistanceReductionRate){
 					forwardPosition -= targetVector.normalized * ((i * targetDistanceReductionRate + 1) - targetVector.magnitude);
 					targetVector = targetCoordinates - forwardPosition;
-					Debug.Log("Forwardposition increased " + a);
+					//Debug.Log("Forwardposition increased " + a);
 				} else if(targetVector.magnitude > i * targetDistanceReductionRate + ((m_stepsToTarget - i) + 1)){
 					forwardPosition += targetVector.normalized * (targetVector.magnitude - (i * targetDistanceReductionRate)) / 2;
 					targetVector = targetCoordinates - forwardPosition;
-					Debug.Log("Forwardposition decreased " + a);
+					//Debug.Log("Forwardposition decreased " + a);
 				}
 				computePos.transform.position = forwardPosition;
-				Debug.Log("New Distance from target: " + targetVector.magnitude);
+				//Debug.Log("New Distance from target: " + targetVector.magnitude);
 				yield return new WaitForSecondsRealtime(0.5f);
 			}
 
@@ -258,10 +272,21 @@ public class RandomPath : ScriptableObject {
 
 			//yield return new WaitForSecondsRealtime(0.5f);
 		}
-
+		
 
 		Debug.DrawLine(currentPosition, targetCoordinates, colors[2], debugRayDuration, false);
+		path.Add(targetCoordinates);
 
+		DrawFinishedPath(debugRayDuration);
+
+	}
+
+	void DrawFinishedPath(float debugRayDuration){
+		for(int i = 0; i + 1 < path.Count; i++){
+			Vector3 pos = path[i], nextPos = path[i+1];
+			pos.y = nextPos.y = 1f;
+			Debug.DrawLine(pos, nextPos, Color.white, debugRayDuration, false);
+		}
 	}
 
 	IEnumerator LerpComputePos(GameObject computePos, Vector3 toPos, float time){
@@ -274,4 +299,5 @@ public class RandomPath : ScriptableObject {
 		computePos.transform.position = toPos;
 		lerping = false;
 	}
+
 }

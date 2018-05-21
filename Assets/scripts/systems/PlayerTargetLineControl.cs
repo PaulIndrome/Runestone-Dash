@@ -8,16 +8,21 @@ public class PlayerTargetLineControl : MonoBehaviour, IPointerDownHandler, IPoin
 
 	 PlayerTargetLine playerTargetLine;
 
+
+
 	 public void Start(){
 		 playerTargetLine = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerTargetLine>();
 	 }
 
 	 public void OnPointerDown(PointerEventData ped){
-		playerTargetLine.isPointerDown = true;
-		playerTargetLine.StartLineDrawing();
+		if(Input.touchCount == 1){
+			playerTargetLine.isPointerDown = true;
+			playerTargetLine.StartLineDrawing();
+		}
 	 }
 
 	 public void OnPointerUp(PointerEventData ped){
 		 playerTargetLine.isPointerDown = false;
+		
 	 }
 }

@@ -15,8 +15,9 @@ public class EnemyValue<T> : IEnemyValue {
 	}
 
 	public void Swap(IEnemyValue enemyValue){
+		//type check for generic types seems to be a bit weird
 		EnemyValue<T> eVal = enemyValue as EnemyValue<T>;
-		if(enemyValue == null){
+		if(enemyValue == null || enemyValue.GetType() != Value.GetType()){
 			Debug.LogWarning("Value mismatch");
 			return;
 		}

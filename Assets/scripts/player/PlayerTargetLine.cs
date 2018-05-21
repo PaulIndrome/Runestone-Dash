@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 //this script draws the targetting line whenever the pointer is held down
 public class PlayerTargetLine : MonoBehaviour { 
-	[HideInInspector] public bool isPointerDown;
+	[HideInInspector] public bool isPointerDown = false;
 	[SerializeField] private float targetLineStartWidth, targetLineEndWidth;
 	private float dashRadius;
 	private LineRenderer targetLine;
@@ -53,7 +53,6 @@ public class PlayerTargetLine : MonoBehaviour {
 			targetLine.SetPosition(1, endPos);
 			yield return null;
 		}
-		Time.timeScale = 1f;
 		StartCoroutine(FadeOutTargetLine());
 		yield return null;
 	}
