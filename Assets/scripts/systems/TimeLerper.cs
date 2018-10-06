@@ -13,16 +13,16 @@ public class TimeLerper : MonoBehaviour {
 
 	public void LerpToZero(float time){
 		if(timeLerp != null) StopCoroutine(timeLerp);
-		timeLerp = StartCoroutine(LerpTimeScale(Time.timeScale, 0, time));
+		timeLerp = StartCoroutine(LerpTimeScale(Time.timeScale, 0f, time));
 	}
-	
+
 	IEnumerator LerpTimeScale(float from, float to, float time){
 		if(from < 0f || from > 1f || to < 0f || to > 1f || time < 0f) {
 			Time.timeScale = 1f;
 			yield break;
 		}
-		float t = 0;
-		while(t <= time/2){
+		float t = 0f;
+		while(t < time){
 			Time.timeScale = Mathf.SmoothStep(from, to, t / time);
 			t += Time.unscaledDeltaTime;
 			yield return null;

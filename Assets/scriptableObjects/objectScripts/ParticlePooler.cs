@@ -52,14 +52,12 @@ public class ParticlePooler : ScriptableObject {
     public PoolableParticle SpawnFromQueueAndPlay(Transform parent, Vector3 spawnAtPosWorld, Vector3 lookAtPosWorld){
         if(poolQueue.Count <= 0) return null;
 
-        //parent can be null, in which case this PoolableParticle will be put at the top of the scene hierarchy
-        Transform tempParent = parent;
-
         PoolableParticle poolParticleToSpawn = poolQueue.Dequeue();
 
         poolParticleToSpawn.gameObject.SetActive(true);
         poolParticleToSpawn.transform.position = spawnAtPosWorld;
-        poolParticleToSpawn.transform.SetParent(tempParent);
+        //parent can be null, in which case this PoolableParticle will be put at the top of the scene hierarchy
+        poolParticleToSpawn.transform.SetParent(parent);
         lookAtPosWorld.y = spawnAtPosWorld.y;
         poolParticleToSpawn.transform.LookAt(lookAtPosWorld);
 
@@ -73,8 +71,6 @@ public class ParticlePooler : ScriptableObject {
     //spawning from list is, however, currently never used in game
     public PoolableParticle SpawnFromListAndPlay(Transform parent, Vector3 spawnAtPosWorld, Vector3 lookAtPosWorld){
         if(poolList.Count <= 0) return null;
-
-        Transform tempParent = parent;
 
         //choose a random PoolableParticle that isn't yet playing by incrementing the last index
         //by an amount that prevents landing on the same index again
@@ -91,7 +87,8 @@ public class ParticlePooler : ScriptableObject {
 
         poolParticleToSpawn.gameObject.SetActive(true);
         poolParticleToSpawn.transform.position = spawnAtPosWorld;
-        poolParticleToSpawn.transform.SetParent(tempParent);
+        //parent can be null, in which case this PoolableParticle will be put at the top of the scene hierarchy
+        poolParticleToSpawn.transform.SetParent(parent);
         lookAtPosWorld.y = spawnAtPosWorld.y;
         poolParticleToSpawn.transform.LookAt(lookAtPosWorld);
 

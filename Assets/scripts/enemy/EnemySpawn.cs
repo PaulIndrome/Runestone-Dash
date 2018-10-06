@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+	using UnityEditor;
+#endif
 
 public class EnemySpawn : MonoBehaviour {
 	[HideInInspector] public List<Enemy> enemies, bosses;
@@ -47,6 +50,8 @@ public class EnemySpawn : MonoBehaviour {
 		//in case the spawn already has some enemies, run them through setup
 		//this is necessary when the developer manually adds enemies in the editor
 		foreach(Transform child in transform){
+			if(!child.gameObject.activeSelf) Destroy(child.gameObject);
+			
 			Enemy enemyChild = child.GetComponent<Enemy>();
 			if(enemyChild == null) continue;
 			else{
@@ -210,5 +215,9 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		numEnemyMax += (bossWave % maxEnemyIncreaseRate == 0) ? 1 : 0;
 		bossesSpawning = false;
+	}
+
+	void OnDrawGizmosSelected(){
+		UnityEditor.Handles.DrawWireDisc(transform.position + Vector3.up, Vector3.up, maxEnemySpawnRadius);
 	}
 }

@@ -35,18 +35,20 @@ public class PoolableParticle : MonoBehaviour {
         ps = GetComponent<ParticleSystem>();
     }
 
-    public void PlayFromQueue(){
-        lastPlayedFrom = PlayedFrom.Queue;
+    public bool PlayFromQueue(){
         //this is a very late check if the called PoolableParticle is already playing
-        if(ps.isPlaying) return;
+        if(ps.isPlaying) return false;
+        lastPlayedFrom = PlayedFrom.Queue;
         ps.Play();
+        return true;
     }
 
-    public void PlayFromList(){
-        lastPlayedFrom = PlayedFrom.List;
+    public bool PlayFromList(){
         //this is a very late check if the called PoolableParticle is already playing
-        if(ps.isPlaying) return;
+        if(ps.isPlaying) return false;
+        lastPlayedFrom = PlayedFrom.List;
         ps.Play();
+        return true;
     }
 
     //this is the callback method for the ParticleSystem component's StopAction when set to "Callback"
@@ -57,8 +59,6 @@ public class PoolableParticle : MonoBehaviour {
     public void ReturnParticle(){
         transform.SetParent(originalParent);
         switch(lastPlayedFrom){
-            case PlayedFrom.Init: 
-                return;
             case PlayedFrom.Queue: 
                 poolQueue.Enqueue(this);
                 return;

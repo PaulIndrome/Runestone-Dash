@@ -62,7 +62,7 @@ public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDo
 	IEnumerator CheckForAllInputClear(){
 		while(pinchStarted || playerTargetLine.isPointerDown){
 			if(Input.touches.Length < 1 && !Input.anyKeyDown){
-				Debug.Log("All touches finished at " + Time.time);
+				//Debug.Log("All touches finished at " + Time.time);
 				pinchStarted = false;
 				playerTargetLine.isPointerDown = false;
 				inputClearCheck = null;

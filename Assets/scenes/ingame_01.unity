@@ -861,6 +861,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 124414170}
   m_Mesh: {fileID: 4300072, guid: f77642936c0be984fb857a58b4527326, type: 3}
+--- !u!114 &169893730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa51c710e00fbd42b93d5272855ed5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_target: {fileID: 415523562}
+  targetCoordinates: {x: 0, y: 0, z: 0}
+  m_stepsToTarget: 3
+  path:
+  - {x: 8.35079, y: 0, z: -15.18762}
+  - {x: -13.641258, y: 0, z: -27.27977}
+  - {x: -21.284101, y: 0, z: -13.379695}
+  - {x: -15.564264, y: 0, z: -22.478676}
+  - {x: -7.6438746, y: 0, z: -17.49973}
+  - {x: -2.8414302, y: 0, z: -19.597435}
+  - {x: 0.424911, y: 0, z: 5.761699}
+  - {x: 0, y: 0, z: 0}
 --- !u!1 &170983810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,7 +2543,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1371906854693784, guid: 2d94b2ee1c2ce184fa55d0f40ac34391, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d94b2ee1c2ce184fa55d0f40ac34391, type: 2}
@@ -2914,28 +2937,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 4, z: 3.5}
   m_Center: {x: 0, y: 1.64, z: 0}
---- !u!114 &419538635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa51c710e00fbd42b93d5272855ed5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_target: {fileID: 415523562}
-  targetCoordinates: {x: 0, y: 0, z: 0}
-  m_stepsToTarget: 3
-  path:
-  - {x: -18.005692, y: 0, z: -1.075893}
-  - {x: -17.040844, y: 0, z: -17.223175}
-  - {x: -1.8769269, y: 0, z: -18.945057}
-  - {x: -13.126762, y: 0, z: -17.830511}
-  - {x: -11.007899, y: 0, z: -7.8459296}
-  - {x: -14.160639, y: 0, z: -3.4226127}
-  - {x: -7.785379, y: 0, z: -0.11618313}
 --- !u!1 &422243486
 GameObject:
   m_ObjectHideFlags: 0
@@ -8855,7 +8856,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 710623738}
-  m_LocalRotation: {x: 0.51247865, y: 0.0035221644, z: -0.0021017706, w: 0.8586902}
+  m_LocalRotation: {x: 0.5124788, y: 0.0035255458, z: -0.002103605, w: 0.8586901}
   m_LocalPosition: {x: 0.76, y: 46.66, z: -28.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11853,9 +11854,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   bosses: []
-  enemySpawnActive: 0
+  enemySpawnActive: 1
   minEnemySpawnRadius: 15
-  maxEnemySpawnRadius: 20
+  maxEnemySpawnRadius: 22.8
   numEnemyMax: 3
   minBossWave: 10
   countDownToBoss: 10
@@ -12361,17 +12362,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 178136985}
-        m_MethodName: LerpToZero
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.5
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -21557,8 +21547,8 @@ MonoBehaviour:
   environmentCheck:
     serializedVersion: 2
     m_Bits: 4294967295
-  currentRandomPath: {fileID: 419538635}
-  startColor: {r: 0, g: 0.20646381, b: 1, a: 1}
+  currentRandomPath: {fileID: 169893730}
+  startColor: {r: 0.8192277, g: 0, b: 1, a: 1}
 --- !u!114 &1526596618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22067,6 +22057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8daffa578c0a1b4eabe6fc19efb36e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LerpToStopTime: 2
   menuCam: {fileID: 1977621377}
   timeLerper: {fileID: 178136985}
 --- !u!1 &1582088663
@@ -25091,7 +25082,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2055543242}
-  m_LocalRotation: {x: 0.5380445, y: 0.009817189, z: -0.006267102, w: 0.84283596}
+  m_LocalRotation: {x: 0.5380448, y: 0.009818443, z: -0.006267912, w: 0.8428358}
   m_LocalPosition: {x: 0.27999997, y: 36.205517, z: -17.004723}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -25226,7 +25217,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2105203933}
-  m_LocalRotation: {x: 0.5380445, y: 0.009817189, z: -0.006267102, w: 0.84283596}
+  m_LocalRotation: {x: 0.5380448, y: 0.009818443, z: -0.006267912, w: 0.8428358}
   m_LocalPosition: {x: 0.6, y: 18.1, z: -12.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

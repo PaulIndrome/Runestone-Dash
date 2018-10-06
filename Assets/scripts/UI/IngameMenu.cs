@@ -5,21 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class IngameMenu : MonoBehaviour {
 
+	[SerializeField] float LerpToStopTime = 2f;
 	[SerializeField] Cinemachine.CinemachineVirtualCamera menuCam;
 	[SerializeField] TimeLerper timeLerper;
+	
 	Coroutine timeScaleCheck;
 
-	void Start(){
-		Time.timeScale = 1f;
-		gameObject.SetActive(false);
-	}
-
-
+	// OnEnable is called on gameObject enable
 	void OnEnable(){
 		menuCam.Priority = 1000;
 
+		timeLerper.LerpToZero(LerpToStopTime);
+
 		if(timeScaleCheck != null) StopCoroutine(timeScaleCheck);
-		timeScaleCheck = StartCoroutine(CheckTimeScale());
+		timeScaleCheck = StartCoroutine(CheckTimeScale(LerpToStopTime));
 
 		//the use of CineMachine discourages using a timescale of 0 because a couple of 
 		//divide-by-zero exceptions aren't properly caught in its current version
@@ -46,10 +45,12 @@ public class IngameMenu : MonoBehaviour {
 		if(timeScaleCheck != null) StopCoroutine(timeScaleCheck);
 	}
 
-	IEnumerator CheckTimeScale(){
+	IEnumerator CheckTimeScale(float startDelay){
+		yield return new WaitForSecondsRealtime(startDelay);
+
 		while(gameObject.activeSelf){
 			Time.timeScale = 0.000f;
-			yield return new WaitForSecondsRealtime(0.25f);
+			yield return new WaitForSecondsRealtime(0.5f);
 		}
 	}
 
