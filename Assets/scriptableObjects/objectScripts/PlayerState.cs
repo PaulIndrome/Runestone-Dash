@@ -11,7 +11,7 @@ public class PlayerState : ScriptableObject {
 	public static event ComboCountChange comboCountChangeEvent;
 
 	public float currentDamage = 1;
-	public int maxDamage = 4;
+	public int maxDamage = 3;
 	public int damageIncreaseRatio = 20; //increase the player's damage every X combo hits
 	public int maxCombo;
 	public bool canMove = true;

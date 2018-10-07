@@ -8,8 +8,9 @@ public class CreateAllParticlePools : MonoBehaviour {
 	[SerializeField] ParticlePooler[] particlePoolers;
 
 	void Start(){
+		//ParticlePooler[] allPoolers = Resources.FindObjectsOfTypeAll(typeof(ParticlePooler)) as ParticlePooler[];
 		foreach(ParticlePooler p in particlePoolers){
-			p.CreatePool(transform);
+			p.CreatePool();
 		}
 	}
 }

@@ -72,18 +72,19 @@ public class Enemy : MonoBehaviour {
 		return enemyShieldCollision;
 	}
 
-	//make sure to not take any PoolableParticle within your hierarchy to your grave
-	//things get hairy when scripts try to access destroyed gameobjects
-	void OnDestroy(){
+	public void StopAllPoolableParticles(){
 		PoolableParticle[] poolables = GetComponentsInChildren<PoolableParticle>();
 		if(poolables.Length > 0){ 
 			foreach(PoolableParticle p in poolables){
-				p.ReturnParticle();
+				p.Stop();
 			}
 		}
-		StopAllCoroutines();
 	}
 
-
+	//make sure to not take any PoolableParticle within your hierarchy to your grave
+	//things get hairy when scripts try to access destroyed gameobjects
+	void OnDestroy(){
+		StopAllCoroutines();
+	}
 
 }

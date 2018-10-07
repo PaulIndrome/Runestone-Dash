@@ -15,7 +15,7 @@ public class ParticlePoolTester : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		particlePoolerToTest.CreatePool(parent);
+		particlePoolerToTest.CreatePool();
 		nextSpawnTime = Time.time + spawnDelay;
 	}
 	

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b9ff23b741644264bb5ad0b2331e971b
-timeCreated: 1523140612
-licenseType: Free
+labels:
+- PoolableParticle
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 100100000
