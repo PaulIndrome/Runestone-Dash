@@ -11,7 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897f628915324314a8d691090af86d1d, type: 3}
   m_Name: EnemyHealRadius_medium-5s
   m_EditorClassIdentifier: 
+  healsToMax: 0
+  amountToHeal: 1
   healRadius: 5
   pulseInwardTime: 3
   pulseOutwardTime: 2
   healRadiusMaterial: {fileID: 2100000, guid: b46976e298687ea44b3bb7b3ab0923a0, type: 2}
+  radiusHealParticles: {fileID: 11400000, guid: 5f184315505d56642b238614052f0c03,
+    type: 2}

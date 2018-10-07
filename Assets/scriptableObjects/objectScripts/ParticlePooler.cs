@@ -65,6 +65,25 @@ public class ParticlePooler : ScriptableObject {
 
         return poolParticleToSpawn;
     }
+    
+    //used primarily to match the particle shape for the enemyRadiusHeal to the healRadius size
+    public PoolableParticle SpawnFromQueueAndPlay(Transform parent, Vector3 spawnAtPosWorld, Vector3 lookAtPosWorld, Vector3 scale){
+        if(poolQueue.Count <= 0) return null;
+
+        PoolableParticle poolParticleToSpawn = poolQueue.Dequeue();
+
+        poolParticleToSpawn.gameObject.SetActive(true);
+        poolParticleToSpawn.transform.position = spawnAtPosWorld;
+        //parent can be null, in which case this PoolableParticle will be put at the top of the scene hierarchy
+        poolParticleToSpawn.transform.SetParent(parent);
+        lookAtPosWorld.y = spawnAtPosWorld.y;
+        poolParticleToSpawn.transform.LookAt(lookAtPosWorld);
+        poolParticleToSpawn.transform.localScale = scale;
+
+        poolParticleToSpawn.PlayFromQueue();
+
+        return poolParticleToSpawn;
+    }
 
     //spawning from list is slower but more random than from queue
     //unfortunately, the two methods do not currently check against each other

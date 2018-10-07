@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour {
 				p.ReturnParticle();
 			}
 		}
+		StopAllCoroutines();
 	}
 
 

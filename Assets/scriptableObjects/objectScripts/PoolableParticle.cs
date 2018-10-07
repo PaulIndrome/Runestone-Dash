@@ -58,6 +58,7 @@ public class PoolableParticle : MonoBehaviour {
 
     public void ReturnParticle(){
         transform.SetParent(originalParent);
+        transform.localScale = Vector3.one;
         switch(lastPlayedFrom){
             case PlayedFrom.Queue: 
                 poolQueue.Enqueue(this);

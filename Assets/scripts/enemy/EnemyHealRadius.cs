@@ -9,20 +9,22 @@ public class EnemyHealRadius : MonoBehaviour {
 	LineRenderer line;
 	float maxRadius;
 	float currentRadius;
-	public float pulseOutTime, pulseInTime;
+	float pulseOutTime, pulseInTime;
 	int resolution = 16;
 	bool healsToMax = false;
 	int amountToHeal;
 	Vector3 lineRendererBaseHeight = new Vector3(0, 0.2f, 0);
+	ParticlePooler healParticles;
 
 	//setup for the EnemyHealRadius via the variables of the EnemyHealRadiusEffect ScriptableObject
-	public void Activate(int healAmount, bool fullHeal, float r, float pulseOut, float pulseIn, Material healRadiusMaterial){
+	public void Activate(int healAmount, bool fullHeal, float r, float pulseOut, float pulseIn, Material healRadiusMaterial, ParticlePooler radiusHealParticles){
 		this.enabled = true;
 		amountToHeal = healAmount;
 		healsToMax = fullHeal;
 		pulseOutTime = pulseOut;
 		pulseInTime = pulseIn;
 		maxRadius = currentRadius = r;
+		healParticles = radiusHealParticles;
 		SetupLineRenderer(healRadiusMaterial);
 		enemyAnimation = GetComponent<Enemy>().GetEnemyAnimator();
 		//we actually get the entire EnemySpawn script as a reference so we can easily
@@ -66,6 +68,7 @@ public class EnemyHealRadius : MonoBehaviour {
 				if(lerp > 0.75f && !animationTriggered) { //start the heal animation ONCE
 					enemyAnimation.SetTrigger("fireHealBurst");
 					animationTriggered = true;
+					healParticles.SpawnFromQueueAndPlay(transform, transform.position + lineRendererBaseHeight, transform.up, new Vector3(maxRadius, 0f, maxRadius));
 				}
 				t += Time.deltaTime;
 				yield return null;

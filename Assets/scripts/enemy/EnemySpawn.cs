@@ -65,7 +65,7 @@ public class EnemySpawn : MonoBehaviour {
 			}
 		}
 
-		ClearEnemyTypeLists();
+		CleanEnemyTypeLists();
 
 		numEnemyToSpawn = 1;
 		numEnemiesKilled = 0;
@@ -81,7 +81,7 @@ public class EnemySpawn : MonoBehaviour {
 	}
 
 	//quality of life method to prevent cross-spawning of normal and boss enemies
-	void ClearEnemyTypeLists(){
+	void CleanEnemyTypeLists(){
 		//remove non-BossTypes from the bossType list
 		for(int i = bossTypes.Count-1; i>=0; i--){
 			if(!bossTypes[i].isBossType) bossTypes.RemoveAt(i);

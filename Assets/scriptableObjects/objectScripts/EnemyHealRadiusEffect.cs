@@ -11,9 +11,10 @@ public class EnemyHealRadiusEffect : EnemyEffect {
 	[Range(0.5f,10f)] public float pulseInwardTime;
 	[Range(0.5f,10f)] public float pulseOutwardTime;
 	public Material healRadiusMaterial;
+	public ParticlePooler radiusHealParticles;
 	public override void Apply(Enemy enemy){
 		//the EnemyHealRadius gets added to the Enemy gameobject, which then adds the lineRenderer component etc.
-		enemy.gameObject.AddComponent<EnemyHealRadius>().Activate(amountToHeal, healsToMax, healRadius, pulseOutwardTime, pulseInwardTime, healRadiusMaterial);
+		enemy.gameObject.AddComponent<EnemyHealRadius>().Activate(amountToHeal, healsToMax, healRadius, pulseOutwardTime, pulseInwardTime, healRadiusMaterial, radiusHealParticles);
 		enemy.GetEnemyAnimator().SetBool("isHealer", true);
 	}
 

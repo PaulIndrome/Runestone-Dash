@@ -17,3 +17,5 @@ MonoBehaviour:
   pulseInwardTime: 10
   pulseOutwardTime: 2
   healRadiusMaterial: {fileID: 2100000, guid: 1743351eead727041b7657ab064e44d5, type: 2}
+  radiusHealParticles: {fileID: 11400000, guid: 5f184315505d56642b238614052f0c03,
+    type: 2}
