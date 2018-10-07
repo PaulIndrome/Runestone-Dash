@@ -55,7 +55,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnDestroy(){
-		ScriptableObject.DestroyObject(playerState);
+		ScriptableObject.Destroy(playerState);
 	}
 
 }

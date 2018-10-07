@@ -9,8 +9,13 @@ public class EnemyCollision : MonoBehaviour {
 
 	[SerializeField] ParticlePooler chainKillParticlePooler;
 
+	private Texture originalEmissiveTex, damageEmissiveTex = null;
+	private bool flashingDMG = false;
+	private Coroutine flashDamageRoutine;
+
 	void Start(){
 		GetComponent<ParticleSystem>().Play();
+		originalEmissiveTex = enemyBody.material.GetTexture("_EmissionMap");
 	}
 
 	public void OnTriggerEnter(Collider collider){
@@ -35,16 +40,19 @@ public class EnemyCollision : MonoBehaviour {
 		
 	}
 
-	//currently unused and unfunctional method to flash the enemy a certain color when taking damage
 	IEnumerator FlashDamage(float flashTime){
-		float multiplier = 0.5f / flashTime;
-		enemyBody.material.SetColor("_EmissionColor", Color.red * Mathf.LinearToGammaSpace(0.5f));
-		while(flashTime >= 0f){
+		flashingDMG = true;
+		float multiplier = 1f / flashTime;
+		enemyBody.material.SetTexture("_EmissionMap", null);
+		enemyBody.material.SetColor("_EmissionColor", Color.red);
+		while(flashTime > 0f){
 			enemyBody.material.SetColor("_EmissionColor", Color.red * Mathf.LinearToGammaSpace(flashTime * multiplier));
 			flashTime -= Time.deltaTime;
 			yield return null;
 		}
-		enemyBody.material.SetColor("_EmissionColor", Color.black);
+		enemyBody.material.SetTexture("_EmissionMap", originalEmissiveTex);
+		enemyBody.material.SetColor("_EmissionColor", Color.red);
+		flashingDMG = false;
 		yield return null;
 	}
 
@@ -59,7 +67,11 @@ public class EnemyCollision : MonoBehaviour {
 			enemyHealth.takeDamagePooler.SpawnFromQueueAndPlay(transform, closestPoint, player.transform.position);
 			enemyHealth.TakeDamage(player.GetCurrentDamage());
 			player.playerState.CurrentCombo += 1;
-			//StartCoroutine(FlashDamage(0.33f));
+			if(!flashingDMG) flashDamageRoutine = StartCoroutine(FlashDamage(0.33f));
+			else {
+				StopCoroutine(flashDamageRoutine);
+				flashDamageRoutine = StartCoroutine(FlashDamage(0.33f));
+			}
 		}
 	}
 }

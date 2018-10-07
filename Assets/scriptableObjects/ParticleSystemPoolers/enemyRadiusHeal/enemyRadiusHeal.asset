@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43236222866a3a54ab3e706546284545, type: 3}
   m_Name: enemyRadiusHeal
   m_EditorClassIdentifier: 
-  originalParentName: 
-  poolSize: 10
+  originalParentName: enemyRadiusHeal
+  poolSize: 12
   particleSystems:
   - {fileID: 114459022686706688, guid: 9e25c6d81deb96f4684185033244038b, type: 2}
-  - {fileID: 114459022686706688, guid: 2ea53da878781f14cb5df1b55e1bac90, type: 2}
+  - {fileID: 114377602473917682, guid: 2ea53da878781f14cb5df1b55e1bac90, type: 2}
+  - {fileID: 114377602473917682, guid: fbbf9396d69b6454ab07170fd5e05209, type: 2}

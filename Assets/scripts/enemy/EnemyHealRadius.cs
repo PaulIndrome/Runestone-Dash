@@ -68,7 +68,11 @@ public class EnemyHealRadius : MonoBehaviour {
 				if(lerp > 0.75f && !animationTriggered) { //start the heal animation ONCE
 					enemyAnimation.SetTrigger("fireHealBurst");
 					animationTriggered = true;
-					healParticles.SpawnFromQueueAndPlay(transform, transform.position + lineRendererBaseHeight, transform.up, new Vector3(maxRadius, 0f, maxRadius));
+					ParticleSystem ps = healParticles.SpawnFromQueueAndPlay(transform, transform.position + lineRendererBaseHeight, transform.position + transform.up).PS;
+					if(ps.shape.shapeType == ParticleSystemShapeType.Circle) {
+						ParticleSystem.ShapeModule shape = ps.shape;
+						shape.radius = maxRadius;
+					}
 				}
 				t += Time.deltaTime;
 				yield return null;

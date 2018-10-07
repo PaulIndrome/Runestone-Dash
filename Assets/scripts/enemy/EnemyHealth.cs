@@ -90,6 +90,7 @@ public class EnemyHealth : MonoBehaviour {
 	public IEnumerator HasBeenKilled(){
 		killedPS.Play();
 		GetComponentInParent<EnemySpawn>().RemoveEnemy(enemy);
+		enemy.StopAllPoolableParticles();
 		
 		if(hasShield) enemyShieldCollision.DestroyShieldObject();
 		

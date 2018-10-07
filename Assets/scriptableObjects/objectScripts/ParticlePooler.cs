@@ -15,17 +15,20 @@ public class ParticlePooler : ScriptableObject {
     Transform keeper;
 
     //create the pool by instantiating the prefabs in the particleSystems list
-    public void CreatePool(Transform parent){
+    public void CreatePool(){
+        Transform particlePoolParent = FindObjectOfType<CreateAllParticlePools>().transform;
+
         //if no parentname is set for the ParticlePooler, no new keeper is created
         if(originalParentName.Length <= 0){
-            keeper = parent;
-        } else {
+            keeper = particlePoolParent;
+        } 
+        else {
             //if a new keeper needs to be made, it only gets created once
-            keeper = parent.Find(originalParentName);
+            keeper = particlePoolParent.Find(originalParentName);
             if(keeper == null){
                 keeper = new GameObject().transform;
                 keeper.name = originalParentName;
-                keeper.SetParent(parent);
+                keeper.SetParent(particlePoolParent);
             } 
         }
 
@@ -58,7 +61,7 @@ public class ParticlePooler : ScriptableObject {
         poolParticleToSpawn.transform.position = spawnAtPosWorld;
         //parent can be null, in which case this PoolableParticle will be put at the top of the scene hierarchy
         poolParticleToSpawn.transform.SetParent(parent);
-        lookAtPosWorld.y = spawnAtPosWorld.y;
+        //lookAtPosWorld.y = spawnAtPosWorld.y;
         poolParticleToSpawn.transform.LookAt(lookAtPosWorld);
 
         poolParticleToSpawn.PlayFromQueue();
@@ -67,10 +70,14 @@ public class ParticlePooler : ScriptableObject {
     }
     
     //used primarily to match the particle shape for the enemyRadiusHeal to the healRadius size
-    public PoolableParticle SpawnFromQueueAndPlay(Transform parent, Vector3 spawnAtPosWorld, Vector3 lookAtPosWorld, Vector3 scale){
+    public PoolableParticle SpawnFromQueueAndPlay(Transform parent, Vector3 spawnAtPosWorld, Vector3 lookAtPosWorld, float radius){
         if(poolQueue.Count <= 0) return null;
 
         PoolableParticle poolParticleToSpawn = poolQueue.Dequeue();
+        if(poolParticleToSpawn.PS.shape.shapeType != ParticleSystemShapeType.Circle) {
+            poolQueue.Enqueue(poolParticleToSpawn);
+            return null;
+        }
 
         poolParticleToSpawn.gameObject.SetActive(true);
         poolParticleToSpawn.transform.position = spawnAtPosWorld;
@@ -78,7 +85,6 @@ public class ParticlePooler : ScriptableObject {
         poolParticleToSpawn.transform.SetParent(parent);
         lookAtPosWorld.y = spawnAtPosWorld.y;
         poolParticleToSpawn.transform.LookAt(lookAtPosWorld);
-        poolParticleToSpawn.transform.localScale = scale;
 
         poolParticleToSpawn.PlayFromQueue();
 
@@ -116,14 +122,19 @@ public class ParticlePooler : ScriptableObject {
         poolParticleToSpawn.PlayFromList();
 
         return poolParticleToSpawn;
-
+    }
+    
+    public void DebugLogQueue(){
+        string s = "";
+        foreach(PoolableParticle p in poolQueue)
+            s += p.name + " ";
+        Debug.Log("PoolQueue of " + name + ": " + s);
     }
 
-   
-
-
-
-
-
-	
+    public void DebugLogList(){
+        string s = "";
+        foreach(PoolableParticle p in poolList)
+            s += p.name + " ";
+        Debug.Log("PoolList of " + name + ": " + s);
+    }
 }
