@@ -115,6 +115,8 @@ public class RandomPath : ScriptableObject {
 
 			currentPosition = forwardPosition;
 
+			Debug.DrawLine(currentPosition, currentPosition + Vector3.up * 5f, colors[2], debugRayDuration, false);
+
 			path.Add(currentPosition);
 
 			randomSign = (i % 2 == 0) ? PosNeg : -randomSign;
@@ -267,6 +269,8 @@ public class RandomPath : ScriptableObject {
 			currentPosition = forwardPosition;
 
 			path.Add(currentPosition);
+
+			Debug.DrawLine(currentPosition, currentPosition + Vector3.up * 5f, colors[2], debugRayDuration, false);
 
 			randomSign = (i % 2 == 0) ? PosNeg : -randomSign;
 

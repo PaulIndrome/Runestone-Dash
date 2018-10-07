@@ -92,14 +92,20 @@ public class EnemyHealRadius : MonoBehaviour {
 	//because we can reference the entire list of active enemies, we can just use
 	//Vector3.Distance() to check if anything in range can be healed
 	public void CheckAllEnemiesInRange(){
+		float distance;
 		foreach(Enemy e in enemySpawn.enemies){
-			if(Vector3.Distance(transform.position, e.transform.position) <= maxRadius){
+			distance = Vector3.Distance(transform.position, e.transform.position);
+			if(distance <= maxRadius){
 				//the currentHealth of any Enemy is clamped to its maximum amount so... heal by 1000f for full recovery.
 				e.GetEnemyHealth().HealByAmount(healsToMax ? 1000f : amountToHeal);
 			}
+			if(distance >= maxRadius - (maxRadius / 5f) && distance < e.enemyMovement.findHealerDistance){
+				e.enemyMovement.SetHealer(this, distance);
+			}
 		}
 		foreach(Enemy bE in enemySpawn.bosses){
-			if(Vector3.Distance(transform.position, bE.transform.position) <= maxRadius){
+			distance = Vector3.Distance(transform.position, bE.transform.position);
+			if(distance <= maxRadius){
 				bE.GetEnemyHealth().HealByAmount(healsToMax ? 1000f : amountToHeal);
 			}
 		}

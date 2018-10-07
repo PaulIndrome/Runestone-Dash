@@ -30,7 +30,7 @@ public class EnemyCollision : MonoBehaviour {
 				StartCoroutine(DelayedDamage(collider, player));
 		}
 		else {
-			EnemyDestroysRunestone edr = collider.gameObject.GetComponent<EnemyDestroysRunestone>();
+			RuneStone edr = collider.gameObject.GetComponent<RuneStone>();
 			if(edr != null){
 				edr.WinOrLoose(false);
 			}

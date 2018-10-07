@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
 	
 	public EnemyCurvePath enemyCurvePath;
 	public EnemyType enemyType;
+	public EnemyMovement enemyMovement;
 	private EnemyHealth enemyHealth;
 	[SerializeField] Animator enemyAnimator	;
 	private EnemyShieldCollision enemyShieldCollision;

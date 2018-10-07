@@ -54,7 +54,7 @@ public class PlayerState : ScriptableObject {
 	}
 
 	IEnumerator ComboResetter(){
-		while(!EnemyDestroysRunestone.gameOver){
+		while(!RuneStone.gameOver){
 			if(Time.time >= nextComboResetTime && !isLegendary)
 				CurrentCombo = 0;
 			

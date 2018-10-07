@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class EnemyDestroysRunestone : MonoBehaviour {
+public class RuneStone : MonoBehaviour {
 
 	public static bool gameOver = false;
 

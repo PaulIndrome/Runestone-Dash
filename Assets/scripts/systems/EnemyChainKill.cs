@@ -8,7 +8,7 @@ public class EnemyChainKill : MonoBehaviour {
 	Player player;
 	PlayerDashChaining playerDashChaining;
 	EnemySpawn enemySpawn;
-	EnemyDestroysRunestone enemyDestroysRunestone;
+	RuneStone enemyDestroysRunestone;
 	[SerializeField] Cinemachine.CinemachineVirtualCamera chainKillCam;
 
 	void Start(){
@@ -17,7 +17,7 @@ public class EnemyChainKill : MonoBehaviour {
 
 		enemySpawn = GetComponent<EnemySpawn>();
 
-		enemyDestroysRunestone = GameObject.FindGameObjectWithTag("RuneStone").GetComponent<EnemyDestroysRunestone>();
+		enemyDestroysRunestone = GameObject.FindGameObjectWithTag("RuneStone").GetComponent<RuneStone>();
 	}
 
 	public void ChainKillAllEnemies(List<Enemy> enemyList){
