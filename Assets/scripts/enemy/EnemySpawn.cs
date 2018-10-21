@@ -6,7 +6,7 @@ using UnityEngine;
 #endif
 
 public class EnemySpawn : MonoBehaviour {
-	[HideInInspector] public List<Enemy> enemies, bosses;
+	public List<Enemy> enemies, bosses;
 	public bool enemySpawnActive = true;
 	[Header("Spawncontrol numbers")]
 	[Tooltip("enemy spawn radius (min, max) from origin")]
@@ -32,7 +32,7 @@ public class EnemySpawn : MonoBehaviour {
 
 
 	[Header("Direct references")]
-	[SerializeField] RectTransform healthBarCanvas;
+	[SerializeField] EnemyHealthBarsHandler healthBarHandler;
 	[SerializeField] GameObject standardEnemyPrefab;
 	[Header("Normal Enemy Types")]
 	[SerializeField] List<EnemyType> enemyTypes;
@@ -55,12 +55,12 @@ public class EnemySpawn : MonoBehaviour {
 			Enemy enemyChild = child.GetComponent<Enemy>();
 			if(enemyChild == null) continue;
 			else{
-				if(!enemyChild.enemyType.isBossType){
-					enemies.Add(enemyChild);
-					enemyChild.SetupEnemy(healthBarCanvas);
-				} else {
+				if(enemyChild.enemyType.isBossType){
 					bosses.Add(enemyChild);
-					enemyChild.SetupEnemy(healthBarCanvas);
+					enemyChild.SetupEnemy(healthBarHandler);
+				} else {
+					enemies.Add(enemyChild);
+					enemyChild.SetupEnemy(healthBarHandler);
 				}
 			}
 		}
@@ -168,7 +168,7 @@ public class EnemySpawn : MonoBehaviour {
 		//set up the enemy with the type and path
 		newEnemy.SetupEnemy(randomType, randomPath);
 		//create a new healthBar and associate it with the new enemy
-		newEnemy.SetupBars(healthBarCanvas);
+		newEnemy.SetupBars(healthBarHandler);
 
 		//name the enemy gameobject using his properties' shorthand designations
 		newEnemy.gameObject.name = numEnemyToSpawn + " - " + randomType.GetShortHand();
@@ -198,13 +198,7 @@ public class EnemySpawn : MonoBehaviour {
 			EnemyCurvePath randomPath = enemyCurvePaths[Random.Range(0, numEnemyCurvePaths)];
 
 			newBoss.SetupEnemy(randomBossType, randomPath);
-			HealthBar bossBar = newBoss.SetupBars(healthBarCanvas);
-
-			Color bossBarColor = Color.magenta;
-			bossBarColor.a = 0.8f;
-			bossBar.ChangeBarColorTo(bossBarColor);
-			bossBarColor.a = 0.95f;
-			bossBar.ChangeBarEndColorTo(bossBarColor);
+			HealthBar bossBar = newBoss.SetupBars(healthBarHandler);
 
 			newBoss.gameObject.name = "B" + numEnemyToSpawn + " - " + randomBossType.GetShortHand();
 

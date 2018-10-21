@@ -7,33 +7,38 @@ public class Enemy : MonoBehaviour {
 	public EnemyCurvePath enemyCurvePath;
 	public EnemyType enemyType;
 	public EnemyMovement enemyMovement;
-	private EnemyHealth enemyHealth;
-	[SerializeField] Animator enemyAnimator	;
+	public EnemyHealth enemyHealth {
+		get;
+		private set;
+	}
+	[SerializeField] private Animator enemyAnimator;
 	private EnemyShieldCollision enemyShieldCollision;
 	public GameObject meshAndCollider;
+	[SerializeField] private bool useCurvePath = true;
 
 	public bool canMove = true;
-	public bool CanMove{
+	public bool CanMove {
 		get{ return canMove; }
 	}
-
 
 	void Awake(){
 		enemyHealth = GetComponent<EnemyHealth>();
 	}
 
 	public void Start(){
-		transform.localScale *= enemyType.scaleOfEnemy;
+		enemyAnimator.transform.localScale *= enemyType.scaleOfEnemy;
 		transform.LookAt(Vector3.zero, Vector3.up);
+
 	}
 
 	public void StopMoving(){
 		StopCoroutine(enemyCurvePath.MoveTowardsTarget(this));
 	}
 
-	public void SetupEnemy(RectTransform healthBarCanvas){
+	// used when an Enemy prefab has been manually placed as a child of the EnemySpawn gameobject
+	public void SetupEnemy(EnemyHealthBarsHandler healthBarHandler){
 		SetupEnemy(enemyType, enemyCurvePath);
-		SetupBars(healthBarCanvas);
+		SetupBars(healthBarHandler);
 	}
 
 	//set up all necessary attributes and apply the effects to yourself
@@ -42,8 +47,13 @@ public class Enemy : MonoBehaviour {
 		enemyCurvePath = ecp;
 
 		enemyHealth = GetComponent<EnemyHealth>();
+		enemyMovement = GetComponent<EnemyMovement>();
 		enemyHealth.SetupHealth(enemyType);
+
 		enemyShieldCollision = GetComponentInChildren<EnemyShieldCollision>();
+		if(!enemyType.ContainsType(typeof(EnemyShieldEffect))){
+			enemyShieldCollision.gameObject.SetActive(false);
+		}
 
 		foreach(EnemyEffect e in enemyType.enemyEffects){
 			e.Apply(this);
@@ -52,17 +62,23 @@ public class Enemy : MonoBehaviour {
 		canMove = true;
 		//interestingly, ScriptableObjects can contain the definition for coroutines and
 		//run them on an external MonoBehaviour, which is what happens here
-		StartCoroutine(enemyCurvePath.MoveTowardsTarget(this));
+		if(useCurvePath) {
+			if(enemyMovement != null) enemyMovement.enabled = false;
+			StartCoroutine(enemyCurvePath.MoveTowardsTarget(this));
+		}
+		else if(enemyMovement != null){
+			enemyMovement.enabled = true;
+			enemyMovement.SetupEnemyMovement(GameObject.FindGameObjectWithTag("RuneStone").GetComponent<RuneStone>(), enemyType.approachTime, enemyAnimator);
+		}
+		else 
+			Debug.Log("no movement capabilities set on " + gameObject.name, this.gameObject);
+
 	}
 
-	public HealthBar SetupBars(RectTransform healthBarCanvas){
-		HealthBar newHealthBar = enemyHealth.SetupHealthBar(healthBarCanvas);
-		if(enemyHealth.hasShield) enemyShieldCollision.SetupDurabilityBar(healthBarCanvas);
+	public HealthBar SetupBars(EnemyHealthBarsHandler healthBarHandler){
+		HealthBar newHealthBar = enemyHealth.SetupHealthBar(healthBarHandler);
+		if(enemyHealth.hasShield) enemyShieldCollision.SetupDurabilityBar(healthBarHandler);
 		return newHealthBar;
-	}
-
-	public EnemyHealth GetEnemyHealth(){
-		return enemyHealth;
 	}
 
 	public Animator GetEnemyAnimator(){

@@ -45,7 +45,7 @@ public class RandomPath : ScriptableObject {
 		//internal attribute declaration and initialization
 		Vector3 currentPosition = transform.position, sidePosition, forwardPosition, targetVector, sideStep, forwardStep;
 		float sideStepLength, forwardStepLength;
-		float reductionRate =  1f / (float) m_stepsToTarget;
+		//float reductionRate =  1f / (float) m_stepsToTarget;
 		float targetDistance = Vector3.Distance(currentPosition, targetCoordinates);
 		float targetDistanceReductionRate = targetDistance / m_stepsToTarget;
 		int randomSign = PosNeg;
@@ -158,7 +158,7 @@ public class RandomPath : ScriptableObject {
 		//internal attribute declaration and initialization
 		Vector3 currentPosition = transform.position, sidePosition, forwardPosition, targetVector, sideStep, forwardStep;
 		float sideStepLength, forwardStepLength;
-		float reductionRate =  1f / (float) m_stepsToTarget;
+		//float reductionRate =  1f / (float) m_stepsToTarget;
 		float targetDistance = Vector3.Distance(currentPosition, targetCoordinates);
 		float targetDistanceReductionRate = targetDistance / m_stepsToTarget;
 		int randomSign = PosNeg;

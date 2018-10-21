@@ -45,7 +45,7 @@ public class EnemyChainKill : MonoBehaviour {
 			
 			//we need to make sure the player isn't knocked out of his legendary status... that would be
 			//very embarrassing
-			if(currentEnemy.GetEnemyHealth().hasShield){
+			if(currentEnemy.enemyHealth.hasShield){
 				currentEnemy.GetEnemyShieldCollision().SetDestructible(true);
 			}
 			//we reuse the player dash chaining script to great effect here, which saves us 

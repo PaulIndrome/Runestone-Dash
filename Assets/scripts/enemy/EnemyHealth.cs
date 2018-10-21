@@ -4,14 +4,37 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 
-	public float maxHealth;
-	public float currentHealth;
+	public float MaxHealth{
+		get {
+			return maxHealth;
+		}
+		private set{
+			maxHealth = value;
+		}
+	}
+	public float CurrentHealth {
+		get {
+			return currentHealth;
+		}
+		private set{
+			currentHealth = value;
+		}
+	}
+
+	public bool FullHealth{
+		get {
+			return currentHealth >= maxHealth;
+		}
+	}
+
 	public bool hasShield = false;
 	public bool iFramesActive = false;
 	public HealthBar healthBarPrefab;
 	public Transform healthBarPosition;
 	private Enemy enemy;
 
+
+	private float currentHealth, maxHealth;
 	private HealthBar healthBar;
 	private AudioSource enemyAudioSource;
 	private EnemyShieldCollision enemyShieldCollision;
@@ -33,18 +56,18 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	public void SetupHealth(EnemyType enemyType){
-		maxHealth = enemyType.health;
-		currentHealth = maxHealth;
+		MaxHealth = enemyType.health;
+		CurrentHealth = MaxHealth;
 	}
 
 	public void TakeDamage(float damage){
-		if(iFramesActive || currentHealth <= 0) return;
+		if(iFramesActive || CurrentHealth <= 0) return;
 
-		currentHealth -= damage;
+		CurrentHealth -= damage;
 		audioTakeDamage.PlayOneShot(enemyAudioSource);
-		healthBar.SetBarTo(currentHealth / maxHealth);
+		healthBar.SetBarTo(CurrentHealth / MaxHealth);
 
-		if(currentHealth <= 0){
+		if(CurrentHealth <= 0){
 			//the enemy has been killed, CUE DEATH
 			enemy.StopMoving();
 			StartCoroutine(HasBeenKilled());
@@ -54,18 +77,18 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	public void HealByAmount(float amount){
-		if(currentHealth == maxHealth) return;
-		currentHealth += amount;
+		if(CurrentHealth == MaxHealth) return;
+		CurrentHealth += amount;
 		//the currentHealth should never exceed the maximum health amount set by the EnemyType
-		currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-		healthBar.SetBarTo(currentHealth / maxHealth);
+		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+		healthBar.SetBarTo(CurrentHealth / MaxHealth);
 	}
 
 	//unused method that might be important later
 	public void HealToFull(){
-		if(currentHealth == maxHealth) return;
-		currentHealth = maxHealth;
-		healthBar.SetBarTo(currentHealth / maxHealth);
+		if(CurrentHealth == MaxHealth) return;
+		CurrentHealth = MaxHealth;
+		healthBar.SetBarTo(CurrentHealth / MaxHealth);
 	}
 
 	//if the player hits the shield first we don't want the Enemy to take damage 
@@ -79,15 +102,28 @@ public class EnemyHealth : MonoBehaviour {
 
 	//the Enemy Prefab contains an empty GameObject (healthBarPosition) that acts as an
 	//anchor for the healthBar to follow
-	public HealthBar SetupHealthBar(RectTransform healthBarCanvas){
+	public HealthBar SetupHealthBar(EnemyHealthBarsHandler healthBarHandler){
 		healthBar = Instantiate(healthBarPrefab);
+
+		if(enemy.enemyType.isBossType) healthBar.ApplyBossColors();
+
 		healthBar.SetTarget(healthBarPosition);
-		healthBar.transform.SetParent(healthBarCanvas);
+		healthBar.transform.SetParent(healthBarHandler.transform);
+		healthBarHandler.RegisterBar(healthBar);
 		return healthBar;
 	}
 
 	//currently, killed enemies sink into the ground. This should definitely change some time
 	public IEnumerator HasBeenKilled(){
+		if(enemy.enemyType.ContainsType(typeof(EnemyHealRadiusEffect))){
+			EnemyHealRadius healRadius = enemy.GetComponent<EnemyHealRadius>();
+			foreach(EnemyMovement em in healRadius.beingHealedByThis){
+				em.RemoveHealer();
+				Debug.Log("Removed healer of " + em.gameObject.name);
+			}
+			healRadius.Deactivate();
+		}
+
 		killedPS.Play();
 		GetComponentInParent<EnemySpawn>().RemoveEnemy(enemy);
 		enemy.StopAllPoolableParticles();
@@ -97,12 +133,23 @@ public class EnemyHealth : MonoBehaviour {
 		foreach(Collider bc in GetComponentsInChildren<Collider>()){
 			bc.enabled = false;
 		}
+
+		healthBar.Unregister();
 		audioEnemyDeath.PlayOneShot(enemyAudioSource);
+		enemy.GetEnemyAnimator().SetBool("isDead", true);
+		yield return null;
+	}
+
+	public void EraseEnemyObject(){
+		Destroy(healthBar.gameObject);
+		StartCoroutine(DespawnEnemy());
+	}
+
+	IEnumerator DespawnEnemy(){
 		while(killedPS.isPlaying){
 			transform.position = Vector3.MoveTowards(transform.position, transform.position - Vector3.up, Time.deltaTime*2f);
 			yield return null;
 		}
-		Destroy(healthBar.gameObject);
 		Destroy(gameObject);
 		yield return null;
 	}

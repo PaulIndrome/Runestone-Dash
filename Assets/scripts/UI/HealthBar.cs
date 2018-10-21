@@ -12,7 +12,9 @@ public class HealthBar : MonoBehaviour {
 	Image barImage;
 	Image barEndImage;
 
-	public void Start(){
+	EnemyHealthBarsHandler handler;
+
+	public void Awake(){
 		barImage = Bar.GetComponent<Image>();
 		barEndImage = Bar.GetChild(0).GetComponent<Image>();
 	}
@@ -21,6 +23,15 @@ public class HealthBar : MonoBehaviour {
 	public void SetTarget(Transform position){
 		healthBarPosition = position;
 		barImage = Bar.GetComponent<Image>();
+	}
+
+	// called from handler upon registering
+	public void SetHandler(EnemyHealthBarsHandler barHandler){
+		handler = barHandler;
+	}
+
+	public void Unregister(){
+		handler.UnRegisterBar(this);
 	}
 
 	//all healthBars and durabilityBars get repositioned to their designated
@@ -47,6 +58,14 @@ public class HealthBar : MonoBehaviour {
 		//sometimes the reference isn't set quick enough during Start(), so this does it prior to referencing anything
 		if(barEndImage == null) barEndImage = Bar.GetChild(0).GetComponent<Image>();
 		barEndImage.color = color;
+	}
+
+	public void ApplyBossColors(){
+		Color bossBarColor = Color.magenta;
+		bossBarColor.a = 0.8f;
+		ChangeBarColorTo(bossBarColor);
+		bossBarColor.a = 0.95f;
+		ChangeBarEndColorTo(bossBarColor);
 	}
 
 }

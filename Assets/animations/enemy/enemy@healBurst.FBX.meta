@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: cbf48d1e70098024d8a50d304400247f
-timeCreated: 1523194865
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: enemy
     100002: //RootNode
@@ -130,6 +128,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -162,9 +161,119 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
+      transformMask:
+      - path: 
+        weight: 1
+      - path: enemy
+        weight: 1
+      - path: enemyPelvis
+        weight: 0
+      - path: enemyPelvis/enemyLLeg1
+        weight: 0
+      - path: enemyPelvis/enemyLLeg1/enemyLLeg2
+        weight: 0
+      - path: enemyPelvis/enemyLLeg1/enemyLLeg2/enemyLLegAnkle
+        weight: 0
+      - path: enemyPelvis/enemyLLeg1/enemyLLeg2/enemyLLegAnkle/enemyLLegDigit11
+        weight: 0
+      - path: enemyPelvis/enemyLLeg1/enemyLLeg2/enemyLLegAnkle/enemyLLegDigit11/enemyLLegDigit12
+        weight: 0
+      - path: enemyPelvis/enemyRLeg1
+        weight: 0
+      - path: enemyPelvis/enemyRLeg1/enemyRLeg2
+        weight: 0
+      - path: enemyPelvis/enemyRLeg1/enemyRLeg2/enemyRLegAnkle
+        weight: 0
+      - path: enemyPelvis/enemyRLeg1/enemyRLeg2/enemyRLegAnkle/enemyRLegDigit11
+        weight: 0
+      - path: enemyPelvis/enemyRLeg1/enemyRLeg2/enemyRLegAnkle/enemyRLegDigit11/enemyRLegDigit12
+        weight: 0
+      - path: enemyPelvis/enemySpine1
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit11
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit11/enemyLArmDigit12
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit11/enemyLArmDigit12/enemyLArmDigit13
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit21
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit21/enemyLArmDigit22
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit21/enemyLArmDigit22/enemyLArmDigit23
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit31
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit31/enemyLArmDigit32
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmCollarbone/enemyLArm1/enemyLArm2/enemyLArm3/enemyLArm4/enemyLArm5/enemyLArmPalm/enemyLArmDigit31/enemyLArmDigit32/enemyLArmDigit33
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyLArmUpVectorNode
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyNeck1
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyNeck1/enemyNeck2
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyNeck1/enemyNeck2/enemyHead
+        weight: 0
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit11
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit11/enemyRArmDigit12
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit11/enemyRArmDigit12/enemyRArmDigit13
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit21
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit21/enemyRArmDigit22
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit21/enemyRArmDigit22/enemyRArmDigit23
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit31
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit31/enemyRArmDigit32
+        weight: 1
+      - path: enemyPelvis/enemySpine1/enemySpine2/enemySpine3/enemyRibcage/enemyRArmCollarbone/enemyRArm1/enemyRArm2/enemyRArm3/enemyRArm4/enemyRArm5/enemyRArmPalm/enemyRArmDigit31/enemyRArmDigit32/enemyRArmDigit33
+        weight: 1
+      - path: enemyShield
+        weight: 1
+      - path: Model
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: aaa189e46fcdf7c41a35bf36373e361c, type: 2}
       additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
@@ -189,6 +298,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

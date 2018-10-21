@@ -23,7 +23,7 @@ public class EnemyCurvePathRotation : ScriptableObject {
 
 		Vector3 step = Vector3.zero;
 
-		while(enemyHealth.currentHealth > 0){
+		while(enemyHealth.CurrentHealth > 0){
 			t = timeWalked / enemyType.approachTime;
 
 			step.z = Mathf.Lerp(startPosition.z, 0, t);

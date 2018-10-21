@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealRadius : MonoBehaviour {
 
 	EnemySpawn enemySpawn;
+	Enemy thisEnemy;
 	Animator enemyAnimation;
 	LineRenderer line;
 	float maxRadius;
@@ -15,6 +16,7 @@ public class EnemyHealRadius : MonoBehaviour {
 	int amountToHeal;
 	Vector3 lineRendererBaseHeight = new Vector3(0, 0.2f, 0);
 	ParticlePooler healParticles;
+	public List<EnemyMovement> beingHealedByThis;
 
 	//setup for the EnemyHealRadius via the variables of the EnemyHealRadiusEffect ScriptableObject
 	public void Activate(int healAmount, bool fullHeal, float r, float pulseOut, float pulseIn, Material healRadiusMaterial, ParticlePooler radiusHealParticles){
@@ -26,11 +28,18 @@ public class EnemyHealRadius : MonoBehaviour {
 		maxRadius = currentRadius = r;
 		healParticles = radiusHealParticles;
 		SetupLineRenderer(healRadiusMaterial);
-		enemyAnimation = GetComponent<Enemy>().GetEnemyAnimator();
+		thisEnemy = GetComponent<Enemy>();
+		enemyAnimation = thisEnemy.GetEnemyAnimator();
+		beingHealedByThis = new List<EnemyMovement>();
 		//we actually get the entire EnemySpawn script as a reference so we can easily
 		//iterate over all active enemies later when casting the heal spell
 		enemySpawn = GetComponentInParent<EnemySpawn>();		
 		StartCoroutine(HealAllEnemiesInRange());
+	}
+
+	public void Deactivate(){
+		line.enabled = false;
+		StopAllCoroutines();
 	}
 
 	//the LineRenderer component gets added at runtime which is something I should do more often...
@@ -53,8 +62,6 @@ public class EnemyHealRadius : MonoBehaviour {
 		}
 	}
 
-	//TODO: add ParticlePooler for the healing spell
-	//(With the existing system takes about 30 minutes)
 	IEnumerator HealAllEnemiesInRange(){
 		float t, lerp;
 		bool animationTriggered = false;
@@ -92,24 +99,25 @@ public class EnemyHealRadius : MonoBehaviour {
 	//because we can reference the entire list of active enemies, we can just use
 	//Vector3.Distance() to check if anything in range can be healed
 	public void CheckAllEnemiesInRange(){
+		//CheckForEnemiesToHeal();
 		float distance;
 		foreach(Enemy e in enemySpawn.enemies){
 			distance = Vector3.Distance(transform.position, e.transform.position);
 			if(distance <= maxRadius){
 				//the currentHealth of any Enemy is clamped to its maximum amount so... heal by 1000f for full recovery.
-				e.GetEnemyHealth().HealByAmount(healsToMax ? 1000f : amountToHeal);
+				e.enemyHealth.HealByAmount(healsToMax ? 1000f : amountToHeal);
 			}
-			if(distance >= maxRadius - (maxRadius / 5f) && distance < e.enemyMovement.findHealerDistance){
-				e.enemyMovement.SetHealer(this, distance);
+			if(!beingHealedByThis.Contains(e.enemyMovement) && e.enemyMovement.CanBeHealed(distance)){
+				Debug.Log("About to set healer on " + e.gameObject.name);
+				e.enemyMovement.SetHealer(this, maxRadius, thisEnemy.enemyMovement.MoveSpeed);
+				beingHealedByThis.Add(e.enemyMovement);
 			}
 		}
 		foreach(Enemy bE in enemySpawn.bosses){
 			distance = Vector3.Distance(transform.position, bE.transform.position);
 			if(distance <= maxRadius){
-				bE.GetEnemyHealth().HealByAmount(healsToMax ? 1000f : amountToHeal);
+				bE.enemyHealth.HealByAmount(healsToMax ? 1000f : amountToHeal);
 			}
 		}
 	}
-
-	
 }

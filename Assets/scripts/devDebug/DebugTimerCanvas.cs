@@ -15,7 +15,7 @@ public class DebugTimerCanvas : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = "" + (int) timeElapsed;
+		text.text = "" + timeElapsed.ToString("0.00");
 		timeElapsed += Time.deltaTime;
 	}
 }

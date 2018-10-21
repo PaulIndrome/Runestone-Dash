@@ -40,7 +40,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 	//setup for the EnemyShield via the variables of the EnemyShieldEffect ScriptableObject
 	public void Activate(bool indestructible, int durability){
 		enemy = GetComponentInParent<Enemy>();
-		enemyHealth = enemy.GetEnemyHealth();
+		enemyHealth = enemy.enemyHealth;
 		enemyAudioSource = GetComponentInParent<AudioSource>();
 		enemyAnimator = enemy.GetEnemyAnimator();
 
@@ -119,6 +119,7 @@ public class EnemyShieldCollision : MonoBehaviour {
 	}
 
 	public void DestroyShieldObject(){
+		durabilityBar.Unregister();
 		Destroy(durabilityBar.gameObject);
 
 		GetComponentInParent<EnemyHealth>().hasShield = false;
@@ -133,10 +134,10 @@ public class EnemyShieldCollision : MonoBehaviour {
 	}
 
 	//similar to EnemyHealth.SetupHealthBar()
-	public void SetupDurabilityBar(RectTransform healthBarCanvas){
+	public void SetupDurabilityBar(EnemyHealthBarsHandler healthBarHandler){
 		durabilityBar = Instantiate(durabilityBarPrefab);
 		durabilityBar.SetTarget(durabilityBarPosition);
-		durabilityBar.transform.SetParent(healthBarCanvas);
+		durabilityBar.transform.SetParent(healthBarHandler.transform);
 
 		if(indestructibleShield) {
 			Color indestructibleShieldColor = Color.gray;
@@ -145,6 +146,8 @@ public class EnemyShieldCollision : MonoBehaviour {
 			indestructibleShieldColor.a = 0.95f;
 			durabilityBar.ChangeBarEndColorTo(indestructibleShieldColor);
 		}
+
+		healthBarHandler.RegisterBar(durabilityBar);
 	}
 
 	//this method returns true if the shield has been destroyed so a lasthit on a shield

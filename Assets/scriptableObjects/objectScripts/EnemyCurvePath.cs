@@ -27,7 +27,7 @@ public class EnemyCurvePath : ScriptableObject {
 
 		carrierEmpty.LookAt(Vector3.zero);
 
-		while(enemyHealth.currentHealth > 0){
+		while(enemyHealth.CurrentHealth > 0){
 			if(enemy.CanMove){
 				t = timeWalked / enemyType.approachTime;
 

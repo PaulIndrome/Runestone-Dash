@@ -16,4 +16,5 @@ public class EnemyAnimation : MonoBehaviour {
 	public void SetTrigger(string triggerToSet){
 		animator.SetTrigger(triggerToSet);
 	}
+
 }

@@ -1364,7 +1364,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1055938974272176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.27, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4290933369196898}
@@ -4308,8 +4308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c7f1a4a1c8a3c45941bc2fa35f9a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
   hasShield: 0
   iFramesActive: 0
   healthBarPrefab: {fileID: 114213665045319464, guid: 12396985c51d392458e787638f7a2262,
@@ -4367,8 +4365,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurvePath: {fileID: 11400000, guid: 040e3756538ebfe45afc8d9f01cf69d4, type: 2}
   enemyType: {fileID: 11400000, guid: 07f3a037c8a77984dba52537b916f04d, type: 2}
+  enemyMovement: {fileID: 0}
   enemyAnimator: {fileID: 95429754773984306}
   meshAndCollider: {fileID: 1269229961046688}
+  useCurvePath: 1
   canMove: 1
 --- !u!114 &114943256962001958
 MonoBehaviour:

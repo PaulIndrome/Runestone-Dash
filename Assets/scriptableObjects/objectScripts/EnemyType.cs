@@ -22,7 +22,7 @@ public class EnemyType : ScriptableObject {
 	public List<EnemyEffect> enemyEffects;
 
 	//if needed the EnemyType can be checked whether or not it contains a certain EnemyEffect type
-	//however, this is unused and largely untested
+	//however, this is largely untested
 	public bool ContainsType(System.Type effectType){
 		foreach(EnemyEffect e in enemyEffects){
 			if(e.GetType() == effectType){

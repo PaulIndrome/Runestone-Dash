@@ -11,7 +11,7 @@ public class EnemyShieldEffect : EnemyEffect {
 	public override void Apply(Enemy enemy){
 		//for animation reasons, every Enemy owns a dormant shield which is activated and setup when needed
 		enemy.GetEnemyShieldCollision().Activate(indestructibleShield, shieldDurability);
-		enemy.GetEnemyHealth().hasShield = true;
+		enemy.enemyHealth.hasShield = true;
 		enemy.GetEnemyAnimator().SetBool("isShielded", true);
 	}
 
