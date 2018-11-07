@@ -3,18 +3,18 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
-  m_Name: eTB_maximumBig_6hp
+  m_Name: eTB_healerMaximumBig_4hp
   m_EditorClassIdentifier: 
   isBossType: 1
   health: 4
   scaleOfEnemy: 3.5
   leftRightFluct: 5
-  approachTime: 40
+  approachTime: 30
   enemyEffects:
   - {fileID: 11400000, guid: 1a69eae30ac397446aa8847bd70ef9a1, type: 2}

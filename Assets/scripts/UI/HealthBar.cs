@@ -32,6 +32,7 @@ public class HealthBar : MonoBehaviour {
 
 	public void Unregister(){
 		handler.UnRegisterBar(this);
+		Destroy(gameObject);
 	}
 
 	//all healthBars and durabilityBars get repositioned to their designated

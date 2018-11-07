@@ -4417,9 +4417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d66f26d365580b4f8185b4a734ce10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCurvePath: {fileID: 11400000, guid: 040e3756538ebfe45afc8d9f01cf69d4, type: 2}
+  enemyCurvePath: {fileID: 0}
   enemyType: {fileID: 11400000, guid: 07f3a037c8a77984dba52537b916f04d, type: 2}
-  enemyMovement: {fileID: 0}
+  enemyMovement: {fileID: 114904410971562884}
   enemyAnimator: {fileID: 95813024748117346}
   meshAndCollider: {fileID: 1054283954389560}
   useCurvePath: 0
@@ -4438,53 +4438,9 @@ MonoBehaviour:
   currentActivity: 0
   rotationSpeed: 3
   runeStoneAttackDistance: 2
-  moveToHealerRate: 0.75
-  jumpForce: 2
+  moveToHealerRate: 0.5
   findHealerDistance: 10
   animationSpeedOffset: 0
-  curvePath:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: -8.571077
-      outSlope: -8.571077
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.13289681
-      value: -1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.37970516
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.012431636
-      inSlope: -8.209566
-      outSlope: -8.209566
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 1
-    m_RotationOrder: 4
-  enemyType: {fileID: 0}
 --- !u!137 &137676468320659062
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

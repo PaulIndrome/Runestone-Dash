@@ -29,7 +29,6 @@ public class EnemyHealthBarsHandler : MonoBehaviour {
 
 	public bool UnRegisterBar(HealthBar h){
 		if(healthBars.Contains(h)){
-			Debug.Log("Unregistered");
 			healthBars.Remove(h);
 			return true;
 		} else

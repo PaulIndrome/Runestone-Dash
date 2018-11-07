@@ -15,5 +15,5 @@ MonoBehaviour:
   health: 4
   scaleOfEnemy: 1.1
   leftRightFluct: 12
-  approachTime: 20
+  approachTime: 15
   enemyEffects: []

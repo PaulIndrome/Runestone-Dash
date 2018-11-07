@@ -5,13 +5,15 @@ using UnityEngine.EventSystems;
 
 //this script sits on the object that intercepts the player input
 //hence, the big collision box under the ground
-public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler {
+public class PlayerClickToDash : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 	PlayerDashChaining playerDashChaining;
 	PlayerTargetLine playerTargetLine;
 	Player player;
+	[SerializeField] PlayerAttack currentAttack;
 	[SerializeField] [Range(0.1f, 1.5f)] private float delayBetweenDashes;
 	[HideInInspector] public bool recentlyDashed = false, pinchStarted = false;
 	Coroutine inputClearCheck;
+
 
 	public void Start(){
 		playerDashChaining = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDashChaining>();
@@ -28,10 +30,6 @@ public class PlayerClickToDash : MonoBehaviour, IPointerClickHandler, IPointerDo
 			pinchStarted = true;
 			playerTargetLine.isPointerDown = false;
 		}
-	}
-
-	public void OnPointerClick(PointerEventData ped){
-		
 	}
 
 	public void OnPointerUp(PointerEventData ped){

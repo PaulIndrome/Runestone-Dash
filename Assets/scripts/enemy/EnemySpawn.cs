@@ -29,7 +29,7 @@ public class EnemySpawn : MonoBehaviour {
 	bool bossesSpawning = false;
 	bool bossesAlive = false;
 	EnemyChainKill enemyChainKill;
-
+	Player player;
 
 	[Header("Direct references")]
 	[SerializeField] EnemyHealthBarsHandler healthBarHandler;
@@ -42,6 +42,8 @@ public class EnemySpawn : MonoBehaviour {
 	[SerializeField] List<EnemyCurvePath> enemyCurvePaths;
 	
 	public void Start(){
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
 		enemies = new List<Enemy>();
 		bosses = new List<Enemy>();
 
@@ -57,10 +59,10 @@ public class EnemySpawn : MonoBehaviour {
 			else{
 				if(enemyChild.enemyType.isBossType){
 					bosses.Add(enemyChild);
-					enemyChild.SetupEnemy(healthBarHandler);
+					enemyChild.SetupEnemy(healthBarHandler, player);
 				} else {
 					enemies.Add(enemyChild);
-					enemyChild.SetupEnemy(healthBarHandler);
+					enemyChild.SetupEnemy(healthBarHandler, player);
 				}
 			}
 		}
@@ -166,7 +168,7 @@ public class EnemySpawn : MonoBehaviour {
 		EnemyCurvePath randomPath = enemyCurvePaths[Random.Range(0, numEnemyCurvePaths)];
 
 		//set up the enemy with the type and path
-		newEnemy.SetupEnemy(randomType, randomPath);
+		newEnemy.SetupEnemy(randomType, randomPath, player);
 		//create a new healthBar and associate it with the new enemy
 		newEnemy.SetupBars(healthBarHandler);
 
@@ -197,7 +199,7 @@ public class EnemySpawn : MonoBehaviour {
 			EnemyType randomBossType = bossTypes[Random.Range(0,numBossTypes)];
 			EnemyCurvePath randomPath = enemyCurvePaths[Random.Range(0, numEnemyCurvePaths)];
 
-			newBoss.SetupEnemy(randomBossType, randomPath);
+			newBoss.SetupEnemy(randomBossType, randomPath, player);
 			HealthBar bossBar = newBoss.SetupBars(healthBarHandler);
 
 			newBoss.gameObject.name = "B" + numEnemyToSpawn + " - " + randomBossType.GetShortHand();

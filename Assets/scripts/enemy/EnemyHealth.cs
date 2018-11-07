@@ -51,8 +51,8 @@ public class EnemyHealth : MonoBehaviour {
 
 	public void Start(){
 		enemyAudioSource = GetComponent<AudioSource>();
-		enemy = GetComponent<Enemy>();
 		enemyShieldCollision = GetComponentInChildren<EnemyShieldCollision>();
+		enemy = GetComponent<Enemy>();
 	}
 
 	public void SetupHealth(EnemyType enemyType){
@@ -105,11 +105,13 @@ public class EnemyHealth : MonoBehaviour {
 	public HealthBar SetupHealthBar(EnemyHealthBarsHandler healthBarHandler){
 		healthBar = Instantiate(healthBarPrefab);
 
-		if(enemy.enemyType.isBossType) healthBar.ApplyBossColors();
-
 		healthBar.SetTarget(healthBarPosition);
 		healthBar.transform.SetParent(healthBarHandler.transform);
 		healthBarHandler.RegisterBar(healthBar);
+
+		if(enemy == null) enemy = GetComponent<Enemy>();
+		if(enemy.enemyType.isBossType) healthBar.ApplyBossColors();
+
 		return healthBar;
 	}
 
@@ -117,11 +119,10 @@ public class EnemyHealth : MonoBehaviour {
 	public IEnumerator HasBeenKilled(){
 		if(enemy.enemyType.ContainsType(typeof(EnemyHealRadiusEffect))){
 			EnemyHealRadius healRadius = enemy.GetComponent<EnemyHealRadius>();
+			healRadius.Deactivate();
 			foreach(EnemyMovement em in healRadius.beingHealedByThis){
 				em.RemoveHealer();
-				Debug.Log("Removed healer of " + em.gameObject.name);
 			}
-			healRadius.Deactivate();
 		}
 
 		killedPS.Play();
@@ -141,7 +142,6 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	public void EraseEnemyObject(){
-		Destroy(healthBar.gameObject);
 		StartCoroutine(DespawnEnemy());
 	}
 

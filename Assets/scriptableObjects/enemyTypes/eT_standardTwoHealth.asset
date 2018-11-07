@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
   m_Name: eT_standardTwoHealth
   m_EditorClassIdentifier: 
+  isBossType: 0
   health: 2
   scaleOfEnemy: 1.05
   leftRightFluct: 12
-  approachTime: 25
+  approachTime: 18
   enemyEffects: []

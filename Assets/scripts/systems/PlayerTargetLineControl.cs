@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 //this script controls when to draw a target line and when to stop
+[System.Obsolete("Obsolete use case of pointer event propagation to the PlayerTargetLine")]
 public class PlayerTargetLineControl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
 	 PlayerTargetLine playerTargetLine;

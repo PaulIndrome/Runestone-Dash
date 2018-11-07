@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f748f604623bae644b0c5bff5e32567f, type: 3}
   m_Name: eT_largeHealer
   m_EditorClassIdentifier: 
+  isBossType: 0
   health: 3
   scaleOfEnemy: 1.1
   leftRightFluct: 10
-  approachTime: 40
+  approachTime: 30
   enemyEffects:
   - {fileID: 11400000, guid: dddece8e0167ef84ca6be0c626d196bd, type: 2}

@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -15,6 +15,6 @@ MonoBehaviour:
   health: 5
   scaleOfEnemy: 1.66
   leftRightFluct: 4
-  approachTime: 40
+  approachTime: 30
   enemyEffects:
   - {fileID: 11400000, guid: 154bf2e6bfb8c144997d74e618b0eb70, type: 2}
